@@ -1,0 +1,17 @@
+{% extends "@TPL/base.html.twig" %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block content %}  
+{# _error/405.html.twig #}
+    <section class="box section is-medium">
+        <h1 class="title">Vous n'êtes pas autorisé à entrer ici.</h1>
+        <h2 class="subtitle">
+            Désolée
+        </h2>
+        <p class="has-text-centered">
+            <img class="illustration_svg" src="{{asset('assets/pictures/illustrations/illu_sad.svg')}}" alt="">
+        </p>
+    </section>
+
+{% endblock %}

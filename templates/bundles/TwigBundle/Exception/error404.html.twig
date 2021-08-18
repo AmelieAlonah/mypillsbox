@@ -1,0 +1,17 @@
+{% extends "@TPL/base.html.twig" %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block content %}  
+{# _error/404.html.twig #}
+    <section class="box section is-medium">
+        <h1 class="title">La page que vous demandez n'est pas trouvée.</h1>
+        <h2 class="subtitle">
+            Désolée
+        </h2>
+        <p class="has-text-centered">
+            <img class="illustration_svg" src="{{ asset('assets/pictures/illustrations/illu_404.svg')}}" alt="">
+        </p>
+    </section>
+
+{% endblock %}
