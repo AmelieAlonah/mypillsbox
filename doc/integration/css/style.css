@@ -89,7 +89,9 @@ html {
     background-color: var(--light-background-color-one);
     color: var(--light-color-text-one);
 }
-
+.illustration_svg {
+    max-height: 200px;
+}
 .title {
     font-family: var(--style-title);
 }
