@@ -82,12 +82,10 @@ html {
     background-color: var(--light-background-color-two);
     border-radius: 1%;
 }
-
 .zone-research {
     background-color: var(--light-background-color-one);
     border-radius: 0%;
 }
-
 .box {
     background-color: var(--light-background-color-one);
     color: var(--light-color-text-one);
@@ -98,9 +96,14 @@ html {
 .title {
     font-family: var(--style-title);
 }
-
 .subtitle {
     font-family: var(--style-text);
+}
+.medic_infos {
+    background-color: rgba(0, 0, 255, 0.10);
+}
+.medic_warning {
+    background-color: rgba(255, 0, 0, 0.10);
 }
 /**FOOTER**/
 .footer {
