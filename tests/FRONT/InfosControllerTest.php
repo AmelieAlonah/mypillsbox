@@ -23,4 +23,23 @@ class InfosControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Page des CGU');
     }
+
+    public function testInfosMentions(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/mentions-legales');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Page des Mentions Légales');
+    }
+
+    public function testInfosWho(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/qui-suis-je');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Qui suis-je ?');
+    }
+
 }
