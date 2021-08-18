@@ -1,5 +1,10 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    paths :
+        '%kernel.project_dir%/templates': TPL
+        '%kernel.project_dir%/templates/FRONT': FRONT
+        '%kernel.project_dir%/templates/BACK': BACK
+        '%kernel.project_dir%/templates/layout': LAYOUT
 
 when@test:
     twig:

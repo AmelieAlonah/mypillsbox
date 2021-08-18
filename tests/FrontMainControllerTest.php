@@ -6,10 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FrontMainControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testHome(): void
     {
         $client = static::createClient();
-        
+
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
