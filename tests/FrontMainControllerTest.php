@@ -13,6 +13,6 @@ class FrontMainControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Hello MainController!');
+        $this->assertSelectorTextContains('h1', 'Page d\'accueil');
     }
 }
