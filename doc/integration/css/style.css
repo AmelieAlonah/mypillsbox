@@ -1,0 +1,106 @@
+/**Initilisation de variables**/
+:root {
+    --style-text: 'Quicksand', sans-serif;
+    --style-title: 'Krub', sans-serif;
+
+    --light-background-color-one: #E1F0F4;
+    --light-background-color-two: #E7F4FF;
+    --light-background-color-tree: #f5eaf8;
+    
+    --light-color-text-one: #131814;
+    --light-color-text-two: #283129;
+    --light-color-text-tree: #3C4A3E ;
+    
+    --dark-background-color-one: #283129;
+    --dark-background-color-two: #131814;
+    --dark-background-color-tree: #141012;
+
+    --dark-color-text-one:#CDD7FF ;
+    --dark-color-text-two: #EFEDFF;
+    --dark-color-text-tree: #BeDBC3 ;
+}
+/**HEADER**/
+.header {
+    margin-bottom: 1.5rem;
+}
+.header .navbar{
+    background-color: var(--light-background-color-two);
+    color: var(--light-color-text-one);
+}
+#link_faq {
+    cursor: help;
+}
+#link_me {
+    cursor: help;
+}
+.header .button {
+    box-shadow: 1.5px 3px 3px 3px var(--dark-background-color-one);
+    -webkit-box-shadow: 1.5px 3px 3px 3px var(--dark-background-color-one);
+    -moz-box-shadow: 1.5px 3px 3px 3px var(--dark-background-color-one);
+}
+.header .is-primary {
+    background-color: var(--light-background-color-one);
+    color: var(--light-color-text-one);
+    border: 1.5px solid var(--light-color-text-one);
+}
+.header .is-primary:hover {
+    background-color: var(--light-background-color-two);
+    color: var(--light-color-text-one);
+    border: 3px solid var(--light-color-text-one);
+
+    box-shadow: 1.5px 3px 3px var(--dark-background-color-one);
+    -webkit-box-shadow: 1.5px 3px 3px var(--dark-background-color-one);
+    -moz-box-shadow: 1.5px 3px 3px var(--dark-background-color-one);
+}
+.header .is-primary a {
+    color: var(--light-color-text-one);
+}
+.header .is-primary a:hover {
+    color: var(--light-color-text-tree);
+}
+.navbar-burger {
+    background-color: var(--light-background-color-one);
+    color: var(--light-color-text-one);
+}
+.navbar-burger:hover {
+    background-color: var(--light-background-color-one);
+    color: var(--light-color-text-one);
+}
+.navbar-burger span {
+    width: 1.5em;
+    height: 3px;
+}
+/**BODY**/
+html {
+    background-color: var(--light-background-color-tree);
+    color: var(--light-color-text-tree);
+}
+.section {
+    background-color: var(--light-background-color-two);
+    border-radius: 1%;
+}
+
+.zone-research {
+    background-color: var(--light-background-color-one);
+    border-radius: 0%;
+}
+
+.box {
+    background-color: var(--light-background-color-one);
+    color: var(--light-color-text-one);
+}
+
+.title {
+    font-family: var(--style-title);
+}
+
+.subtitle {
+    font-family: var(--style-text);
+}
+/**FOOTER**/
+.footer {
+    background-color: var(--light-background-color-two);
+}
+.footer a {
+    color: var(--light-color-text-one);
+}
