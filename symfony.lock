@@ -201,6 +201,9 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
+    "sempro/phpunit-pretty-print": {
+        "version": "1.4.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
