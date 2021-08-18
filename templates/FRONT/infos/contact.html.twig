@@ -4,6 +4,103 @@
 
 {% block content %}  
 
-    <h1 class="title has-text-centered">Page de contact</h1>
+    <section class="box section is-medium">
+        <h1 class="title">Pour me contacter ça se passe ici :</h1>
+        <h2 class="subtitle">
+            Des questions sur le site ? Envie de me recruter pour 100k en TJM ?
+        </h2>
+        <p class="has-text-centered">
+            <img class="illustration_svg" src="{{ asset('assets/pictures/illustrations/illu_contact.svg')}}" alt="">
+        </p>
+        <p class="has-text-centered mt-2">
+            Je vous répondrai sous maximum 7 jours, et posterai si elle est adaptée, votre question et ma réponse dans
+            la rubrique FAQ !
+        </p>
+    </section>
+
+    <section class="box section is-medium">
+        <h1 class="title">Formulaire de contact</h1>
+        <h2 class="subtitle">
+            Ici
+        </h2>
+
+        <form action="" method="post">
+            <!-- Dans le formulaire les input doivent avoir pour classe :
+            - is-danger quand le champ est invalide
+            - is-success quand le champ est bien rempli -->
+            <div class="field">
+                <label class="label">Votre nom ou pseudo</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                    </span>
+                </div>
+                <p class="help is-success">Ce nom est valide</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Votre adresse mail de contact</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="email" placeholder="Votre adresse mail valide ici">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                </div>
+                <p class="help is-danger">Ce mail est invalide</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Sujet</label>
+                <div class="control">
+                    <div class="select">
+                        <select>
+                            <option>Le site</option>
+                            <option>Les features</option>
+                            <option>Mon CV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Ecrivez votre message ici."></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="question">
+                        Oui
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="question">
+                        Non
+                    </label>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Envoyer</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light">Annuler</button>
+                </div>
+            </div>
+
+        </form>
+
+
+    </section>
 
 {% endblock %}

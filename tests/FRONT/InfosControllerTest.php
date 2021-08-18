@@ -12,7 +12,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/contact');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Page de contact');
+        $this->assertSelectorTextContains('h1', 'Pour me contacter ça se passe ici :');
     }
 
     public function testInfosCGU(): void
@@ -21,7 +21,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/cgu');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Page des CGU');
+        $this->assertSelectorTextContains('h1', 'Les conditions générales d\'utilisation :');
     }
 
     public function testInfosMentions(): void
@@ -30,7 +30,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/mentions-legales');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Page des Mentions Légales');
+        $this->assertSelectorTextContains('h1', 'Les mentions légales :');
     }
 
     public function testInfosWho(): void
@@ -39,7 +39,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/qui-suis-je');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Qui suis-je ?');
+        $this->assertSelectorTextContains('h1', 'Derrière MyPillsBox se cache :');
     }
 
 }
