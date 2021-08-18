@@ -27,6 +27,9 @@
     background-color: var(--light-background-color-two);
     color: var(--light-color-text-one);
 }
+.header a.navbar-item:hover {
+    background-color: var(--light-background-color-tree);
+}
 #link_faq {
     cursor: help;
 }
