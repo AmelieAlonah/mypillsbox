@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\BACK;
 
 use App\Repository\CPDRepository;
 use Doctrine\ORM\Mapping as ORM;
