@@ -14,5 +14,14 @@ class MedicControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Les médicaments !');
     }
+    
+    public function testRead(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/back-office/medicament/1');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Le médicament !');
+    }
 
 }

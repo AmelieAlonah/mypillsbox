@@ -22,7 +22,7 @@ class MedicController extends AbstractController
      */
     public function MedicRead(): Response
     {
-        return $this->render('back/medic/index.html.twig');
+        return $this->render('back/medic/read.html.twig');
     }
 
     /**
