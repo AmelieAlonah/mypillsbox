@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\FRONT;
+namespace App\Controller\BACK;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,12 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="home", methods="GET")
+     * @Route("/back-office", name="back-office_home")
      */
-    public function index(): Response
+    public function BackHome(): Response
     {
-        return $this->render('FRONT/home.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
+        return $this->render('BACK/home.html.twig');
     }
 }

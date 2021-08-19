@@ -1,0 +1,97 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}Modifier un médicament!{% endblock %}
+
+{% block content %}
+
+<section class="box section is-small">
+
+        <h1 class="title">Modifier un médicament !<button class="button is-success "><span class="icon-text"><span class="icon"><i class="fas fa-undo-alt"></i></span><span>RETOUR</span></span></button></h1>
+
+        <form action="" method="post">
+
+            <div class="field">
+                <label class="label">Nom</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Nom du médicament" value="infos du medicament">
+                    <p class="help is-infos">le nom du émdicament</p>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">code_cis</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="number" placeholder="codecis" value="infos du medicament">
+                </div>
+                <p class="help is-infos">This username is available</p>
+            </div>
+
+
+            <div class="field">
+                <label class="label">allergen</label>
+                <div class="control">
+                    <div class="select">
+                        <select>
+                            <option value="1">aucun</option>
+                            <option value="0">exemple</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Blabla" value="infos du medicament"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Blabla" value="infos du medicament"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Blabla" value="infos du medicament"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Blabla" value="infos du medicament"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Blabla" value="infos du medicament"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        J'ai bien vérifié l'exactitude des infos avant de les valider.</a>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-success">Modifier</button>
+                </div>
+                <div class="control">
+                    <button class="button is-warning is-light">Cancel</button>
+                </div>
+            </div>
+
+        </form>
+    </section>
+{% endblock %}
