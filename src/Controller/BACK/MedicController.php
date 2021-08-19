@@ -2,6 +2,7 @@
 
 namespace App\Controller\BACK;
 
+use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ class MedicController extends AbstractController
      */
     public function MedicBrowse(): Response
     {
-        return $this->render('back/medic/index.html.twig');
+        return $this->render('back/medic/browse.html.twig');
     }
 
     /**
@@ -43,8 +44,8 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/supression/{id}", name="back_office_medic_update", methods={"DELETE"})
      */
-    public function MedicDelete(): Response
+    public function MedicDelete(): Void
     {
-        return $this->render('back/medic/index.html.twig');
+        
     }
 }

@@ -6,12 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class MedicControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testBrowse(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/back-office/medicament');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Hello World');
+        $this->assertSelectorTextContains('h1', 'Les médicaments !');
     }
+
 }
