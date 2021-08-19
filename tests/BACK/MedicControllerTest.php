@@ -24,7 +24,7 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Le médicament !');
     }
 
-    public function testAdd(): void
+    public function testAddGET(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/back-office/medicament/ajout');
@@ -33,13 +33,21 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Ajouter un médicament !');
     }
 
-    public function testUpdate(): void
+    public function testUpdateGET(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/back-office/medicament/edition/1');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Modifier un médicament !');
+    }
+
+    public function testDelete(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('DELETE', '/back-office/medicament/suppression/1');
+
+        $this->assertResponseIsSuccessful();
     }
 
 }

@@ -41,5 +41,13 @@ class MedicController extends AbstractController
     {
         return $this->render('back/medic/update.html.twig');
     }
+
+    /**
+     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_medic_delete", methods={"DELETE"})
+     */
+    public function MedicDelete(): Response
+    {
+        return $this->json("OK", Response::HTTP_ACCEPTED, [], []);
+    }
     
 }
