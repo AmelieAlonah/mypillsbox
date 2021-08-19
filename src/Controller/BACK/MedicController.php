@@ -18,7 +18,7 @@ class MedicController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/medicament/{id}", name="back_office_medic_read", methods="GET")
+     * @Route("/back-office/medicament/{id<\d+>}", name="back_office_medic_read", methods="GET")
      */
     public function MedicRead(): Response
     {
@@ -26,11 +26,11 @@ class MedicController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/medicament/ajout", name="back_office_medic_add", methods={"GET", "POST"})
+     * @Route("/back-office/medicament/ajout", name="back_office_medic_add", methods={"GET"})
      */
     public function MedicAdd(): Response
     {
-        return $this->render('back/medic/index.html.twig');
+        return $this->render('back/medic/add.html.twig');
     }
 
     /**
