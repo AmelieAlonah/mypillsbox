@@ -4,94 +4,161 @@
 
 {% block content %}
 
+
 <section class="box section is-small">
-        <h1 class="title">Ajouter un médicament !<button class="button is-success "><span class="icon-text"><span
-                        class="icon"><i class="fas fa-undo-alt"></i></span><span>RETOUR</span></span></button></h1>
+        <h1 class="title">Ajouter un médicament !</h1>
+            <h2 class="subtitle">
+                <button class="button is-success ">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-undo-alt"></i>
+                        </span>
+                        <a href="{{ path('back_office_medic_browse')}}">
+                            <span>RETOUR</span>
+                        </a>
+                        
+                    </span>
+                </button>
+            </h2> 
+        
 
-        <form action="" method="post">
 
+        {{ form_start(formMedicine) }}
+        {{ form_errors(formMedicine)}}
             <div class="field">
-                <label class="label">Nom</label>
+                <label class="label">Code CIS du médicament</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Nom du médicament">
-                    <p class="help is-infos">le nom du émdicament</p>
+                {{ form_widget(formMedicine.code_CIS, {attr: {class: 'input', type: "number", placeholder: 'Ecrivez le code CIS ici'}}) }}
                 </div>
+                <p class="help is-infos">Le code CIS ou Code Identifiant de Spécialité est un code numérique de 8 chiffres qui permet d'identifier un médicament quelle que soit sa présentation (ou encore conditionnement).</p>
             </div>
-
+            
             <div class="field">
-                <label class="label">code_cis</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="number" placeholder="codecis">
-                </div>
-                <p class="help is-infos">This username is available</p>
-            </div>
-
-
-            <div class="field">
-                <label class="label">allergen</label>
+                <label class="label">Nom du médicament</label>
                 <div class="control">
-                    <div class="select">
-                        <select>
-                            <option value="1">aucun</option>
-                            <option value="0">exemple</option>
-                        </select>
-                    </div>
+                {{ form_widget(formMedicine.name, {attr: {class: 'input', placeholder: 'Ecrivez le nom du médicament ici'}}) }}
                 </div>
+                <p class="help is-infos">Le nom commun du médicament référencé.</p>
             </div>
 
             <div class="field">
-                <label class="label">Message</label>
+                <label class="label">Composition du médicament</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Blabla"></textarea>
+                {{ form_widget(formMedicine.medic_compo, {attr: {class: 'input', placeholder: 'Ecrivez la composition du médicament ici'}}) }}
                 </div>
+                <p class="help is-infos">Il s'agit de la substance présente dans le médicament qui lui confère ses propriétés thérapeutiques ou préventives.</p>
+            </div>
+            
+            <div class="field">
+                <label class="label">Type du médicament</label>
+                <div class="control">
+                {{ form_widget(formMedicine.medic_type, {attr: {class: 'input', placeholder: 'Ecrivez le type du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">La forme pharmaceutique (également appelée "forme médicamenteuse" ou "forme galénique") correspond à la forme sous laquelle le médicament se présente (comprimé, gélule, sirop, collyre, crème, solution injectable, etc.). Elle est spécialement conçue pour la voie d'administration à laquelle le médicament est destiné.</p>
             </div>
 
             <div class="field">
-                <label class="label">Message</label>
+                <label class="label">Indications thérapeutiques</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Blabla"></textarea>
+                {{ form_widget(formMedicine.medic_condition, {attr: {class: 'textarea', placeholder: 'Ecrivez les indications thérapeutiques du médicament ici'}}) }}
                 </div>
+                <p class="help is-infos">L'indication thérapeutique renseigne sur la maladie ou les symptômes que le médicament est capable de traiter ou de prévenir, ou encore sur le diagnostic qu'il permet d'établir.</p>
             </div>
 
             <div class="field">
-                <label class="label">Message</label>
+                <label class="label">Posologie recommandée</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Blabla"></textarea>
+                {{ form_widget(formMedicine.medic_dosage, {attr: {class: 'textarea', placeholder: 'Ecrivez la posologie recommandée du médicament ici'}}) }}
                 </div>
+                <p class="help is-infos">Indication de la dose et du rythme de prise du médicament notamment déterminé selon l'âge, le sexe, le poids et l'état clinique du patient.</p>
             </div>
 
             <div class="field">
-                <label class="label">Message</label>
+                <label class="label">Autre(s) situation(s) clinique(s)</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Blabla"></textarea>
+                {{ form_widget(formMedicine.medic_exeption, {attr: {class: 'textarea', placeholder: 'Ecrivez la ou les autres situations cliniques du médicament ici'}}) }}
                 </div>
+                <p class="help is-infos">Les autres situations cliniques sont des situations, dans lesquelles la posologie du médicament est différente qu'initialement</p>
             </div>
 
             <div class="field">
-                <label class="label">Message</label>
+                <label class="label">Mode d'administration</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Blabla"></textarea>
+                {{ form_widget(formMedicine.medic_method_administration, {attr: {class: 'textarea', placeholder: 'Ecrivez le mode d\'administration du médicament ici'}}) }}
                 </div>
+                <p class="help is-infos">Le mode d'administration est la voie par laquelle le médicament est pris, avec une recommandation éventuelle.</p>
             </div>
+
+            <div class="field">
+                <label class="label">Contre-indication(s)</label>
+                <div class="control">
+                {{ form_widget(formMedicine.medic_danger, {attr: {class: 'textarea', placeholder: 'Ecrivez les contres-indications du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">Situation dans laquelle on ne doit pas donner le médicament pour des raisons de sécurité. Cette situation peut survenir dans des circonstances particulières comme un diagnostic clinique particulier, des maladies concomitantes, des facteurs démographiques (le sexe, l'âge) ou des prédispositions particulières (des facteurs par exemple métaboliques ou immunologiques ou des réactions défavorables antérieures à un médicament ou à la classe de médicaments).</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Dosage maximum recommandé</label>
+                <div class="control">
+                {{ form_widget(formMedicine.medic_dosage_max, {attr: {class: 'textarea', placeholder: 'Ecrivez le dosage maximum du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">La dose maximale recommandé, est à titre informatif.</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Associations faisant l'objet de précautions d'emploi (interactions médicamenteuses)</label>
+                <div class="control">
+                {{ form_widget(formMedicine.medic_interaction_other_medic, {attr: {class: 'textarea', placeholder: 'Ecrivez les associations non recommandées du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">On parle d’interaction médicamenteuse lorsque la prise d’une substance modifie l’effet d’un ou plusieurs autres principes actifs présents au même moment dans l’organisme.</p>
+            </div> 
+
+            <div class="field">
+                <label class="label">Fertilité, grossesse et allaitement</label>
+                <div class="control">
+                {{ form_widget(formMedicine.fertily_pregnancy_breastfeeding, {attr: {class: 'textarea', placeholder: 'Ecrivez les impacts du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">Les résultats sur l'impact du médicament sur la grossesse, l'allaitement et la fertilité.</p>
+            </div> 
+
+            <div class="field">
+                <label class="label">Effets indésirables</label>
+                <div class="control">
+                {{ form_widget(formMedicine.medic_adverse_reaction, {attr: {class: 'textarea', placeholder: 'Ecrivez les effets indésirables du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">Un effet indésirable est une réaction nocive et non voulue à un médicament utilisé.
+                Un effet indésirable est dit "grave" : lorsqu'il entraîne la mort ou est susceptible de mettre la vie en danger du patient ; lorsqu'il entraîne une invalidité ou une incapacité importante ou durable ; lorsqu'il provoque ou prolonge une hospitalisation ; lorsqu'il se manifeste par une anomalie ou une malformation congénitale. Un effet indésirable inattendu (appelé aussi effet secondaire) est un effet indésirable dont la nature, la sévérité ou l'évolution ne correspondent pas aux informations contenues dans le Résumé des caractéristiques du produit.</p>
+            </div> 
+
+            <div class="field">
+                <label class="label">Identifiant du CPD</label>
+                <div class="control">
+                {{ form_widget(formMedicine.id_CPD,
+                {attr: {class: 'input', type: 'number', minlenght: "1",
+                placeholder: 'Ecrivez le nombre du CPD du médicament ici'}}) }}
+                </div>
+                <p class="help is-infos">Les conditions de prescription et de délivrance définissent les modalités d'accès des patients à un médicament. La prescription et/ou la délivrance d'un médicament peuvent en effet être restreintes, c'est-à-dire réservées à l'hôpital ou à certains médecins (certains spécialistes par exemple) ou soumises à certaines conditions (concernant la durée de traitement ou les examens complémentaires à effectuer), dans l'intérêt des patients.</p>
+            </div> 
 
             <div class="field">
                 <div class="control">
                     <label class="checkbox">
-                        <input type="checkbox">
-                        J'ai bien vérifié l'exactitude des infos avant de les valider.</a>
+                        <input type="checkbox" required>
+                        J'ai bien vérifié l'exactitude des informations avant de les valider.</a>
                     </label>
                 </div>
             </div>
 
             <div class="field is-grouped">
                 <div class="control">
-                    <button class="button is-success">Ajouter</button>
+                    <button class="button is-success" type="submit">Ajouter</button>
                 </div>
                 <div class="control">
                     <button class="button is-warning is-light">Cancel</button>
                 </div>
             </div>
 
-        </form>
+        {{ form_end(formMedicine) }}
+
     </section>
     {% endblock %}

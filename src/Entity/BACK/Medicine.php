@@ -20,69 +20,54 @@ class Medicine
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable="false")
      */
     private $code_CIS;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable="false")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable="false")
      */
     private $medic_compo;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable="false")
      */
     private $medic_type;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="false")
      */
     private $medic_condition;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="false")
      */
     private $medic_dosage;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="false")
      */
     private $medic_exeption;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="false")
      */
     private $medic_method_administration;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="false")
      */
     private $medic_danger;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable="false")
      */
     private $medic_dosage_max;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $medic_dosage_max_40;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $medic_dosage_max_50;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $medic_dosage_max_50_plus;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -95,7 +80,7 @@ class Medicine
     private $fertily_pregnancy_breastfeeding;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="false")
      */
     private $medic_adverse_reaction;
 
@@ -108,26 +93,6 @@ class Medicine
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * Get the value of code_CIS
-     */ 
-    public function getCode_CIS()
-    {
-        return $this->code_CIS;
-    }
-
-    /**
-     * Set the value of code_CIS
-     *
-     * @return  self
-     */ 
-    public function setCode_CIS($code_CIS)
-    {
-        $this->code_CIS = $code_CIS;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -238,42 +203,6 @@ class Medicine
         return $this;
     }
 
-    public function getMedicDosageMax40(): ?int
-    {
-        return $this->medic_dosage_max_40;
-    }
-
-    public function setMedicDosageMax40(int $medic_dosage_max_40): self
-    {
-        $this->medic_dosage_max_40 = $medic_dosage_max_40;
-
-        return $this;
-    }
-
-    public function getMedicDosageMax50(): ?int
-    {
-        return $this->medic_dosage_max_50;
-    }
-
-    public function setMedicDosageMax50(int $medic_dosage_max_50): self
-    {
-        $this->medic_dosage_max_50 = $medic_dosage_max_50;
-
-        return $this;
-    }
-
-    public function getMedicDosageMax50Plus(): ?int
-    {
-        return $this->medic_dosage_max_50_plus;
-    }
-
-    public function setMedicDosageMax50Plus(int $medic_dosage_max_50_plus): self
-    {
-        $this->medic_dosage_max_50_plus = $medic_dosage_max_50_plus;
-
-        return $this;
-    }
-
     public function getMedicInteractionOtherMedic(): ?string
     {
         return $this->medic_interaction_other_medic;
@@ -334,4 +263,24 @@ class Medicine
         return $this;
     }
 
+
+    /**
+     * Get the value of code_CIS
+     */ 
+    public function getCodeCIS()
+    {
+        return $this->code_CIS;
+    }
+
+    /**
+     * Set the value of code_CIS
+     *
+     * @return  self
+     */ 
+    public function setCodeCIS($code_CIS)
+    {
+        $this->code_CIS = $code_CIS;
+
+        return $this;
+    }
 }

@@ -52,7 +52,7 @@
                 </thead>
 
                 <tbody>
-                    <tr><th>Code CIS</th>                                                       <td> {{ medic.code_CIS }} </td></tr>
+                    <tr><th>Code CIS</th>                                                       <td> {{ medic.codeCIS }} </td></tr>
                     <tr><th>Code CPD</th>                                                       <td> {{ medic.idCPD }} </td></tr>
                     <tr><th>Nom du médicament</th>                                              <td> {{ medic.name }} </td></tr>
                     <tr><th>Composition du médicament</th>                                      <td> {{ medic.medicCompo }} </td></tr>
@@ -62,11 +62,7 @@
                     <tr><tr><th>Autres situations cliniques</th>                                <td> {{ medic.medicExeption }} </td></tr>
                     <tr><th>Mode d'administration</th>                                          <td> {{ medic.medicMethodAdministration }} </td></tr>
                     <tr><th>Contres-indications</th>                                            <td> {{ medic.medicDanger }} </td>    </tr>
-                    <tr><th>Dose maximale recommandée</th>                                      <td> {{ medic.medicDosageMax }} </td></tr>
-                    <tr><th>Dose maximale recommandée pour une personne de moins de 40 kg</th>  <td> {{ medic.medicDosageMax40 }} </td></tr>
-                    <tr><th>Dose maximale recommandée pour une personne de moins de 50 kg</th>  <td> {{ medic.medicDosageMax50 }} </td></tr>
-                    <tr><th>Dose maximale recommandée pour une personne de plus de 50 kg</th>   <td> {{ medic.medicDosageMax50Plus }} </td></tr>
-                    <tr><th>Interactions médicamenteuses</th>                                   <td> {{ medic.medicInteractionOtherMedic }} </td></tr>
+                    <tr><th>Dose maximale recommandée</th>                                      <td> {{ medic.medicDosageMax }} </td></tr><tr><th>Interactions médicamenteuses</th>                                   <td> {{ medic.medicInteractionOtherMedic }} </td></tr>
                     <tr><th>Impact sur la fertilité, grossesse et allaitement</th>              <td> {{ medic.fertilyPregnancyBreastfeeding }} </td></tr>
                     <tr><th>Effets indésirables</th>                                            <td> {{ medic.medicAdverseReaction }} </td></tr>
                 </tbody>

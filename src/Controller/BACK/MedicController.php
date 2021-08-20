@@ -3,10 +3,13 @@
 namespace App\Controller\BACK;
 
 use App\Entity\BACK\Medicine;
+use App\Form\BACK\MedicineType;
 use phpDocumentor\Reflection\Types\Void_;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class MedicController extends AbstractController
 {
@@ -36,10 +39,28 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/ajout", name="back_office_medic_add", methods={"GET", "POST"})
      */
-    public function MedicAdd(): Response
+    public function MedicAdd(Request $request, Session $session): Response
     {
+        $medicine = new Medicine;
+
+        $formMedicine = $this->createForm(MedicineType::class, $medicine);
         
-        return $this->render('back/medic/add.html.twig');
+        $formMedicine->handleRequest($request);
+
+        if($formMedicine->isSubmitted() && $formMedicine->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($medicine);
+            $em->flush();
+        }
+        else
+        {
+            //TODO Mettre un flashcard
+        }
+
+        return $this->render('back/medic/add.html.twig', [
+            'formMedicine' => $formMedicine->createView()
+        ]);
     }
 
     /**
