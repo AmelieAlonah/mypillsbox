@@ -30,18 +30,29 @@
                                 </td>
                                 <td>
                                     {{ medic.name }}
-                                    <button class="button is-medium is-warning is-italic has-text-weight-bold has-text-black has-text-centered">
+                                    
+                                    <button class="button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="far fa-eye"></i>
+                                            </span>
+                                            <a href="{{ path('back_office_medic_read', { id: medic.id })}}">
+                                            <span>Regarder</span>
+                                            </a>
+                                        </span>
+                                    </button>
+                                    
+                                    <button class="button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
                                         <span class="icon-text">
                                             <span class="icon">
                                                 <i class="fas fa-edit"></i>
                                             </span>
-                                            <a href="{{ path('back_office_medic_read', { id: medic.id })}}">
+                                            <a href="{{ path('back_office_medic_update', { id: medic.id })}}">
                                             <span>Editer</span>
                                             </a>
-                                            
                                         </span>
                                     </button>
-                                    <button type="submit" class="button is-medium is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                                    <button type="submit" class="button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
                                         <span class="icon-text">
                                             <span class="icon">
                                                 <i class="fas fa-trash-alt"></i>

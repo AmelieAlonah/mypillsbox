@@ -4,13 +4,14 @@ namespace App\Controller\BACK;
 
 use App\Entity\BACK\Medicine;
 use App\Form\BACK\MedicineType;
+use App\Repository\MedicineRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MedicController extends AbstractController
 {
@@ -32,9 +33,11 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id"="\d+"})
      */
-    public function MedicRead(): Response
+    public function MedicRead(Medicine $medicine): Response
     {
-        return $this->render('back/medic/read.html.twig');
+        return $this->render('back/medic/read.html.twig', [
+            'medicine' => $medicine
+        ]);
     }
 
     /**
