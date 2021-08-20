@@ -38,6 +38,7 @@ class MedicController extends AbstractController
      */
     public function MedicAdd(): Response
     {
+        
         return $this->render('back/medic/add.html.twig');
     }
 
