@@ -2,8 +2,9 @@
 
 namespace App\Entity\BACK;
 
-use App\Repository\MedicineRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MedicineRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=MedicineRepository::class)
@@ -11,16 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Medicine
 {
     
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
      * @ORM\Column(type="integer")
      */
     private $code_CIS;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $medic_notice;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -31,18 +33,6 @@ class Medicine
      * @ORM\Column(type="string", length=255)
      */
     private $medic_compo;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(nullable=true)
-     */
-    private $allergen_id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -60,11 +50,6 @@ class Medicine
     private $medic_dosage;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $medic_freq_dosage;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $medic_exeption;
@@ -78,11 +63,6 @@ class Medicine
      * @ORM\Column(type="text")
      */
     private $medic_danger;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $medic_warning;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -105,19 +85,9 @@ class Medicine
     private $medic_dosage_max_50_plus;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $medic_usage_precaution;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $medic_interaction_other_medic;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $medic_interaction_other_medic_id;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -125,53 +95,68 @@ class Medicine
     private $fertily_pregnancy_breastfeeding;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $fertily_pregnancy_breastfeeding_bool;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $medic_effect_drive;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $medic_effect_drive_bool;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $medic_adverse_reaction;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $medic_overdose;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $medic_overdose_symptom;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $medic_overdose_behavior_overdose;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $prop_pharma_data;
 
     /**
      * @ORM\Column(nullable=true)
      */
     private $id_CPD;
 
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    
+    public function getCodeCIS(): ?int
+    {
+        return $this->code_CIS;
+    }
+
+    public function setCodeCIS(int $code_CIS): self
+    {
+        $this->code_CIS = $code_CIS;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getMedicCompo(): ?string
+    {
+        return $this->medic_compo;
+    }
+
+    public function setMedicCompo(string $medic_compo): self
+    {
+        $this->medic_compo = $medic_compo;
+
+        return $this;
+    }
+
+    public function getMedicType(): ?string
+    {
+        return $this->medic_type;
+    }
+
+    public function setMedicType(string $medic_type): self
+    {
+        $this->medic_type = $medic_type;
+
+        return $this;
     }
 
     public function getMedicCondition(): ?string
@@ -194,18 +179,6 @@ class Medicine
     public function setMedicDosage(string $medic_dosage): self
     {
         $this->medic_dosage = $medic_dosage;
-
-        return $this;
-    }
-
-    public function getMedicFreqDosage(): ?string
-    {
-        return $this->medic_freq_dosage;
-    }
-
-    public function setMedicFreqDosage(string $medic_freq_dosage): self
-    {
-        $this->medic_freq_dosage = $medic_freq_dosage;
 
         return $this;
     }
@@ -242,18 +215,6 @@ class Medicine
     public function setMedicDanger(string $medic_danger): self
     {
         $this->medic_danger = $medic_danger;
-
-        return $this;
-    }
-
-    public function getMedicWarning(): ?string
-    {
-        return $this->medic_warning;
-    }
-
-    public function setMedicWarning(string $medic_warning): self
-    {
-        $this->medic_warning = $medic_warning;
 
         return $this;
     }
@@ -306,18 +267,6 @@ class Medicine
         return $this;
     }
 
-    public function getMedicUsagePrecaution(): ?string
-    {
-        return $this->medic_usage_precaution;
-    }
-
-    public function setMedicUsagePrecaution(string $medic_usage_precaution): self
-    {
-        $this->medic_usage_precaution = $medic_usage_precaution;
-
-        return $this;
-    }
-
     public function getMedicInteractionOtherMedic(): ?string
     {
         return $this->medic_interaction_other_medic;
@@ -354,42 +303,6 @@ class Medicine
         return $this;
     }
 
-    public function getFertilyPregnancyBreastfeedingBool(): ?bool
-    {
-        return $this->fertily_pregnancy_breastfeeding_bool;
-    }
-
-    public function setFertilyPregnancyBreastfeedingBool(bool $fertily_pregnancy_breastfeeding_bool): self
-    {
-        $this->fertily_pregnancy_breastfeeding_bool = $fertily_pregnancy_breastfeeding_bool;
-
-        return $this;
-    }
-
-    public function getMedicEffectDrive(): ?string
-    {
-        return $this->medic_effect_drive;
-    }
-
-    public function setMedicEffectDrive(?string $medic_effect_drive): self
-    {
-        $this->medic_effect_drive = $medic_effect_drive;
-
-        return $this;
-    }
-
-    public function getMedicEffectDriveBool(): ?bool
-    {
-        return $this->medic_effect_drive_bool;
-    }
-
-    public function setMedicEffectDriveBool(bool $medic_effect_drive_bool): self
-    {
-        $this->medic_effect_drive_bool = $medic_effect_drive_bool;
-
-        return $this;
-    }
-
     public function getMedicAdverseReaction(): ?string
     {
         return $this->medic_adverse_reaction;
@@ -398,54 +311,6 @@ class Medicine
     public function setMedicAdverseReaction(string $medic_adverse_reaction): self
     {
         $this->medic_adverse_reaction = $medic_adverse_reaction;
-
-        return $this;
-    }
-
-    public function getMedicOverdose(): ?string
-    {
-        return $this->medic_overdose;
-    }
-
-    public function setMedicOverdose(string $medic_overdose): self
-    {
-        $this->medic_overdose = $medic_overdose;
-
-        return $this;
-    }
-
-    public function getMedicOverdoseSymptom(): ?string
-    {
-        return $this->medic_overdose_symptom;
-    }
-
-    public function setMedicOverdoseSymptom(string $medic_overdose_symptom): self
-    {
-        $this->medic_overdose_symptom = $medic_overdose_symptom;
-
-        return $this;
-    }
-
-    public function getMedicOverdoseBehaviorOverdose(): ?string
-    {
-        return $this->medic_overdose_behavior_overdose;
-    }
-
-    public function setMedicOverdoseBehaviorOverdose(string $medic_overdose_behavior_overdose): self
-    {
-        $this->medic_overdose_behavior_overdose = $medic_overdose_behavior_overdose;
-
-        return $this;
-    }
-
-    public function getPropPharmaData(): ?string
-    {
-        return $this->prop_pharma_data;
-    }
-
-    public function setPropPharmaData(string $prop_pharma_data): self
-    {
-        $this->prop_pharma_data = $prop_pharma_data;
 
         return $this;
     }
@@ -462,75 +327,4 @@ class Medicine
         return $this;
     }
 
-    public function getCodeCIS(): ?int
-    {
-        return $this->code_CIS;
-    }
-
-    public function setCodeCIS(int $code_CIS): self
-    {
-        $this->code_CIS = $code_CIS;
-
-        return $this;
-    }
-
-    public function getMedicNotice(): ?string
-    {
-        return $this->medic_notice;
-    }
-
-    public function setMedicNotice(string $medic_notice): self
-    {
-        $this->medic_notice = $medic_notice;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMedicCompo(): ?string
-    {
-        return $this->medic_compo;
-    }
-
-    public function setMedicCompo(string $medic_compo): self
-    {
-        $this->medic_compo = $medic_compo;
-
-        return $this;
-    }
-
-    public function getAllergenId(): ?int
-    {
-        return $this->allergen_id;
-    }
-
-    public function setAllergenId(?int $allergen_id): self
-    {
-        $this->allergen_id = $allergen_id;
-
-        return $this;
-    }
-
-    public function getMedicType(): ?string
-    {
-        return $this->medic_type;
-    }
-
-    public function setMedicType(string $medic_type): self
-    {
-        $this->medic_type = $medic_type;
-
-        return $this;
-    }
 }

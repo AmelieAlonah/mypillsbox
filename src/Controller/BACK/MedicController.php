@@ -15,6 +15,7 @@ class MedicController extends AbstractController
      */
     public function MedicBrowse(): Response
     {
+        
         return $this->render('back/medic/browse.html.twig');
     }
 
