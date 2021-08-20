@@ -4,6 +4,7 @@ namespace App\Controller\BACK;
 
 use App\Entity\BACK\Medicine;
 use App\Form\BACK\MedicineType;
+use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,6 +57,7 @@ class MedicController extends AbstractController
         else
         {
             //TODO Mettre un flashcard
+            echo "OhOh KC";
         }
 
         return $this->render('back/medic/add.html.twig', [
@@ -72,11 +74,19 @@ class MedicController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_medic_delete", methods={"DELETE"})
+     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_medic_delete", methods={"GET"})
      */
-    public function MedicDelete(): Response
+    public function MedicDelete(EntityManagerInterface $entityManagerInterface, Medicine $medicine = null): Response
     {
-        return $this->json("OK", Response::HTTP_ACCEPTED, [], []);
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+        $entityManagerInterface = $this->getDoctrine()->getManager();
+        $entityManagerInterface->remove($medicine);
+        $entityManagerInterface->flush();
+
+        return $this->redirectToRoute('back_office_medic_browse', [], 302);
     }
     
 }

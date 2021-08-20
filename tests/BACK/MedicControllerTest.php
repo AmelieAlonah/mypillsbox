@@ -2,10 +2,7 @@
 
 namespace App\Tests\BACK;
 
-use App\DataFixtures\MedicineFixtures;
-use App\DataFixtures\MedicineFixturesTest;
-use App\Repository\TestRepository;
-use phpDocumentor\Reflection\Types\Void_;
+use App\Controller\BACK\MedicController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -50,12 +47,14 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Modifier un médicament !');
     }
 
-    public function testDelete(): void
-    {
-        $client = static::createClient();
-        $crawler = $client->request('DELETE', '/back-office/medicament/suppression/1');
+    // public function testDelete(): void
+    // {
+    //     $client = static::createClient();
+    //     $crawler = $client->request('GET', '/back-office/medicament/liste');
 
-        $this->assertResponseIsSuccessful();
-    }
+    //     $this->assertResponseIsSuccessful();
+    //     $this->assertSelectorTextContains('h1', 'La liste des médicaments :');
+
+    // }
 
 }

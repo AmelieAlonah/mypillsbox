@@ -105,6 +105,7 @@ html {
 .medic_warning {
     background-color: rgba(255, 0, 0, 0.10);
 }
+
 /**FOOTER**/
 .footer {
     background-color: var(--light-background-color-two);
