@@ -5,7 +5,7 @@
 {% block content %}
 
 <section class="box section is-small">
-    <h1 class="title">Les médicaments !</h1>
+    <h1 class="title">La liste des médicaments :</h1>
     <h2 class="subtitle">
         <button class="button is-success ">
             <span class="icon-text">
@@ -19,9 +19,10 @@
         </button>
     </h2>
 
-    <table class="table ">
 
-        {% for medic in medics %}
+{% for medic in medics %}
+
+    <table class="table ">
 
                 <thead> 
                     <tr class="subtitle is-4 has-text-centered">

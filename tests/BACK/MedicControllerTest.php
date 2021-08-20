@@ -2,17 +2,25 @@
 
 namespace App\Tests\BACK;
 
+use App\DataFixtures\MedicineFixtures;
+use App\DataFixtures\MedicineFixturesTest;
+use App\Repository\TestRepository;
+use phpDocumentor\Reflection\Types\Void_;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class MedicControllerTest extends WebTestCase
 {
-    public function testBrowse(): void
-    {
+    /**
+     * Medicine list
+     */
+    public function testBrowse(): Void
+    {   
         $client = static::createClient();
         $crawler = $client->request('GET', '/back-office/medicament/liste');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Les médicaments !');
+        $this->assertSelectorTextContains('h1', 'La liste des médicaments :');
     }
 
     public function testRead(): void
