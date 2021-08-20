@@ -2,6 +2,7 @@
 
 namespace App\Controller\BACK;
 
+use App\Entity\BACK\Medicine;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,13 @@ class MedicController extends AbstractController
      */
     public function MedicBrowse(): Response
     {
-        
-        return $this->render('back/medic/browse.html.twig');
+        $repository = $this->getDoctrine()->getRepository(Medicine::class);
+
+        $medics     = $repository->findAll();
+
+        return $this->render('back/medic/browse.html.twig', [
+            'medics' => $medics
+        ]);
     }
 
     /**

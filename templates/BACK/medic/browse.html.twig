@@ -11,59 +11,58 @@
                         class="fas fa-plus-square"></i></span><span>AJOUTER un médicament</span></span></button>
     </h2>
 
-    <table class="table has-text-centered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>COMPOSITION</th>
-                <th>FORME</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>EDITER</th>
-                <th>SUPPRIMER</th>
-            </tr>
-        </thead>
+    <table class="table ">
 
-        <tbody>
+        {% for medic in medics %}
 
-            <tr>
-                <td>id</td>
-                <td>name</td>
-                <td>compo</td>
-                <td>forme</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td><button class="button is-small is-warning is-italic has-text-weight-bold has-text-black">
-                        <span class="icon-text">
-                            <span class="icon">
-                                <i class="fas fa-edit"></i>
-                            </span>
-                            <span>Editer</span>
-                        </span>
-                    </button></td>
-                <td><button class="button is-small is-danger is-uppercase has-text-weight-bold has-text-black">
-                        <span class="icon-text ">
-                            <span class="icon">
-                                <i class="fas fa-trash-alt"></i>
-                            </span>
-                            <span>Supprimer</span>
-                        </span>
-                    </button></td>
-            </tr>
+                <thead> 
+                    <tr class="subtitle is-4 has-text-centered">
+                        <td>
+                            <h4 >Nom du médicament</h4> 
+                        </td>
+                        <td>
+                            {{ medic.name }}
+                            <button class="button is-medium is-warning is-italic has-text-weight-bold has-text-black has-text-centered">
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                    <span>Editer</span>
+                                </span>
+                            </button>
+                            <button class="button is-medium is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                    <span>Supprimer</span>
+                                </span>
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr><th>Code CIS</th>                                                       <td> {{ medic.code_CIS }} </td></tr>
+                    <tr><th>Code CPD</th>                                                       <td> {{ medic.idCPD }} </td></tr>
+                    <tr><th>Nom du médicament</th>                                              <td> {{ medic.name }} </td></tr>
+                    <tr><th>Composition du médicament</th>                                      <td> {{ medic.medicCompo }} </td></tr>
+                    <tr><th>Type</th>                                                           <td> {{ medic.medicType }} </td></tr>
+                    <tr><th>Indications thérapeutiques</th>                                     <td> {{ medic.medicCondition }} </td></tr>
+                    <tr><tr><th>Posologie recommandée</th>                                      <td> {{ medic.medicDosage }} </td></tr>
+                    <tr><tr><th>Autres situations cliniques</th>                                <td> {{ medic.medicExeption }} </td></tr>
+                    <tr><th>Mode d'administration</th>                                          <td> {{ medic.medicMethodAdministration }} </td></tr>
+                    <tr><th>Contres-indications</th>                                            <td> {{ medic.medicDanger }} </td>    </tr>
+                    <tr><th>Dose maximale recommandée</th>                                      <td> {{ medic.medicDosageMax }} </td></tr>
+                    <tr><th>Dose maximale recommandée pour une personne de moins de 40 kg</th>  <td> {{ medic.medicDosageMax40 }} </td></tr>
+                    <tr><th>Dose maximale recommandée pour une personne de moins de 50 kg</th>  <td> {{ medic.medicDosageMax50 }} </td></tr>
+                    <tr><th>Dose maximale recommandée pour une personne de plus de 50 kg</th>   <td> {{ medic.medicDosageMax50Plus }} </td></tr>
+                    <tr><th>Interactions médicamenteuses</th>                                   <td> {{ medic.medicInteractionOtherMedic }} </td></tr>
+                    <tr><th>Impact sur la fertilité, grossesse et allaitement</th>              <td> {{ medic.fertilyPregnancyBreastfeeding }} </td></tr>
+                    <tr><th>Effets indésirables</th>                                            <td> {{ medic.medicAdverseReaction }} </td></tr>
+                </tbody>
+        {% endfor %}
         </tbody>
     </table>
 </section>
-
 {% endblock %}

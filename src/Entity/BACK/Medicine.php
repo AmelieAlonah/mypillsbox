@@ -110,13 +110,20 @@ class Medicine
         return $this->id;
     }
 
-    
-    public function getCodeCIS(): ?int
+    /**
+     * Get the value of code_CIS
+     */ 
+    public function getCode_CIS()
     {
         return $this->code_CIS;
     }
 
-    public function setCodeCIS(int $code_CIS): self
+    /**
+     * Set the value of code_CIS
+     *
+     * @return  self
+     */ 
+    public function setCode_CIS($code_CIS)
     {
         $this->code_CIS = $code_CIS;
 
