@@ -7,8 +7,16 @@
 <section class="box section is-small">
     <h1 class="title">Les médicaments !</h1>
     <h2 class="subtitle">
-        <button class="button is-success "><span class="icon-text"><span class="icon"><i
-                        class="fas fa-plus-square"></i></span><span>AJOUTER un médicament</span></span></button>
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-plus-square"></i>
+                </span>  
+                <a href="{{ path('back_office_medic_add')}}">
+                    <span>AJOUTER un médicament</span>
+                </a>
+            </span>
+        </button>
     </h2>
 
     <table class="table ">
