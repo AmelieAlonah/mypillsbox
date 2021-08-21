@@ -2,6 +2,7 @@
 
 namespace App\Controller\FRONT;
 
+use App\Entity\BACK\Medicine;
 use App\Form\FRONT\SearchType;
 use App\Repository\MedicineRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,10 +36,17 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("recherche/resultats", name="medic_result", methods={"GET"})
+     * @Route("/recherche/voir/{id<\d+>}", name="medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function searchResult(): Response
+    public function searchRead(Medicine $medicine): Response
     {
-        return $this->render('FRONT\search\medic_result.html.twig');
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+
+        return $this->render('FRONT\medicine\medic_read.html.twig', [
+            'medicine' => $medicine
+        ]);
     }
 }
