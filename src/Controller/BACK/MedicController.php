@@ -5,6 +5,7 @@ namespace App\Controller\BACK;
 use App\Entity\BACK\Medicine;
 use App\Form\BACK\MedicineType;
 use App\Repository\MedicineRepository;
+use App\Service\MessageGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +49,7 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/ajout", name="back_office_medic_add", methods={"GET", "POST"})
      */
-    public function MedicAdd(Request $request, Session $session): Response
+    public function MedicAdd(Request $request): Response
     {
         $medicine = new Medicine;
 
@@ -60,11 +61,12 @@ class MedicController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($medicine);
             $em->flush();
+
+            $this->addFlash('success', 'Le médicament a bien été enregistré dans la base de donnée.');
         }
         else
         {
-            //TODO Mettre un flashcard
-            echo "OhOh KC";
+            $this->addFlash('danger', 'Le médicament n\'a pas été enregistré, veuillez vérifier les champs remplis.');
         }
 
         return $this->render('back/medic/add.html.twig', [
@@ -90,12 +92,13 @@ class MedicController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
+            $this->addFlash('success', 'Le médicament a bien été mis à jour dans la base de donnée.');
+
             return $this->redirectToRoute('back_office_medic_read', ['id' => $medicine->getId()]);
         }
         else
         {
-            //TODO Mettre un flashcard
-            echo "OhOh KC";
+            $this->addFlash('danger', 'Le médicament n\'a pas été mis à jour, veuillez vérifier les champs remplis.');
         }
 
         return $this->render('back/medic/update.html.twig', [
@@ -118,6 +121,8 @@ class MedicController extends AbstractController
         $entityManagerInterface = $this->getDoctrine()->getManager();
         $entityManagerInterface->remove($medicine);
         $entityManagerInterface->flush();
+
+        $this->addFlash('success', 'Le médicament a bien été supprimé de la base de donnée.');
 
         return $this->redirectToRoute('back_office_medic_browse', [], 302);
     }
