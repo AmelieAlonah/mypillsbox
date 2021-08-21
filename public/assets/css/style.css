@@ -100,11 +100,66 @@ html {
     font-family: var(--style-text);
 }
 .medic_infos {
-    background-color: rgba(0, 0, 255, 0.10);
+    background-color: rgba(0, 0, 255, 0.20);
+    color: var(--light-color-text-one);
+
+    transition-duration: 2s;
+    transition-delay: 0.5s;
+}
+.medic_infos:hover {
+    background-color: rgba(0, 0, 255, 0.40);
+    color: var(--light-background-color-one);
+    font-weight: bolder;
+
+    box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+    -webkit-box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+    -moz-box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+
+    transition-duration: 2s;
+    transition-delay: 0.5s;
+    transition: 1s;
 }
 .medic_warning {
     background-color: rgba(255, 0, 0, 0.10);
+    color: var(--light-color-text-one);
+
+    transition-duration: 2s;
+    transition-delay: 0.5s;
 }
+.medic_warning:hover {
+    background-color: rgba(255, 0, 0, 0.30);
+    color: var(--light-color-text-one);
+    font-weight: bolder;
+
+    box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+    -webkit-box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+    -moz-box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+
+    transition-duration: 2s;
+    transition-delay: 0.5s;
+    transition: 1s;
+}
+.medic_danger {
+    background-color: rgba(255, 0, 0, 0.20);
+    color: var(--light-color-text-one);
+
+    transition-duration: 2s;
+    transition-delay: 0.5s;
+}
+.medic_danger:hover {
+    background-color: rgba(255, 0, 0, 0.40);
+    color: var(--light-color-text-two);
+    font-weight: bolder;
+
+    box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+    -webkit-box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+    -moz-box-shadow: 10px 10px 5px 0px var(--dark-background-color-one);
+
+    transition-duration: 2s;
+    transition-delay: 0.5s;
+    transition: 1s;
+}
+
 /**FOOTER**/
 .footer {
     background-color: var(--light-background-color-two);

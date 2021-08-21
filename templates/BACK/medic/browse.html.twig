@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section class="box section is-small">
+<section class="box section is-medium">
     <h1 class="title">La liste des médicaments :</h1>
     <h2 class="subtitle">
         <button class="button is-success ">
@@ -19,14 +19,14 @@
         </button>
     </h2>
 
-<section class="section is-three-fifths">
-{% for medic in medics %}
+    <section class="section">
+        {% for medic in medics %}
 
         <table class="table is-justify-content-center">
                         <thead> 
                             <tr class="subtitle is-4 has-text-justified">
                                 <td>
-                                    <h4 >Nom du médicament</h4> 
+                                    <h4 class="subtitle is-4 has-text-centered" >Nom du médicament</h4> 
                                 </td>
                                 <td>
                                     {{ medic.name }}
@@ -82,9 +82,9 @@
                             <tr><th>Impact sur la fertilité, grossesse et allaitement</th>              <td class="is-two-thirds"> {{ medic.fertilyPregnancyBreastfeeding }} </td></tr>
                             <tr><th>Effets indésirables</th>                                            <td class="is-two-thirds"> {{ medic.medicAdverseReaction }} </td></tr>
                         </tbody>
-                {% endfor %}
-                </tbody>
-            </table>
+        </table>
+        
+        {% endfor %}
     </section>
 </section>
 {% endblock %}

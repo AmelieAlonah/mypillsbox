@@ -7,7 +7,7 @@
 <section class="box section is-small">
         <h1 class="title">{{medicine.name}}</h1>
         <h2 class="subtitle has-text-right">
-            <button class="button is-success ">
+            <button class="button is-success is-medium ">
                 <span class="icon-text">
                     <span class="icon">
                         <i class="fas fa-undo-alt"></i>
@@ -15,7 +15,16 @@
                     <a href="{{ path('back_office_medic_browse')}}">
                     <span>RETOUR</span>
                     </a>
-                    
+                </span>
+            </button>
+            <button class="button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-edit"></i>
+                    </span>
+                    <a href="{{ path('back_office_medic_update', { id: medicine.id })}}">
+                        <span>Editer</span>
+                    </a>
                 </span>
             </button>
         </h2>
@@ -92,6 +101,8 @@
                         {{ medicine.fertilyPregnancyBreastfeeding }}
                     </div>
             </div>
+        </section>
+        <section class="box section is-small columns is-desktop p-1">
             <div class="card m-3 p-3 medic_danger column">
                     <h2 class="subtitle">
                         Sur les effets secondaires :
@@ -100,6 +111,8 @@
                         {{ medicine.medicAdverseReaction }}
                 </div>
             </div>
+        </section>
+        <section class="box section is-small columns is-desktop p-1">
             <div class="card m-3 p-3 medic_danger column">
                     <h2 class="subtitle">
                         Sur les contre-indications :

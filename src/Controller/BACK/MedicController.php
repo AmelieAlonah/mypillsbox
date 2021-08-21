@@ -53,7 +53,6 @@ class MedicController extends AbstractController
         $medicine = new Medicine;
 
         $formMedicine = $this->createForm(MedicineType::class, $medicine);
-        
         $formMedicine->handleRequest($request);
 
         if($formMedicine->isSubmitted() && $formMedicine->isValid())
@@ -76,14 +75,14 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/edition/{id<\d+>}", name="back_office_medic_update", methods={"GET", "POST"}, requirements={"id":"\d+"})
      */
-    public function MedicUpdate(Medicine $medicine, Request $request): Response
+    public function MedicUpdate(Medicine $medicine = null, Request $request): Response
     {
         if ( null === $medicine)
         {
             throw $this->createNotFoundException("Le medicament n'existe pas");
         }
 
-        $formMedicine = $this->createForm(Medicine::class, $medicine);
+        $formMedicine = $this->createForm(MedicineType::class, $medicine);
         $formMedicine->handleRequest($request);
 
         if($formMedicine->isSubmitted() && $formMedicine->isValid())
@@ -91,10 +90,17 @@ class MedicController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirectToRoute('back_office_medici_read', ['id' => $medicine->getId()]);
+            return $this->redirectToRoute('back_office_medic_read', ['id' => $medicine->getId()]);
+        }
+        else
+        {
+            //TODO Mettre un flashcard
+            echo "OhOh KC";
         }
 
         return $this->render('back/medic/update.html.twig', [
+            'id' => $medicine->getId(),
+            'medicine' => $medicine,
             'formMedicine' => $formMedicine->createView()
         ]);
     }

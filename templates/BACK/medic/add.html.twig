@@ -153,12 +153,17 @@
                 <div class="control">
                     <button class="button is-success" type="submit">Ajouter</button>
                 </div>
-                <div class="control">
-                    <button class="button is-warning is-light">Cancel</button>
-                </div>
             </div>
 
         {{ form_end(formMedicine) }}
 
+        <div class="control">
+                <button class="button is-warning is-light">
+                <a href="{{ path('back_office_medic_browse')}}">
+                    <span>Cancel</span>
+                </a>
+                </button>
+            </div>
+
     </section>
-    {% endblock %}
+{% endblock %}
