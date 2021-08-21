@@ -5,6 +5,7 @@ namespace App\Tests\BACK;
 use App\Controller\BACK\MedicController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MedicControllerTest extends WebTestCase
 {
@@ -20,13 +21,17 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'La liste des médicaments :');
     }
 
-    public function testRead(): void
+    public function testReadGET(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/back-office/medicament/voir/1');
+
+        $client->catchExceptions(false);
+        $this->expectException(NotFoundHttpException::class);
+        
+        $client->request('GET', '/back-office/medicament/voir/33');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Le médicament !');
+        $this->assertSelectorTextContains('h1', 'Doliprane 1000 mg comprimé n° 2');
     }
 
     public function testAddGET(): void
@@ -47,14 +52,16 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Modifier un médicament !');
     }
 
-    // public function testDelete(): void
-    // {
-    //     $client = static::createClient();
-    //     $crawler = $client->request('GET', '/back-office/medicament/liste');
+    public function testDelete(): void
+    {
+        $client = static::createClient();
 
-    //     $this->assertResponseIsSuccessful();
-    //     $this->assertSelectorTextContains('h1', 'La liste des médicaments :');
+        $client->catchExceptions(false);
+        $this->expectException(NotFoundHttpException::class);
 
-    // }
+        $crawler = $client->request('GET', '/back-office/medicament/suppression/1');
+
+        $this->assertResponseIsSuccessful();
+    }
 
 }

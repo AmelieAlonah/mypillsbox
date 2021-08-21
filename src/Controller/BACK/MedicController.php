@@ -31,10 +31,15 @@ class MedicController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function MedicRead(Medicine $medicine): Response
+    public function MedicRead(Medicine $medicine = null): Response
     {
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+
         return $this->render('back/medic/read.html.twig', [
             'medicine' => $medicine
         ]);
@@ -85,6 +90,7 @@ class MedicController extends AbstractController
         {
             throw $this->createNotFoundException("Le medicament n'existe pas");
         }
+
         $entityManagerInterface = $this->getDoctrine()->getManager();
         $entityManagerInterface->remove($medicine);
         $entityManagerInterface->flush();
