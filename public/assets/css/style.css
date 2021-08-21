@@ -117,7 +117,7 @@ html {
 
     transition-duration: 2s;
     transition-delay: 0.5s;
-    transition: 1s;
+    transition: 2s;
 }
 .medic_warning {
     background-color: rgba(255, 0, 0, 0.10);
@@ -137,7 +137,7 @@ html {
 
     transition-duration: 2s;
     transition-delay: 0.5s;
-    transition: 1s;
+    transition: 2s;
 }
 .medic_danger {
     background-color: rgba(255, 0, 0, 0.20);
@@ -157,7 +157,7 @@ html {
 
     transition-duration: 2s;
     transition-delay: 0.5s;
-    transition: 1s;
+    transition: 2s;
 }
 
 /**FOOTER**/
