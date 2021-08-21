@@ -1,5 +1,5 @@
    <header class="header">
-        <nav class="box navbar" role="navigation" aria-label="main navigation">
+        <nav class="box navbar" role="navigation" aria-label="main navigation is-flex">
             <div class="navbar-brand is-align-items-center">
                 <img class="mobile navbar-item is-medium" src="{{ asset('assets/pictures/visual_identity/MyPillsBox_nav.png')}}">
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -14,6 +14,10 @@
                 <div class="navbar-start">
                     <a href="{{ path('home')}}" class="navbar-item">
                         Page d'accueil
+                    </a>
+
+                    <a class="navbar-item" href="{{ path('medic_research')}}">
+                        Rechercher un médicament
                     </a>
 
                     <a href="{{ path('me')}}" class="navbar-item link_help" id="link_me">

@@ -1,0 +1,120 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Le médicament{% endblock %}
+
+{% block content %}
+
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+    <h1 class="title has-text-centered">La page de votre médicament.</h1>
+    </section>
+
+<section class="box section is-small">
+        <h1 class="title">{{medicine.name}}</h1>
+        <h2 class="subtitle has-text-right">
+            <button class="button is-success is-medium ">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </span>
+                    <a href="{{ path('medic_research')}}">
+                    <span>RETOUR</span>
+                    </a>
+                </span>
+            </button>
+        </h2>
+        <h2 class="title">
+            Molécule : {{ medicine.medicCompo }}
+        </h2>
+        
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_infos column">
+                    <h2 class="subtitle">
+                        Indications thérapeutiques :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicCondition }}
+                    </div>
+            </div>
+            <div class="card m-3 p-3 medic_infos column">
+                    <h2 class="subtitle">
+                        Posologie recommandée :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicDosage }}
+                </div>
+            </div>
+            <div class="card m-3 p-3 medic_infos column">
+                    <h2 class="subtitle">
+                        Voies d'administration :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicMethodAdministration }}
+                    </div>
+            </div>
+        </section>
+
+        <h2 class="title">
+            Vous devez faire attention :
+        </h2>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_warning column">
+                    <h2 class="subtitle">
+                        Aux autres situations cliniques :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicExeption }}
+                    </div>
+            </div>
+            <div class="card m-3 p-3 medic_warning column">
+                    <h2 class="subtitle">
+                        A la dose maximale recommandée :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicDosageMax }}
+                </div>
+            </div>
+            <div class="card m-3 p-3 medic_warning column">
+                    <h2 class="subtitle">
+                        Aux intéractions médicamenteuses :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicInteractionOtherMedic }}
+                    </div>
+            </div>
+        </section>
+
+        <h2 class="title">
+            Vous devez être vigilent.e :
+        </h2>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_danger column">
+                    <h2 class="subtitle">
+                        Sur l'impact sur la fertilité, la grossesse et l'allaitement :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.fertilyPregnancyBreastfeeding }}
+                    </div>
+            </div>
+        </section>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_danger column">
+                    <h2 class="subtitle">
+                        Sur les effets secondaires :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicAdverseReaction }}
+                </div>
+            </div>
+        </section>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_danger column">
+                    <h2 class="subtitle">
+                        Sur les contre-indications :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicDanger }}
+                    </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
