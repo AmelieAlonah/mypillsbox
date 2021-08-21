@@ -2,10 +2,16 @@
 
 namespace App\Controller\BACK;
 
+use App\Entity\BACK\Medicine;
+use App\Form\BACK\MedicineType;
+use App\Repository\MedicineRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Void_;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MedicController extends AbstractController
 {
@@ -15,39 +21,105 @@ class MedicController extends AbstractController
      */
     public function MedicBrowse(): Response
     {
-        return $this->render('back/medic/browse.html.twig');
+        $repository = $this->getDoctrine()->getRepository(Medicine::class);
+
+        $medics     = $repository->findAll();
+
+        return $this->render('back/medic/browse.html.twig', [
+            'medics' => $medics
+        ]);
     }
 
     /**
-     * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function MedicRead(): Response
+    public function MedicRead(Medicine $medicine = null): Response
     {
-        return $this->render('back/medic/read.html.twig');
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+
+        return $this->render('back/medic/read.html.twig', [
+            'medicine' => $medicine
+        ]);
     }
 
     /**
      * @Route("/back-office/medicament/ajout", name="back_office_medic_add", methods={"GET", "POST"})
      */
-    public function MedicAdd(): Response
+    public function MedicAdd(Request $request, Session $session): Response
     {
-        return $this->render('back/medic/add.html.twig');
+        $medicine = new Medicine;
+
+        $formMedicine = $this->createForm(MedicineType::class, $medicine);
+        $formMedicine->handleRequest($request);
+
+        if($formMedicine->isSubmitted() && $formMedicine->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($medicine);
+            $em->flush();
+        }
+        else
+        {
+            //TODO Mettre un flashcard
+            echo "OhOh KC";
+        }
+
+        return $this->render('back/medic/add.html.twig', [
+            'formMedicine' => $formMedicine->createView()
+        ]);
     }
 
     /**
-     * @Route("/back-office/medicament/edition/{id<\d+>}", name="back_office_medic_update", methods={"GET", "POST"})
+     * @Route("/back-office/medicament/edition/{id<\d+>}", name="back_office_medic_update", methods={"GET", "POST"}, requirements={"id":"\d+"})
      */
-    public function MedicUpdate(): Response
+    public function MedicUpdate(Medicine $medicine = null, Request $request): Response
     {
-        return $this->render('back/medic/update.html.twig');
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+
+        $formMedicine = $this->createForm(MedicineType::class, $medicine);
+        $formMedicine->handleRequest($request);
+
+        if($formMedicine->isSubmitted() && $formMedicine->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('back_office_medic_read', ['id' => $medicine->getId()]);
+        }
+        else
+        {
+            //TODO Mettre un flashcard
+            echo "OhOh KC";
+        }
+
+        return $this->render('back/medic/update.html.twig', [
+            'id' => $medicine->getId(),
+            'medicine' => $medicine,
+            'formMedicine' => $formMedicine->createView()
+        ]);
     }
 
     /**
-     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_medic_delete", methods={"DELETE"})
+     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_medic_delete", methods={"GET"})
      */
-    public function MedicDelete(): Response
+    public function MedicDelete(EntityManagerInterface $entityManagerInterface, Medicine $medicine = null): Response
     {
-        return $this->json("OK", Response::HTTP_ACCEPTED, [], []);
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+
+        $entityManagerInterface = $this->getDoctrine()->getManager();
+        $entityManagerInterface->remove($medicine);
+        $entityManagerInterface->flush();
+
+        return $this->redirectToRoute('back_office_medic_browse', [], 302);
     }
     
 }

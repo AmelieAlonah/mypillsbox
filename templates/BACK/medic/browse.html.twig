@@ -4,66 +4,87 @@
 
 {% block content %}
 
-<section class="box section is-small">
-    <h1 class="title">Les médicaments !</h1>
+<section class="box section is-medium">
+    <h1 class="title">La liste des médicaments :</h1>
     <h2 class="subtitle">
-        <button class="button is-success "><span class="icon-text"><span class="icon"><i
-                        class="fas fa-plus-square"></i></span><span>AJOUTER un médicament</span></span></button>
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-plus-square"></i>
+                </span>  
+                <a href="{{ path('back_office_medic_add')}}">
+                    <span>AJOUTER un médicament</span>
+                </a>
+            </span>
+        </button>
     </h2>
 
-    <table class="table has-text-centered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>COMPOSITION</th>
-                <th>FORME</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>AUTRE</th>
-                <th>EDITER</th>
-                <th>SUPPRIMER</th>
-            </tr>
-        </thead>
+    <section class="section">
+        {% for medic in medics %}
 
-        <tbody>
+        <table class="table is-justify-content-center">
+                        <thead> 
+                            <tr class="subtitle is-4 has-text-justified">
+                                <td>
+                                    <h4 class="subtitle is-4 has-text-centered" >Nom du médicament</h4> 
+                                </td>
+                                <td>
+                                    {{ medic.name }}
+                                    
+                                    <button class="button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="far fa-eye"></i>
+                                            </span>
+                                            <a href="{{ path('back_office_medic_read', { id: medic.id })}}">
+                                            <span>Regarder</span>
+                                            </a>
+                                        </span>
+                                    </button>
+                                    
+                                    <button class="button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <a href="{{ path('back_office_medic_update', { id: medic.id })}}">
+                                            <span>Editer</span>
+                                            </a>
+                                        </span>
+                                    </button>
+                                    <button type="submit" class="button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </span>
+                                            <a href="{{ path('back_office_medic_delete', { id: medic.id })}}">
+                                                <span>Supprimer</span>
+                                            </a>
+                                            
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </thead>
 
-            <tr>
-                <td>id</td>
-                <td>name</td>
-                <td>compo</td>
-                <td>forme</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td>autre</td>
-                <td><button class="button is-small is-warning is-italic has-text-weight-bold has-text-black">
-                        <span class="icon-text">
-                            <span class="icon">
-                                <i class="fas fa-edit"></i>
-                            </span>
-                            <span>Editer</span>
-                        </span>
-                    </button></td>
-                <td><button class="button is-small is-danger is-uppercase has-text-weight-bold has-text-black">
-                        <span class="icon-text ">
-                            <span class="icon">
-                                <i class="fas fa-trash-alt"></i>
-                            </span>
-                            <span>Supprimer</span>
-                        </span>
-                    </button></td>
-            </tr>
-
-        </tbody>
-    </table>
+                        <tbody class="is-three-fifths">
+                            <tr><th>Code CIS</th>                                                       <td class="is-two-thirds"> {{ medic.codeCIS }} </td></tr>
+                            <tr><th>Code CPD</th>                                                       <td class="is-two-thirds"> {{ medic.idCPD }} </td></tr>
+                            <tr><th>Nom du médicament</th>                                              <td class="is-two-thirds"> {{ medic.name }} </td></tr>
+                            <tr><th>Composition du médicament</th>                                      <td class="is-two-thirds"> {{ medic.medicCompo }} </td></tr>
+                            <tr><th>Type</th>                                                           <td class="is-two-thirds"> {{ medic.medicType }} </td></tr>
+                            <tr><th>Indications thérapeutiques</th>                                     <td class="is-two-thirds"> {{ medic.medicCondition }} </td></tr>
+                            <tr><tr><th>Posologie recommandée</th>                                      <td class="is-two-thirds"> {{ medic.medicDosage }} </td></tr>
+                            <tr><tr><th>Autres situations cliniques</th>                                <td class="is-two-thirds"> {{ medic.medicExeption }} </td></tr>
+                            <tr><th>Mode d'administration</th>                                          <td class="is-two-thirds"> {{ medic.medicMethodAdministration }} </td></tr>
+                            <tr><th>Contres-indications</th>                                            <td class="is-two-thirds"> {{ medic.medicDanger }} </td>    </tr>
+                            <tr><th>Dose maximale recommandée</th>                                      <td class="is-two-thirds"> {{ medic.medicDosageMax }} </td></tr><tr><th>Interactions médicamenteuses</th>                                   <td> {{ medic.medicInteractionOtherMedic }} </td></tr>
+                            <tr><th>Impact sur la fertilité, grossesse et allaitement</th>              <td class="is-two-thirds"> {{ medic.fertilyPregnancyBreastfeeding }} </td></tr>
+                            <tr><th>Effets indésirables</th>                                            <td class="is-two-thirds"> {{ medic.medicAdverseReaction }} </td></tr>
+                        </tbody>
+        </table>
+        
+        {% endfor %}
+    </section>
 </section>
-
 {% endblock %}
