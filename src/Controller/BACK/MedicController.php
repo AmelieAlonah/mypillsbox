@@ -74,11 +74,29 @@ class MedicController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/medicament/edition/{id<\d+>}", name="back_office_medic_update", methods={"GET", "POST"})
+     * @Route("/back-office/medicament/edition/{id<\d+>}", name="back_office_medic_update", methods={"GET", "POST"}, requirements={"id":"\d+"})
      */
-    public function MedicUpdate(): Response
+    public function MedicUpdate(Medicine $medicine, Request $request): Response
     {
-        return $this->render('back/medic/update.html.twig');
+        if ( null === $medicine)
+        {
+            throw $this->createNotFoundException("Le medicament n'existe pas");
+        }
+
+        $formMedicine = $this->createForm(Medicine::class, $medicine);
+        $formMedicine->handleRequest($request);
+
+        if($formMedicine->isSubmitted() && $formMedicine->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('back_office_medici_read', ['id' => $medicine->getId()]);
+        }
+
+        return $this->render('back/medic/update.html.twig', [
+            'formMedicine' => $formMedicine->createView()
+        ]);
     }
 
     /**

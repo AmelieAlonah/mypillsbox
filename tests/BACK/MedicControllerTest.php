@@ -46,6 +46,10 @@ class MedicControllerTest extends WebTestCase
     public function testUpdateGET(): void
     {
         $client = static::createClient();
+
+        $client->catchExceptions(false);
+        $this->expectException(NotFoundHttpException::class);
+        
         $crawler = $client->request('GET', '/back-office/medicament/edition/1');
 
         $this->assertResponseIsSuccessful();
