@@ -25,8 +25,9 @@ class MedicineRepository extends ServiceEntityRepository
     public function findMedicinesByName(String $name): Array
     {
         return $this->createQueryBuilder('Medicine')
-                    ->andWhere('Medicine.name LIKE :name')
+                    ->andWhere('Medicine.name LIKE :name OR Medicine.medic_compo LIKE :name')
                     ->setParameter('name', '%' . $name . '%')
+                    ->setMaxResults(20)
                     ->getQuery()
                     ->execute();
     }

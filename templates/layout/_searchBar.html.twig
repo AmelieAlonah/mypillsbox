@@ -1,6 +1,35 @@
-{{ form_start(formSearch) }}
-{{ form_errors(formSearch) }}
+{% extends "@FRONT/base.html.twig" %}
 
-{{ form_widget(formSearch.name) }}
+{% block title %}MyPillsBox : Recherche{% endblock %}
 
-{{ form_end(formSearch) }}
+{% block content %}  
+
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Page de recherche de médicament</h1>
+</section>
+
+
+<section class="box section is-small">
+    <h1 class="title">MyPillsBox</h1>
+    <h2 class="subtitle">
+        Un site simplifié au maximum, pour vous aider à suivre et gérer votre traitement médical en autonomie.
+    </h2>
+    {{ form_start(formSearch) }}
+    {{ form_errors(formSearch) }}
+    <div class="zone-research field">
+        <div class="box is-flex-direction-column is-align-items-center control ">
+            
+            <div>
+                <label class="label">Nom du médicament</label>
+                {{ form_widget(formSearch.name, {attr: {class: 'input is-info is-large', type: "text", placeholder: 'Ecrivez le nom de votre médicament, ou la molécule que vous recherchez ici.'}})
+                }}
+                <p class="help is-infos">Le nom commun du médicament référencé.</p>
+            </div>
+            <div class="is-flex is-justify-content-center is-align-items-center">
+                {{ form_widget(formSearch.Rechercher, {attr: {class: "button is-primary is-large is-outlined box ", type: "submit"}}) }}
+            </div>
+        </div>
+    </div>
+    {{ form_end(formSearch) }}
+</section>
+{% endblock %}
