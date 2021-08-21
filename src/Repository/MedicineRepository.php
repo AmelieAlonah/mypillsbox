@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\BACK\Medicine;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @method Medicine|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +20,15 @@ class MedicineRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Medicine::class);
+    }
+
+    public function findMedicinesByName(String $name): Array
+    {
+        return $this->createQueryBuilder('Medicine')
+                    ->andWhere('Medicine.name LIKE :name')
+                    ->setParameter('name', '%' . $name . '%')
+                    ->getQuery()
+                    ->execute();
     }
 
     // /**
