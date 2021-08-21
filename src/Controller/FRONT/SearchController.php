@@ -38,7 +38,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/recherche/voir/{id<\d+>}", name="medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function searchRead(Medicine $medicine): Response
+    public function searchRead(Medicine $medicine = null): Response
     {
         if ( null === $medicine)
         {
