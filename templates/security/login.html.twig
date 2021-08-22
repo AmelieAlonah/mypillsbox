@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends "@FRONT/base.html.twig" %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}MyPillsBox : Connexion{% endblock %}
 
-{% block body %}
+{% block content %}  
+
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
