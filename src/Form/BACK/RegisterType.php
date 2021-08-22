@@ -29,16 +29,23 @@ class RegisterType extends AbstractType
                                     'mapped'            => false,
                                     'first_options'     => [
                                                             'constraints'    => [
-                                                                            new Regex('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-\/])[A-Za-z\d@$!%*#?&-\/]{8,}$/'),
+                                                                            new NotBlank(),
+                                                                            new Regex('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-\/])[A-Za-z\d@$!%*#?&-\/]{10,}$/'),
                                                                             new NotCompromisedPassword(),
                                                             ],
                                                             'attr'          => [
-                                                                                'placeholder' => 'Laissez vide si inchangé',
+                                                                                'class' => 'input',
                                                             ],
+                                                            'required' => true,
                                                             'label' => 'Votre Mot de passe',
                                                             'help'          => 'Un mot de passe sécurisé contient : 10 caratères, des majuscules, minucules, chiffres et des caratères spéciaux.'
                                     ],
-                                    'second_options'    => ['label' => 'Confirmez votre Mot de passe'],
+                                    'second_options'    => [
+                                                            'label' => 'Confirmez votre Mot de passe',
+                                                            'attr'          => [
+                                                                'class' => 'input',
+                                                            ],
+                                    ],
                     ])
             ->add('roles', ChoiceType::class, [
                         'choices' => [

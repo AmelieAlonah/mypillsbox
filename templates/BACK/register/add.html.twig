@@ -4,22 +4,62 @@
 
 {% block content %}
 
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+    <h1 class="title has-text-centered">La page d'ajout d'utilisateur.</h1>
+    </section>
+
 <section class="box section is-small">
-        <h1 class="title">Ajouter un utilisateur !</h1>
-            <h2 class="subtitle">
-                <button class="button is-success ">
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="fas fa-undo-alt"></i>
-                        </span>
-                        <a href="{{ path('back_office_home')}}">
-                            <span>RETOUR</span>
-                        </a>
-                    </span>
-                </button>
-            </h2> 
+    <h2 class="subtitle">
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-undo-alt"></i>
+                </span>
+                <a href="{{ path('back_office_home')}}">
+                    <span>RETOUR</span>
+                </a>
+            </span>
+        </button>
+    </h2>
+    <div class="card m-3 p-3">
+
+    {{ form_start(formUser, { attr:{ novalidate: 'novalidate' }}) }}
+    {{ form_errors(formUser) }}
+        <div class="field">
+            <label class="label">Votre adresse mail</label>
+                <div  required class="control"> {{ form_widget(formUser.email, {attr: {class: 'input', type: "number", placeholder: 'mon-adresse@mail.fr'}}) }}
+                </div>
+                <p class="help is-infos">Votre adresse mail valide.</p>
+        </div>
+        <div class="field">
+            <label class="label">Votre mot de passe</label>
+                <div  required class="control"> {{ form_widget(formUser.password) }} </div>
+                <p class="help is-infos">Votre mot de passe.</p>
+        </div>
+        <div class="field">
+            <label class="label">Votre role</label>
+                <div  required class="control"> {{ form_widget(formUser.roles, {attr: {class: 'checkbox'}}) }} </div>
+                <p class="help is-infos">Votre role.</p>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-success" type="submit">Ajouter</button>
+            </div>
+        </div>
+
+        <div class="control">
+            <button class="button is-warning is-light">
+                <a href="{{ path('back_office_home')}}">
+                    <span>Cancel</span>
+                </a>
+            </button>
+        </div>
+
+    {{ form_end(formUser) }}
+
+    </div>
 </section>
 
-{{form(formUser)}}
+
 
 {% endblock %}
