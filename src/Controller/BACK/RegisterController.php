@@ -33,7 +33,7 @@ class RegisterController extends AbstractController
                     $user,
                     $formUser->get('password')->getData()
                 )
-                );
+            );
 
             $em = $this->getDoctrine()->getManager();
 
