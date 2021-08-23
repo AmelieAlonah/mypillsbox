@@ -3,8 +3,8 @@
 namespace App\Repository\BACK;
 
 use App\Entity\BACK\Allergen;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Allergen|null find($id, $lockMode = null, $lockVersion = null)

@@ -3,9 +3,9 @@
 namespace App\Entity\BACK;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\MedicineRepository;
+use App\Repository\BACK\MedicineRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MedicineRepository::class)
@@ -29,11 +29,6 @@ class Medicine
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    private $medic_compo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
@@ -89,6 +84,17 @@ class Medicine
      * @ORM\Column(nullable=true)
      */
     private $id_CPD;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Allergen::class, mappedBy="medicines")
+     */
+    private $allergens;
+
+
+    public function __construct()
+    {
+        $this->allergens = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -284,4 +290,32 @@ class Medicine
 
         return $this;
     }
+
+    /**
+     * @return Collection|Allergen[]
+     */
+    public function getAllergens(): Collection
+    {
+        return $this->allergens;
+    }
+
+    public function addAllergen(Allergen $allergen): self
+    {
+        if (!$this->allergens->contains($allergen)) {
+            $this->allergens[] = $allergen;
+            $allergen->addMedicine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergen(Allergen $allergen): self
+    {
+        if ($this->allergens->removeElement($allergen)) {
+            $allergen->removeMedicine($this);
+        }
+
+        return $this;
+    }
+
 }

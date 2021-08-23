@@ -3,8 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\BACK\Medicine;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class MedicineFixtures extends Fixture
 {
@@ -16,7 +16,6 @@ class MedicineFixtures extends Fixture
             
             $medicine->setCodeCIS(60234100)
                      ->setName("Doliprane 1000 mg comprimé n° $index")
-                     ->setMedicCompo("Paracétamol")
                      ->setMedicType("Comprimé")
                      ->setMedicCondition("Traitement symptomatique des douleurs d'intensité légère à modérée et/ou des états fébriles. Traitement symptomatique des douleurs de l’arthrose. Cette présentation est réservée à l'adulte et à l’enfant à partir de 50 kg (soit à partir d’environ 15 ans).")
                      ->setMedicDosage("Attention : cette présentation contient 1000 mg de paracétamol par unité : ne pas prendre 2 unités à la fois. La posologie unitaire usuelle est de un comprimé à 1000 mg par prise, à renouveler au bout de 6 à 8 heures. En cas de besoin, la prise peut être répétée au bout de 4 heures minimum. Il n’est généralement pas nécessaire de dépasser 3 g de paracétamol par jour, soit 3 comprimés par jour. Cependant, en cas de douleurs plus intenses, la posologie maximale peut être augmentée jusqu’à 4 g par jour, soit 4 comprimés par jour. Toujours respecter un intervalle de 4 heures entre les prises")
