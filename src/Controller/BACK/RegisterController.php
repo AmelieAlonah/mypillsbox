@@ -44,7 +44,7 @@ class RegisterController extends AbstractController
 
             return $this->redirectToRoute('back_office_home');
         }
-        else
+        elseif($formUser->isSubmitted() && !$formUser->isValid())
         {
             $this->addFlash('danger', 'L\'utilisateur n\'a pas été enregistré.');
         }

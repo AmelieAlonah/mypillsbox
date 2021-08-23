@@ -5,6 +5,7 @@ namespace App\Entity\BACK;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MedicineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MedicineRepository::class)
@@ -20,52 +21,62 @@ class Medicine
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable="false")
+     * @ORM\Column(type="integer", nullable=false)
+     * @Assert\NotBlank
      */
     private $code_CIS;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_compo;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_type;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_condition;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_dosage;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_exeption;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_method_administration;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_danger;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_dosage_max;
 
@@ -80,7 +91,8 @@ class Medicine
     private $fertily_pregnancy_breastfeeding;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $medic_adverse_reaction;
 

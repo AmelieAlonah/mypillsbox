@@ -25,7 +25,7 @@ class MedicController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Medicine::class);
 
         $medics     = $repository->findAll();
-
+        
         return $this->render('back/medic/browse.html.twig', [
             'medics' => $medics
         ]);
@@ -64,9 +64,10 @@ class MedicController extends AbstractController
 
             $this->addFlash('success', 'Le médicament a bien été enregistré dans la base de donnée.');
         }
-        else
+        
+        elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())
         {
-            $this->addFlash('danger', 'Le médicament n\'a pas été enregistré, veuillez vérifier les champs remplis.');
+            $this->addFlash('danger', 'Le médicament n\'a pas été enregistré dans la base de donnée.');
         }
 
         return $this->render('back/medic/add.html.twig', [

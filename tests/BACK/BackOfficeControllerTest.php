@@ -26,6 +26,9 @@ class BackOfficeControllerTest extends WebTestCase
         $testUser = $userRepository->findOneByEmail('admin@admin.fr');
 
         $client->loginUser($testUser);
+        //Error => $testUser Not an objet
+
+        dump($testUser);
 
         $crawler = $client->request($method, $url);
 
@@ -33,6 +36,41 @@ class BackOfficeControllerTest extends WebTestCase
     }
 
     public function accessOK()
+    {
+        yield ['GET', '/back-office'];
+        yield ['GET', '/back-office/medicament/liste'];
+        yield ['GET', '/back-office/medicament/voir/1'];
+        yield ['GET', '/back-office/medicament/ajout'];
+        yield ['GET', '/back-office/medicament/edition/1'];
+        yield ['GET', '/back-office/medicament/supression/1'];
+    }
+
+    /**
+     * Access KO
+     * 
+     * @dataProvider accessKO
+     */
+    public function testAccessKO($method, $url): void
+    {
+        $client = static::createClient();
+
+        $client->catchExceptions(false);
+        $this->expectException(NotFoundHttpException::class);
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('amelie@amelie.fr');
+
+        $client->loginUser($testUser);
+        //Error => $testUser Not an objet
+
+        dump($testUser);
+
+        $crawler = $client->request($method, $url);
+
+        $this->assertResponseStatusCodeSame(403);
+    }
+
+    public function accessKO()
     {
         yield ['GET', '/back-office'];
         yield ['GET', '/back-office/medicament/liste'];
