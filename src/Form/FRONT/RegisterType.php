@@ -20,11 +20,14 @@ class RegisterType extends AbstractType
     {
         $builder
         ->add('email', TextType::class, [
-                                'constraints' => new NotBlank(),
+                                'constraints'       => new NotBlank(),
+                                'invalid_message'   => "L'adresse email est déjà utilisée",
+                                'attr'              => ['class' => 'help is-danger']
         ])
         ->add('password', RepeatedType::class, [
                                 'type'              => PasswordType::class,
                                 'invalid_message'   => 'Les mots de passe ne correspondent pas',
+                                                       'attr' => ['class' => 'help'],
                                 'mapped'            => false,
                                 'first_options'     => [
                                                         'constraints'    => [
@@ -45,7 +48,7 @@ class RegisterType extends AbstractType
                                                             'class' => 'input',
                                                         ],
                                 ],
-                            ]);
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

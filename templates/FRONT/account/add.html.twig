@@ -24,17 +24,21 @@
     <div class="card m-3 p-3">
 
     {{ form_start(formUser) }}
-    {{ form_errors(formUser) }}
+
         <div class="field">
             <label class="label">Votre adresse mail</label>
                 <div  required class="control"> {{ form_widget(formUser.email, {attr: {class: 'input', type: "number", placeholder: 'mon-adresse@mail.fr'}}) }}
                 </div>
                 <p class="help is-infos">Votre adresse mail valide.</p>
+                <p class="help is-infos">{{ form_errors(formUser.email) }}</p>
+                
         </div>
         <div class="field">
             <label class="label">Votre mot de passe</label>
                 <div  required class="control"> {{ form_widget(formUser.password) }} </div>
+                <p>{{ form_errors(formUser.password) }}</p>
                 <p class="help is-infos">Votre mot de passe.</p>
+                <p>{{ form_errors(formUser.password) }}</p>
         </div>
         
         <div class="field is-grouped">

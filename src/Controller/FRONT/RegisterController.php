@@ -2,6 +2,7 @@
 
 namespace App\Controller\FRONT;
 
+use Exception;
 use App\Entity\User;
 use App\Form\FRONT\RegisterType;
 use Symfony\Component\HttpFoundation\Request;
