@@ -4,9 +4,9 @@
 
 {% block content %}
 
-    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
     <h1 class="title has-text-centered">La page d'inscription.</h1>
-    </section>
+</section>
 
 <section class="box section is-small">
     <h2 class="subtitle">
@@ -23,29 +23,33 @@
     </h2>
     <div class="card m-3 p-3">
 
-    {{ form_start(formUser) }}
+        {{ form_start(formUser) }}
 
         <div class="field">
             <label class="label">Votre adresse mail</label>
-                <div  required class="control"> {{ form_widget(formUser.email, {attr: {class: 'input', type: "number", placeholder: 'mon-adresse@mail.fr'}}) }}
-                </div>
-                <p class="help is-infos">Votre adresse mail valide.</p>
-                <p class="help is-infos">{{ form_errors(formUser.email) }}</p>
-                
+            <div required class="control">
+                {{ form_widget(formUser.email, {attr: {class: 'input', type: "number", placeholder: 'mon-adresse@mail.fr'}})
+                }}
+            </div>
+            <p class="help is-infos">Votre adresse mail valide.</p>
+            <p class="help is-infos">{{ form_errors(formUser.email) }}</p>
+
         </div>
         <div class="field">
             <label class="label">Votre mot de passe</label>
-                <div  required class="control"> {{ form_widget(formUser.password) }} </div>
-                <p>{{ form_errors(formUser.password) }}</p>
-                <p class="help is-infos">Votre mot de passe.</p>
-                <p>{{ form_errors(formUser.password) }}</p>
+            <div required class="control"> {{ form_widget(formUser.password) }} </div>
+            <p>{{ form_errors(formUser.password) }}</p>
+            <p class="help is-infos">Votre mot de passe.</p>
+            <p>{{ form_errors(formUser.password) }}</p>
         </div>
-        
+
         <div class="field is-grouped">
             <div class="control">
                 <button class="button is-success" type="submit">Ajouter</button>
             </div>
         </div>
+
+        {{ form_end(formUser) }}
 
         <div class="control">
             <button class="button is-warning is-light">
@@ -55,11 +59,6 @@
             </button>
         </div>
 
-    {{ form_end(formUser) }}
-
     </div>
 </section>
-
-
-
 {% endblock %}
