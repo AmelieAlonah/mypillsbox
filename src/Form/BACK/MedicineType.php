@@ -22,17 +22,18 @@ class MedicineType extends AbstractType
         $builder
             ->add('code_CIS',                           NumberType::class,      ['label' => 'Code CIS du médicament'])
             ->add('name',                               TextType::class,        array('label' => 'Nom du médicament', 'required' => true))
-            // ->add('allergens',                          EntityType::class, 
-            //                                                 ['class'            => Allergen::class,
-            //                                                 'multiple'          => true,
-            //                                                 'expanded'          => true,
-            //                                                 'query_builder'     => function (AllergenRepository $allergenRepository)
-            //                                                                         {
-            //                                                                             return $allergenRepository->createQueryBuilder('a')
-            //                                                                                                       ->orderBy('a.medicines', 'ASC');
-            //                                                                         },
-            //                                                 'label'             => 'Composition principale du médicament'
-            //                                                 ])
+            ->add('allergens',                          EntityType::class, 
+                                                            ['class'            => Allergen::class,
+                                                            'choice_label'      => 'name',
+                                                            'multiple'          => true,
+                                                            'expanded'          => true,
+                                                            'query_builder'     => function (AllergenRepository $allergenRepository)
+                                                                                    {
+                                                                                        return $allergenRepository->createQueryBuilder('a')
+                                                                                                                  ->orderBy('a.name', 'ASC');
+                                                                                    },
+                                                            'label'             => 'Molècule'
+                                                            ])
             ->add('medic_type',                         TextareaType::class,    array('label' => 'Type du médicament'))
             ->add('medic_condition',                    TextareaType::class,    array('label' => 'Indications thérapeutiques'))
             ->add('medic_dosage',                       TextareaType::class,    array('label' => 'Posologie recommandée'))

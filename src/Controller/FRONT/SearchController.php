@@ -4,7 +4,7 @@ namespace App\Controller\FRONT;
 
 use App\Entity\BACK\Medicine;
 use App\Form\FRONT\SearchType;
-use App\Repository\MedicineRepository;
+use App\Repository\BACK\MedicineRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

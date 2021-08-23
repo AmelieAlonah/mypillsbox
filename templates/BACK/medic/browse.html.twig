@@ -71,7 +71,9 @@
                             <tr><th>Code CIS</th>                                                       <td class="is-two-thirds"> {{ medic.codeCIS }} </td></tr>
                             <tr><th>Code CPD</th>                                                       <td class="is-two-thirds"> {{ medic.idCPD }} </td></tr>
                             <tr><th>Nom du médicament</th>                                              <td class="is-two-thirds"> {{ medic.name }} </td></tr>
-                            <tr><th>Composition du médicament</th>                                      <td class="is-two-thirds">  </td></tr>
+                            <tr><th>Composition du médicament</th>                                      <td class="is-two-thirds"> {% for allergens in medic.allergens %}
+                                                                                                                                        {{ allergens }}
+                                                                                                                                    {% endfor %}</td></tr>
                             <tr><th>Type</th>                                                           <td class="is-two-thirds"> {{ medic.medicType }} </td></tr>
                             <tr><th>Indications thérapeutiques</th>                                     <td class="is-two-thirds"> {{ medic.medicCondition }} </td></tr>
                             <tr><tr><th>Posologie recommandée</th>                                      <td class="is-two-thirds"> {{ medic.medicDosage }} </td></tr>
