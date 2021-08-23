@@ -1,6 +1,6 @@
    <header class="header">
         <nav class="box navbar" role="navigation" aria-label="main navigation is-flex">
-            <div class="navbar-brand is-align-items-center">
+            <div class="navbar-brand is-align-items-center content has-text-centered is-flex is-desktop is-justify-content-space-around"">
                 <img class="mobile navbar-item is-medium" src="{{ asset('assets/pictures/visual_identity/MyPillsBox_nav.png')}}">
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
@@ -46,7 +46,10 @@
                     </div>
 
                     {# IF ADMIN CONNECTED #}
-                    {{ include('@LAYOUT/_back_subnav.html.twig')}}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {{ include('@LAYOUT/_back_subnav.html.twig')}}
+                    {% endif %}
+                    
 
                 </div>
 
@@ -55,14 +58,28 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons is-flex is-justify-content-center">
-                            <div class="button is-primary">
-                                <a href="#"><strong>M'inscrire</strong></a>
-                            </div>
-                            <div class="button is-primary">
-                                <a href="#"><strong>Me connecter</strong></a>
-                            </div>
+                            
+                            {% if is_granted('ROLE_USER') %}
+                            
+                                <div class="button is-primary">
+                                    <a href="{{ path('app_logout')}}"><strong>Me déconnecter</strong></a>
+                                </div>
+
+                                {% else %}
+
+                                <div class="button is-primary">
+                                    <a href="{{ path('account_add')}}"><strong>M'inscrire</strong></a>
+                                </div>
+                                <div class="button is-primary">
+                                    <a href="{{ path('app_login')}}"><strong>Me connecter</strong></a>
+                                </div>   
+
+                            {% endif %}
+
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
         </nav>

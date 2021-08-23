@@ -4,10 +4,11 @@ namespace App\Controller\BACK;
 
 use App\Entity\BACK\Medicine;
 use App\Form\BACK\MedicineType;
-use App\Repository\MedicineRepository;
 use App\Service\MessageGenerator;
+use App\Repository\MedicineRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Void_;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,11 +21,17 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/liste", name="back_office_medic_browse", methods={"GET"})
      */
-    public function MedicBrowse(): Response
+    public function MedicBrowse(Request $request, PaginatorInterface $paginator): Response
     {
         $repository = $this->getDoctrine()->getRepository(Medicine::class);
 
         $medics     = $repository->findAll();
+        
+        $medics = $paginator->paginate(
+            $medics, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
 
         return $this->render('back/medic/browse.html.twig', [
             'medics' => $medics
@@ -64,9 +71,10 @@ class MedicController extends AbstractController
 
             $this->addFlash('success', 'Le médicament a bien été enregistré dans la base de donnée.');
         }
-        else
+        
+        elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())
         {
-            $this->addFlash('danger', 'Le médicament n\'a pas été enregistré, veuillez vérifier les champs remplis.');
+            $this->addFlash('danger', 'Le médicament n\'a pas été enregistré dans la base de donnée.');
         }
 
         return $this->render('back/medic/add.html.twig', [

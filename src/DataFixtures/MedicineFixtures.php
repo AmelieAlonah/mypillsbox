@@ -14,7 +14,7 @@ class MedicineFixtures extends Fixture
         {
             $medicine = new Medicine();
             
-            $medicine->setCode_CIS(60234100)
+            $medicine->setCodeCIS(60234100)
                      ->setName("Doliprane 1000 mg comprimé n° $index")
                      ->setMedicCompo("Paracétamol")
                      ->setMedicType("Comprimé")
@@ -33,9 +33,6 @@ class MedicineFixtures extends Fixture
                      ->setMedicDosageMax("Chez l’enfant de moins de 40 kg, la dose totale de paracétamol ne doit pas dépasser 80 mg/kg/jour.
                      Chez l’enfant de 41 à 50 kg, la dose totale de paracétamol ne doit pas excéder 3 g par jour.
                      Chez l’adulte et l’enfant de plus de 50 kg, LA DOSE TOTALE DE PARACETAMOL NE DOIT PAS EXCEDER 4 GRAMMES PAR JOUR")
-                     ->setMedicDosageMax40(0,80)
-                     ->setMedicDosageMax50(3)
-                     ->setMedicDosageMax50Plus(4)
                      ->setMedicInteractionOtherMedic("+ Anticoagulants oraux : warfarine et autres antivitamines K (AVK); + Les résines chélatrices; + Flucloxacilline; + Médicaments hépatotoxiques")
                      ->setFertilyPregnancyBreastfeeding("Grossesse :
                      Les études effectuées chez l'animal n'ont pas mis en évidence d'effet tératogène ou fœtotoxique du paracétamol.

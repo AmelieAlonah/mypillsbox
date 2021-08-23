@@ -5,7 +5,7 @@
 {% block content %}
 
 <section class="box section is-medium">
-    <h1 class="title">La liste des médicaments :</h1>
+    <h1 class="title">La liste des médicaments : Total ({{ medics.getTotalItemCount }})</h1>
     <h2 class="subtitle">
         <button class="button is-success ">
             <span class="icon-text">
@@ -85,6 +85,7 @@
         </table>
         
         {% endfor %}
+        {{ knp_pagination_render(medics)}}
     </section>
 </section>
 {% endblock %}

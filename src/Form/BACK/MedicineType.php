@@ -15,8 +15,8 @@ class MedicineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('code_CIS',                           NumberType::class,      array('label' => 'Code CIS du médicament'))
-            ->add('name',                               TextType::class,        array('label' => 'Nom du médicament'))
+            ->add('code_CIS',                           NumberType::class,      ['label' => 'Code CIS du médicament'])
+            ->add('name',                               TextType::class,        array('label' => 'Nom du médicament', 'required' => true))
             ->add('medic_compo',                        TextType::class,        array('label' => 'Composition principale du médicament'))
             ->add('medic_type',                         TextareaType::class,    array('label' => 'Type du médicament'))
             ->add('medic_condition',                    TextareaType::class,    array('label' => 'Indications thérapeutiques'))
