@@ -22,61 +22,51 @@ class Medicine
 
     /**
      * @ORM\Column(type="integer", nullable=false)
-     * @Assert\NotBlank
      */
     private $code_CIS;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_compo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_type;
 
     /**
      * @ORM\Column(type="text", nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_condition;
 
     /**
      * @ORM\Column(type="text", nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_dosage;
 
     /**
      * @ORM\Column(type="text", nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_exeption;
 
     /**
      * @ORM\Column(type="text", nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_method_administration;
 
     /**
      * @ORM\Column(type="text", nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_danger;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_dosage_max;
 
@@ -92,7 +82,6 @@ class Medicine
 
     /**
      * @ORM\Column(type="text", nullable=false)
-     * @Assert\NotBlank
      */
     private $medic_adverse_reaction;
 

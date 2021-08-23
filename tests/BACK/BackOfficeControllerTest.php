@@ -2,9 +2,7 @@
 
 namespace App\Tests\BACK;
 
-use App\Controller\BACK\MedicController;
 use App\Repository\UserRepository;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -24,11 +22,12 @@ class BackOfficeControllerTest extends WebTestCase
 
         $userRepository = static::getContainer()->get(UserRepository::class);
         $testUser = $userRepository->findOneByEmail('admin@admin.fr');
+        // $testUserEmail = $userRepository->setEmail(
+        //         $userRepository->get('email')->getData('admin@admin.fr')
+        // );
 
         $client->loginUser($testUser);
         //Error => $testUser Not an objet
-
-        dump($testUser);
 
         $crawler = $client->request($method, $url);
 

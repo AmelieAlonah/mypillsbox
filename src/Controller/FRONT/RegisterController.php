@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\BACK;
+namespace App\Controller\FRONT;
 
 use App\Entity\User;
-use App\Form\BACK\RegisterType;
+use App\Form\FRONT\RegisterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,16 +12,16 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterController extends AbstractController
 {
-    
 
     /**
-     * @Route("/back-office/utilisateurs/ajout", name="/back_office_user_add", methods={"GET", "POST"})
+     * @Route("/mon-compte/creation", name="account_add", methods={"GET", "POST"})
      */
     public function registerAdd(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = new User();
         
         $formUser = $this->createForm(RegisterType::class, $user);
+        
         $formUser->handleRequest($request);
 
         if($formUser->isSubmitted() && $formUser->isValid())
@@ -42,16 +42,16 @@ class RegisterController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'L\'utilisateur a bien été ajouté.');
+            $this->addFlash('success', 'Votre compte a bien été enregistré.');
 
-            return $this->redirectToRoute('back_office_home');
+            return $this->redirectToRoute('home');
         }
         elseif($formUser->isSubmitted() && !$formUser->isValid())
         {
-            $this->addFlash('danger', 'L\'utilisateur n\'a pas été enregistré.');
+            $this->addFlash('danger', 'Votre compte n\'a pas été enregistré.');
         }
 
-        return $this->render('back/register/add.html.twig', [
+        return $this->render('FRONT/account/add.html.twig', [
             'user'      => $user,
             'formUser'  => $formUser->createView()
         ]);
