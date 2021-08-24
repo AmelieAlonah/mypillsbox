@@ -3,6 +3,9 @@
 {% block title %}MyPillsBox : Back : L'allergène{% endblock %}
 
 {% block content %}
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page de l'allergène  </h1>
+    </section>
 
 <section class="box section is-small">
         <h1 class="title">{{allergen.name | raw }}</h1>
@@ -27,10 +30,6 @@
                     </a>
                 </span>
             </button>
-        </h2>
-        <h2 class="title">
-            Allergène : 
-                {{ allergen.name | raw}}
         </h2>
         
         <section class="box section is-medium columns is-desktop p-1">
