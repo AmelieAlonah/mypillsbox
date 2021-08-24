@@ -8,13 +8,17 @@
     </section>
     
     <section class="box section is-medium">
-        <h1 class="title">La première news !</h1>
-        <h2 class="subtitle">
-            On commence enfin à coder ce site !
-        </h2>
-        <p class="has-text-centered">
-            En attendant de rendre le formulaire de contact effectif, donnez moi vos avis !
-        </p>
+        <h1 class="title">La dernière des news !</h1>
+        
+        
+        <section class="section is-small">
+            {% for new in news %}
+                <h2 class="subtitle">{{ new.title | raw }}</h2>
+                     
+                <p class="has-text-justified">{{ new.content | raw }}</p>
+                    
+            {% endfor %}
+        </section>
     </section>
 
     <section class="box section is-large">
