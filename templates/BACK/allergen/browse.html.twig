@@ -68,9 +68,8 @@
                         </thead>
 
                         <tbody class="is-three-fifths">
-                            <tr><th>Nom</th>                    <td class="is-two-thirds"> {{ allergen.name}} </td></tr>
-                            <tr><th>Nom des médicaments</th>    <td class="is-two-thirds"></td></tr>
-                          
+                            <tr><th>Nom</th>                    <td class="is-two-thirds"> {{ allergen.name }} </td></tr>
+                            <tr><th>Nom des médicaments</th>    <td class="is-two-thirds"> {% for medicines in allergen.medicines %} {{ medicines.name | raw }} {% endfor %} </td></tr>
                         </tbody>
         </table>
         
