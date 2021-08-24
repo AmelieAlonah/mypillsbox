@@ -3,7 +3,8 @@
 namespace App\Entity\BACK;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\MedicineRepository;
+use App\Repository\BACK\MedicineRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -20,52 +21,47 @@ class Medicine
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable="false")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $code_CIS;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
-     */
-    private $medic_compo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $medic_type;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $medic_condition;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $medic_dosage;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $medic_exeption;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $medic_method_administration;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $medic_danger;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable="false")
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $medic_dosage_max;
 
@@ -80,7 +76,7 @@ class Medicine
     private $fertily_pregnancy_breastfeeding;
 
     /**
-     * @ORM\Column(type="text", nullable="false")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $medic_adverse_reaction;
 
@@ -88,6 +84,19 @@ class Medicine
      * @ORM\Column(nullable=true)
      */
     private $id_CPD;
+    
+    //mapped de base ms marche pas
+    /**
+     * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines")
+     * @ORM\JoinTable(name="allergen_medicine")
+     */
+    private $allergens;
+
+
+    public function __construct()
+    {
+        $this->allergens = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -283,4 +292,32 @@ class Medicine
 
         return $this;
     }
+
+    /**
+     * @return Collection|Allergen[]
+     */
+    public function getAllergens(): Collection
+    {
+        return $this->allergens;
+    }
+
+    public function addAllergen(Allergen $allergen): self
+    {
+        if (!$this->allergens->contains($allergen)) {
+            $this->allergens[] = $allergen;
+            $allergen->addMedicine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergen(Allergen $allergen): self
+    {
+        if ($this->allergens->removeElement($allergen)) {
+            $allergen->removeMedicine($this);
+        }
+
+        return $this;
+    }
+
 }

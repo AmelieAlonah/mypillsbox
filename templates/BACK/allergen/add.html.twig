@@ -1,0 +1,66 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Back : Ajouter un allergène{% endblock %}
+
+{% block content %}
+
+<section class="box section is-small">
+        <h1 class="title">Ajouter un allergène !</h1>
+            <h2 class="subtitle">
+                <button class="button is-success ">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-undo-alt"></i>
+                        </span>
+                        <a href="">
+                            <span>RETOUR</span>
+                        </a>
+                    </span>
+                </button>
+            </h2> 
+
+        {{ form_start(formAllergen) }}
+        {{ form_errors(formAllergen) }}
+            <div class="field">
+                <label class="label">Nom de l'allergène</label>
+                <div class="control">
+                {{ form_widget(formAllergen.name, {attr: {class: 'input', type: "text", placeholder: 'Ecrivez le nom de l\'allergène ici'}}) }}
+                </div>
+                <p class="help is-infos">Substance ou micro-organisme qui provoque une réaction allergique. L'allergène provoque la libération d''histamine dans la circulation sanguine, ce qui entraîne une constriction des poumons, un larmoiement et des éternuements. Toutes ces réactions physiologiques ont pour but d''expulser la substance étrangère.</p>
+            </div>
+            
+            <div class="field">
+                <label class="label">Nom du médicament</label>
+                <div class="control select is-multiple is-large">
+                        {{ form_widget(formAllergen.medicines | raw ) }}
+                </div>
+                <p class="help is-infos">Le nom commun du médicament référencé.</p>
+            </div>
+            
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" required>
+                        J'ai bien vérifié l'exactitude des informations avant de les valider.</a>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-success" type="submit">Ajouter</button>
+                </div>
+            </div>
+
+        {{ form_end(formAllergen) }}
+
+        <div class="control">
+                <button class="button is-warning is-light">
+                <a href="">
+                    <span>Cancel</span>
+                </a>
+                </button>
+            </div>
+
+    </section>
+{% endblock %}

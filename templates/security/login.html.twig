@@ -1,0 +1,57 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Connexion{% endblock %}
+
+{% block content %}
+
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+    <h1 class="title has-text-centered">Page de connexion</h1>
+</section>
+<section class="box section is-medium">
+<form method="post">
+    {% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+    <div class="mb-3">
+        Vous êtes connecté avec {{ app.user.email }}, <a href="{{ path('app_logout') }}">Se deconnecter</a>
+    </div>
+    {% endif %}
+
+    
+        <div class=" is-justify-content-center">
+            <h1 class="title">Connectez-vous</h1>
+            <label class="label" for="inputEmail">Votre adresse mail</label>
+            <input class="input is-info is-medium" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <p class="help is-infos">L'adresse email avec laquelle vous avez créé votre compte MyPillsBox.</p>
+                
+            <label class="label" for="inputPassword">Votre mot de passe</label>
+            <input class="input is-info is-medium" type="password" name="password" id="inputPassword"
+                class="form-control" autocomplete="current-password" required>
+            <p class="help is-infos">Votre mot de passe MyPillsBox.</p>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+            #}
+        </div>
+
+        <div class="is-flex is-justify-content-center is-align-items-center">
+            <button class="button is-primary is-large is-outlined box " type="submit">
+                Me connecter
+            </button>
+            </div>
+        </form>
+    </section>
+
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Back : Les Allergènes{% endblock %}
+
+{% block content %}
+
+<section class="box section is-medium">
+    <h1 class="title">La liste des allergenes : Total ({{ allergens.getTotalItemCount }})</h1>
+    <h2 class="subtitle">
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-plus-square"></i>
+                </span>
+                <a href="{{ path('back_office_allergen_add')}}">
+                    <span>AJOUTER un allergènes</span>
+                </a>
+            </span>
+        </button>
+    </h2>
+    <section class="section">
+        {% for allergen in allergens %}
+        <h4 class="subtitle is-4 has-text-centered">Nom de l'allergène : <br> <strong>{{ allergen.name | raw }}</strong></h4>
+        <div class="card m-3 p-3 medic_infos columns is-desktop">
+            <div class="column">
+                <div class="is-flex-wrap-wrap">
+                    <button
+                        class=" button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="far fa-eye"></i>
+                            </span>
+                            <a href="{{ path('back_office_allergen_read', { id: allergen.id })}}">
+                                <span>Regarder</span>
+                            </a>
+                        </span>
+                    </button>
+                    <button
+                        class=" button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <a href="{{ path('back_office_allergen_update', { id: allergen.id })}}">
+                                <span>Editer</span>
+                            </a>
+                        </span>
+                    </button>
+                    <button type="submit"
+                        class=" button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <a href="{{ path('back_office_allergen_delete', { id: allergen.id })}}">
+                                <span>Supprimer</span>
+                            </a>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="column">
+                <h2 class="subtitle">Nom des médicaments :</h2>
+                    {% for medicines in allergen.medicines %}
+                    {{ medicines.name | raw }}
+                    <a href="{{path('back_office_medic_read', {id: medicines.id})}}">Regarder</a> <br>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {{ knp_pagination_render(allergens)}}
+    </section>
+</section>
+{% endblock %}

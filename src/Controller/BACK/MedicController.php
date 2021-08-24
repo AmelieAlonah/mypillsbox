@@ -2,15 +2,16 @@
 
 namespace App\Controller\BACK;
 
+use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
+use App\Form\BACK\AllergenType;
 use App\Form\BACK\MedicineType;
-use App\Repository\MedicineRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Void_;
+use App\Repository\BACK\AllergenRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MedicController extends AbstractController
@@ -19,11 +20,17 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/liste", name="back_office_medic_browse", methods={"GET"})
      */
-    public function MedicBrowse(): Response
+    public function MedicBrowse(Request $request, PaginatorInterface $paginator): Response
     {
         $repository = $this->getDoctrine()->getRepository(Medicine::class);
 
         $medics     = $repository->findAll();
+        
+        $medics = $paginator->paginate(
+            $medics, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
 
         return $this->render('back/medic/browse.html.twig', [
             'medics' => $medics
@@ -33,7 +40,7 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function MedicRead(Medicine $medicine = null): Response
+    public function MedicRead(Medicine $medicine = null, AllergenRepository $allergenRepository): Response
     {
         if ( null === $medicine)
         {
@@ -41,30 +48,35 @@ class MedicController extends AbstractController
         }
 
         return $this->render('back/medic/read.html.twig', [
-            'medicine' => $medicine
+            'medicine'  => $medicine
         ]);
     }
 
     /**
      * @Route("/back-office/medicament/ajout", name="back_office_medic_add", methods={"GET", "POST"})
      */
-    public function MedicAdd(Request $request, Session $session): Response
+    public function MedicAdd(Request $request): Response
     {
         $medicine = new Medicine;
-
+        
         $formMedicine = $this->createForm(MedicineType::class, $medicine);
         $formMedicine->handleRequest($request);
 
         if($formMedicine->isSubmitted() && $formMedicine->isValid())
         {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($medicine);
             $em->flush();
+
+            $this->addFlash('success', 'Le médicament a bien été enregistré dans la base de donnée.');
+
+            return $this->redirectToRoute('back_office_medic_browse');
         }
-        else
+        
+        elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())
         {
-            //TODO Mettre un flashcard
-            echo "OhOh KC";
+            $this->addFlash('danger', 'Le médicament n\'a pas été enregistré dans la base de donnée.');
         }
 
         return $this->render('back/medic/add.html.twig', [
@@ -90,12 +102,13 @@ class MedicController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
+            $this->addFlash('success', 'Le médicament a bien été mis à jour dans la base de donnée.');
+
             return $this->redirectToRoute('back_office_medic_read', ['id' => $medicine->getId()]);
         }
-        else
+        elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())
         {
-            //TODO Mettre un flashcard
-            echo "OhOh KC";
+            $this->addFlash('danger', 'Le médicament n\'a pas été mis à jour, veuillez vérifier les champs remplis.');
         }
 
         return $this->render('back/medic/update.html.twig', [
@@ -118,6 +131,8 @@ class MedicController extends AbstractController
         $entityManagerInterface = $this->getDoctrine()->getManager();
         $entityManagerInterface->remove($medicine);
         $entityManagerInterface->flush();
+
+        $this->addFlash('success', 'Le médicament a bien été supprimé de la base de donnée.');
 
         return $this->redirectToRoute('back_office_medic_browse', [], 302);
     }
