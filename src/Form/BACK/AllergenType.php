@@ -4,12 +4,12 @@ namespace App\Form\BACK;
 
 use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
-use App\Repository\BACK\MedicineRepository;
-use Doctrine\DBAL\Types\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\BACK\MedicineRepository;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AllergenType extends AbstractType
 {
@@ -18,7 +18,7 @@ class AllergenType extends AbstractType
         $builder
             ->add('name',           TextType::class,    ['label' => "Nom de l'allergene"])
             ->add('medicines',      EntityType::class,  ['class'        => Medicine::class,
-                                                        'choice_label'  => 'Médicaments',
+                                                        'choice_label'  => 'name',
                                                         'multiple'      => true,
                                                         'query_builder' => function (MedicineRepository $medicineRepository)
                                                                             {
