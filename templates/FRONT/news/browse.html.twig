@@ -1,0 +1,25 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Les News{% endblock %}
+
+{% block content %}
+
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">La page des news  </h1>
+    </section>
+
+    <section class="box section is-medium">
+        <h1 class="title">Les news : </h1>
+
+    {% for new in news %}
+
+    <section class="box section is-small">
+            <h2 class="subtitle"> {{ new.title | raw }} </h2>
+            <p class="has-text-justified mt-2">
+                {{ new.content | raw }}
+            </p>
+    </section>
+    {% endfor %}
+{{ knp_pagination_render(news)}}
+</section>
+{% endblock %}
