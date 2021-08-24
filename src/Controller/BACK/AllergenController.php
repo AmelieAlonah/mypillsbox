@@ -29,4 +29,19 @@ class AllergenController extends AbstractController
             'allergens' => $allergens
         ]);
     }
+
+    /**
+     * @Route("/back-office/allergenes/voir/{id<\d+>}", name="back_office_allergen_read", methods={"GET"}, requirements={"id":"\d+"})
+     */
+    public function read(Allergen $allergen = null): Response 
+    {
+        if( null === $allergen)
+        {
+            throw $this->createNotFoundException("L'allergène n'est pas trouvé.");
+        }
+
+        return $this->render('back/allergen/read.html.twig', [
+            'allergen' => $allergen
+        ]);
+    }
 }
