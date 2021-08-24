@@ -81,7 +81,7 @@ class NewsController extends AbstractController
             throw $this->createNotFoundException("La news n'existe pas.");
         }
 
-        $formNews = $this->createForm(NewsRepository::class, $news);
+        $formNews = $this->createForm(NewsType::class, $news);
         $formNews->handleRequest($request);
 
         if($formNews->isSubmitted() && $formNews->isValid())
@@ -104,12 +104,12 @@ class NewsController extends AbstractController
         return $this->render('back/news/update.html.twig', [
             'id'        => $news->getId(),
             'news'      => $news,
-            'formNews'  => $formNews
+            'formNews'  => $formNews->createView()
         ]);
     }
 
     /**
-     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_news_delete", methods={GET"})
+     * @Route("/back-office/medicament/suppression/{id<\d+>}", name="back_office_news_delete", methods={"GET"})
      */
     public function delete(News $news): Response
     {

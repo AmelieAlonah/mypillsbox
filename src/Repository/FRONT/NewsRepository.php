@@ -3,8 +3,8 @@
 namespace App\Repository\FRONT;
 
 use App\Entity\FRONT\News;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method News|null find($id, $lockMode = null, $lockVersion = null)
