@@ -11,68 +11,61 @@
             <span class="icon-text">
                 <span class="icon">
                     <i class="fas fa-plus-square"></i>
-                </span>  
+                </span>
                 <a href="">
                     <span>AJOUTER un allergènes</span>
                 </a>
             </span>
         </button>
     </h2>
-
     <section class="section">
         {% for allergen in allergens %}
-
-        <table class="table is-justify-content-center">
-                        <thead> 
-                            <tr class="subtitle is-4 has-text-justified">
-                                <td>
-                                    <h4 class="subtitle is-4 has-text-centered" >Nom de l'allergène</h4> 
-                                </td>
-                                <td>
-                                    {{ allergen.name }}
-                                    
-                                    <button class="button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
-                                        <span class="icon-text">
-                                            <span class="icon">
-                                                <i class="far fa-eye"></i>
-                                            </span>
-                                            <a href="">
-                                            <span>Regarder</span>
-                                            </a>
-                                        </span>
-                                    </button>
-                                    
-                                    <button class="button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
-                                        <span class="icon-text">
-                                            <span class="icon">
-                                                <i class="fas fa-edit"></i>
-                                            </span>
-                                            <a href="">
-                                            <span>Editer</span>
-                                            </a>
-                                        </span>
-                                    </button>
-                                    <button type="submit" class="button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
-                                        <span class="icon-text">
-                                            <span class="icon">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </span>
-                                            <a href="">
-                                                <span>Supprimer</span>
-                                            </a>
-                                            
-                                        </span>
-                                    </button>
-                                </td>
-                            </tr>
-                        </thead>
-
-                        <tbody class="is-three-fifths">
-                            <tr><th>Nom</th>                    <td class="is-two-thirds"> {{ allergen.name }} </td></tr>
-                            <tr><th>Nom des médicaments</th>    <td class="is-two-thirds"> {% for medicines in allergen.medicines %} {{ medicines.name | raw }} {% endfor %} </td></tr>
-                        </tbody>
-        </table>
-        
+        <h4 class="subtitle is-4 has-text-centered">Nom de l'allergène : {{ allergen.name }}</h4>
+        <div class="card m-3 p-3 medic_infos columns is-desktop">
+            <div class="column">
+                <div class="is-flex-wrap-wrap">
+                    <button
+                        class=" button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="far fa-eye"></i>
+                            </span>
+                            <a href="">
+                                <span>Regarder</span>
+                            </a>
+                        </span>
+                    </button>
+                    <button
+                        class=" button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <a href="">
+                                <span>Editer</span>
+                            </a>
+                        </span>
+                    </button>
+                    <button type="submit"
+                        class=" button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <a href="">
+                                <span>Supprimer</span>
+                            </a>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="column">
+                <h2 class="subtitle">Nom des médicaments :</h2>
+                    {% for medicines in allergen.medicines %}
+                    {{ medicines.name | raw }}
+                {% endfor %}
+            </div>
+        </div>
         {% endfor %}
         {{ knp_pagination_render(allergens)}}
     </section>
