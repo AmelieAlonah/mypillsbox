@@ -74,4 +74,39 @@ class AllergenController extends AbstractController
             'formAllergen' => $formAllergen->createView()
         ]);
     }
+
+    /**
+     * @Route("/back-office/allergene/edition/{id<\d+>}", name="back_office_allergen_update", methods={"GET", "POST"}, requirements={"id":"\d+"})
+     */
+    public function update(Allergen $allergen = null, Request $request): Response
+    {
+        if( null === $allergen)
+        {
+            throw $this->createNotFoundException("L'allergène n'existe pas.");
+        }
+
+        $formAllergen = $this->createForm(AllergenType::class, $allergen);
+        $formAllergen->handleRequest($request);
+
+        if($formAllergen->isSubmitted() && $formAllergen->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $this->addFlash('success', 'L\'allergène a bien été modifié dans la base de donnée.');
+
+            return $this->redirectToRoute('back_office_allergen_read', ['id' => $allergen->getId()]);
+        }
+
+        elseif($formAllergen->isSubmitted() && !$formAllergen->isValid())
+        {
+            $this->addFlash('danger', 'L\'allergène n\'a pas été modifié dans la base de donnée, veuillez vérifier les champs remplis.');
+        }
+
+        return $this->render('back/allergen/update.html.twig', [
+            'id'            => $allergen->getId(),
+            'allergen'      => $allergen,
+            'formAllergen'  => $formAllergen->createView()
+        ]);
+    }
 }
