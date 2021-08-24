@@ -22,13 +22,13 @@
 
     <section class="section is-three-fifths">
 
-        {{ form_start(formMedicine) }}
+        {{ form_start(formMedicine | raw ) }}
         {{ form_errors(formMedicine)}}
 
         <div class="field">
             <label class="label">Code CIS du médicament</label>
             <div class="control">
-                {{ form_widget(formMedicine.code_CIS, {attr: {class: 'input', type: "number", placeholder: 'Ecrivez le code CIS ici'}})
+                {{ form_widget(formMedicine.code_CIS | raw, {attr: {class: 'input', type: "number", placeholder: 'Ecrivez le code CIS ici'}})
                 }}
             </div>
             <p class="help is-infos">Le code CIS ou Code Identifiant de Spécialité est un code numérique de 8 chiffres
@@ -38,7 +38,7 @@
         <div class="field">
             <label class="label">Nom du médicament</label>
             <div class="control">
-                {{ form_widget(formMedicine.name, {attr: {class: 'input', placeholder: 'Ecrivez le nom du médicament ici'}})
+                {{ form_widget(formMedicine.name | raw, {attr: {class: 'input', placeholder: 'Ecrivez le nom du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Le nom commun du médicament référencé.</p>
@@ -47,8 +47,10 @@
         <div class="field">
             <label class="label">Composition du médicament</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_compo, {attr: {class: 'input', placeholder: 'Ecrivez la composition du médicament ici'}})
-                }}
+            {% for allergens in formMedicine.allergens %}
+                {{ form_widget(allergens | raw ) }}
+            {% endfor %}
+                
             </div>
             <p class="help is-infos">Il s'agit de la substance présente dans le médicament qui lui confère ses
                 propriétés thérapeutiques ou préventives.</p>
@@ -57,7 +59,7 @@
         <div class="field">
             <label class="label">Type du médicament</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_type, {attr: {class: 'input', placeholder: 'Ecrivez le type du médicament ici'}})
+                {{ form_widget(formMedicine.medic_type | raw , {attr: {class: 'input', placeholder: 'Ecrivez le type du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">La forme pharmaceutique (également appelée "forme médicamenteuse" ou "forme
@@ -69,7 +71,7 @@
         <div class="field">
             <label class="label">Indications thérapeutiques</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_condition, {attr: {class: 'textarea', placeholder: 'Ecrivez les indications thérapeutiques du médicament ici'}})
+                {{ form_widget(formMedicine.medic_condition | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez les indications thérapeutiques du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">L'indication thérapeutique renseigne sur la maladie ou les symptômes que le
@@ -80,7 +82,7 @@
         <div class="field">
             <label class="label">Posologie recommandée</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_dosage, {attr: {class: 'textarea', placeholder: 'Ecrivez la posologie recommandée du médicament ici'}})
+                {{ form_widget(formMedicine.medic_dosage | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez la posologie recommandée du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Indication de la dose et du rythme de prise du médicament notamment déterminé selon
@@ -90,7 +92,7 @@
         <div class="field">
             <label class="label">Autre(s) situation(s) clinique(s)</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_exeption, {attr: {class: 'textarea', placeholder: 'Ecrivez la ou les autres situations cliniques du médicament ici'}})
+                {{ form_widget(formMedicine.medic_exeption | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez la ou les autres situations cliniques du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Les autres situations cliniques sont des situations, dans lesquelles la posologie
@@ -100,7 +102,7 @@
         <div class="field">
             <label class="label">Mode d'administration</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_method_administration, {attr: {class: 'textarea', placeholder: 'Ecrivez le mode d\'administration du médicament ici'}})
+                {{ form_widget(formMedicine.medic_method_administration | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez le mode d\'administration du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Le mode d'administration est la voie par laquelle le médicament est pris, avec une
@@ -110,7 +112,7 @@
         <div class="field">
             <label class="label">Contre-indication(s)</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_danger, {attr: {class: 'textarea', placeholder: 'Ecrivez les contres-indications du médicament ici'}})
+                {{ form_widget(formMedicine.medic_danger | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez les contres-indications du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Situation dans laquelle on ne doit pas donner le médicament pour des raisons de
@@ -123,7 +125,7 @@
         <div class="field">
             <label class="label">Dosage maximum recommandé</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_dosage_max, {attr: {class: 'textarea', placeholder: 'Ecrivez le dosage maximum du médicament ici'}})
+                {{ form_widget(formMedicine.medic_dosage_max | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez le dosage maximum du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">La dose maximale recommandé, est à titre informatif.</p>
@@ -133,7 +135,7 @@
             <label class="label">Associations faisant l'objet de précautions d'emploi (interactions
                 médicamenteuses)</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_interaction_other_medic, {attr: {class: 'textarea', placeholder: 'Ecrivez les associations non recommandées du médicament ici'}})
+                {{ form_widget(formMedicine.medic_interaction_other_medic | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez les associations non recommandées du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">On parle d’interaction médicamenteuse lorsque la prise d’une substance modifie
@@ -143,7 +145,7 @@
         <div class="field">
             <label class="label">Fertilité, grossesse et allaitement</label>
             <div class="control">
-                {{ form_widget(formMedicine.fertily_pregnancy_breastfeeding, {attr: {class: 'textarea', placeholder: 'Ecrivez les impacts du médicament ici'}})
+                {{ form_widget(formMedicine.fertily_pregnancy_breastfeeding | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez les impacts du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Les résultats sur l'impact du médicament sur la grossesse, l'allaitement et la
@@ -153,7 +155,7 @@
         <div class="field">
             <label class="label">Effets indésirables</label>
             <div class="control">
-                {{ form_widget(formMedicine.medic_adverse_reaction, {attr: {class: 'textarea', placeholder: 'Ecrivez les effets indésirables du médicament ici'}})
+                {{ form_widget(formMedicine.medic_adverse_reaction | raw , {attr: {class: 'textarea', placeholder: 'Ecrivez les effets indésirables du médicament ici'}})
                 }}
             </div>
             <p class="help is-infos">Un effet indésirable est une réaction nocive et non voulue à un médicament utilisé.
@@ -168,7 +170,7 @@
         <div class="field">
             <label class="label">Identifiant du CPD</label>
             <div class="control">
-                {{ form_widget(formMedicine.id_CPD,
+                {{ form_widget(formMedicine.id_CPD | raw ,
                 {attr: {class: 'input', type: 'number', minlenght: "1",
                 placeholder: 'Ecrivez le nombre du CPD du médicament ici'}}) }}
             </div>

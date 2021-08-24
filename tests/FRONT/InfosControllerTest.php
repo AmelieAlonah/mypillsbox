@@ -12,7 +12,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/contact');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Pour me contacter ça se passe ici :');
+        $this->assertSelectorTextContains('h1', 'Page de contact');
     }
 
     public function testInfosCGU(): void
@@ -21,7 +21,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/cgu');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Les conditions générales d\'utilisation :');
+        $this->assertSelectorTextContains('h1', 'Page des conditions générales d\'utillisation');
     }
 
     public function testInfosMentions(): void
@@ -30,7 +30,7 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/mentions-legales');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Les mentions légales :');
+        $this->assertSelectorTextContains('h1', 'Page des mentions légales');
     }
 
     public function testInfosWho(): void
