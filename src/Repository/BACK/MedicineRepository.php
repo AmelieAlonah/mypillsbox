@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\BACK;
 
 use App\Entity\BACK\Medicine;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @method Medicine|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,9 +22,9 @@ class MedicineRepository extends ServiceEntityRepository
     public function findMedicinesByName(String $name): Array
     {
         return $this->createQueryBuilder('Medicine')
-                    ->andWhere('Medicine.name LIKE :name OR Medicine.medic_compo LIKE :name')
+                    ->andWhere('Medicine.name LIKE :name')
                     ->setParameter('name', '%' . $name . '%')
-                    ->setMaxResults(20)
+                    ->setMaxResults(10)
                     ->getQuery()
                     ->execute();
     }

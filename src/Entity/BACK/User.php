@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\BACK;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\UserRepository;
+use App\Repository\BACK\UserRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;

@@ -2,17 +2,16 @@
 
 namespace App\Controller\BACK;
 
+use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
+use App\Form\BACK\AllergenType;
 use App\Form\BACK\MedicineType;
-use App\Service\MessageGenerator;
-use App\Repository\MedicineRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Void_;
+use App\Repository\BACK\AllergenRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MedicController extends AbstractController
@@ -41,7 +40,7 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function MedicRead(Medicine $medicine = null): Response
+    public function MedicRead(Medicine $medicine = null, AllergenRepository $allergenRepository): Response
     {
         if ( null === $medicine)
         {
@@ -49,7 +48,7 @@ class MedicController extends AbstractController
         }
 
         return $this->render('back/medic/read.html.twig', [
-            'medicine' => $medicine
+            'medicine'  => $medicine
         ]);
     }
 
@@ -59,17 +58,20 @@ class MedicController extends AbstractController
     public function MedicAdd(Request $request): Response
     {
         $medicine = new Medicine;
-
+        
         $formMedicine = $this->createForm(MedicineType::class, $medicine);
         $formMedicine->handleRequest($request);
 
         if($formMedicine->isSubmitted() && $formMedicine->isValid())
         {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($medicine);
             $em->flush();
 
             $this->addFlash('success', 'Le médicament a bien été enregistré dans la base de donnée.');
+
+            return $this->redirectToRoute('back_office_medic_browse');
         }
         
         elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())
@@ -104,7 +106,7 @@ class MedicController extends AbstractController
 
             return $this->redirectToRoute('back_office_medic_read', ['id' => $medicine->getId()]);
         }
-        else
+        elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())
         {
             $this->addFlash('danger', 'Le médicament n\'a pas été mis à jour, veuillez vérifier les champs remplis.');
         }

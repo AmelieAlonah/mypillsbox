@@ -2,7 +2,7 @@
 
 namespace App\Controller\BACK;
 
-use App\Entity\User;
+use App\Entity\BACK\User;
 use App\Form\BACK\RegisterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

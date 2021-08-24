@@ -2,8 +2,11 @@
 
 namespace App\Entity\BACK;
 
-use App\Repository\BACK\AllergenRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use App\Repository\BACK\AllergenRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=AllergenRepository::class)
@@ -22,6 +25,18 @@ class Allergen
      */
     private $name;
 
+    
+    /**
+     * @ORM\ManyToMany(targetEntity=Medicine::class, inversedBy="allergens")
+     * @ORM\JoinTable(name="allergen_medicine")
+     */
+    private $medicines;
+
+    public function __construct()
+    {
+        $this->medicines = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +50,34 @@ class Allergen
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Medicine[]
+     */
+    public function getMedicines(): Collection
+    {
+        return $this->medicines;
+    }
+
+    public function addMedicine(Medicine $medicine): self
+    {
+        if (!$this->medicines->contains($medicine)) {
+            //MAJ Relation
+            $medicine->addAllergen($this);
+
+            $this->medicines[] = $medicine;
+            
+        }
+
+        return $this;
+    }
+
+    public function removeMedicine(Medicine $medicine): self
+    {
+        $this->medicines->removeElement($medicine);
 
         return $this;
     }

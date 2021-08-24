@@ -4,7 +4,7 @@ namespace App\Controller\FRONT;
 
 use App\Entity\BACK\Medicine;
 use App\Form\FRONT\SearchType;
-use App\Repository\MedicineRepository;
+use App\Repository\BACK\MedicineRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,15 +24,16 @@ class SearchController extends AbstractController
         {
             $name = $formSearch->getData()->getName();
             $medicines = $medicineRepository->findMedicinesByName($name);
-
+            
             return $this->render('FRONT\search\medic_result.html.twig', [
                 'medicines' => $medicines
             ]);
         }
 
-        return $this->render('layout/_searchBar.html.twig', [
+            return $this->render('layout/_searchBar.html.twig', [
             'formSearch' => $formSearch->createView()
-        ]);
+            ]);
+        
     }
 
     /**

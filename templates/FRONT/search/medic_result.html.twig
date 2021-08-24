@@ -3,15 +3,14 @@
 {% block title %}MypillsBox : Résultats de recherche{% endblock %}
 
 {% block content %}
-<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
-        <h1 class="title has-text-centered">Page de vos résultats de recherche :</h1>
-        </section>
+
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Page de vos résultats de recherche : </h1>
+    </section>
         
 <section class="box section is-small">
 
     {% if app.request.method == 'POST' %}
-
-        
 
         {% if medicines | length == 0 %}
         <h2 class="subtitle has-text-right">
@@ -30,23 +29,37 @@
             <h4 class="subtitle is-4 has-text-centered column is-9">Votre médicament n'est pas encore enregistré.</h4>
         </div>
 
-
         {% endif %}
+        
         {% for medicine in medicines %}
             <div class="card m-3 p-3 medic_infos columns is-desktop is-justify-content-center is-flex-wrap-wrap">
-                <h4 class="subtitle has-text-centered column ">Nom du médicament : {{ medicine.name }}</h4>
-                <h5 class="subtitle has-text-centered column ">Molécule du médicament : {{ medicine.medicCompo }}</h5>
-                <button class="button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="far fa-eye"></i>
+                <div class="column">
+                    <h4 class="subtitle has-text-centered ">Nom du médicament : </h4>
+                    <p class="is-infos has-text-centered">{{ medicine.name | raw }}</p>
+                </div>
+
+                <div class="column">
+                    {% for allergens in medicine.allergens %}
+                        {% if allergens.name is not null %}
+                        <p class="is-infos has-text-centered">{{ allergens.name | raw }}</p>
+                        {% else %}
+                        <p class="is-infos has-text-centered">Pas encore référencé</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <button class="button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="far fa-eye"></i>
+                            </span>
+                            <a href="{{ path('medic_read', { id: medicine.id })}}">
+                            <span>Regarder</span>
+                            </a>
                         </span>
-                        <a href="{{ path('medic_read', { id: medicine.id })}}">
-                        {# {{ medicine.id }} #}
-                        <span>Regarder</span>
-                        </a>
-                        </span>
-                </button>
+                    </button>
+                </div>
             </div>
         {% endfor %}
 </section>
