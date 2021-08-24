@@ -28,12 +28,14 @@
                 </span>
             </button>
         </h2>
-        <h2 class="title">
-            Molécule(s):
+        <h2 class="title">Molécule(s):</h2>
             {% for allergens in medicine.allergens %}
-                {{ allergens.name | raw }}
+                <h3 class="subtitle">{{ allergens.name | raw }}
+                <a class="subtitle has-text-info" href="{{path('back_office_allergen_read', {id: allergens.id})}}">Regarder</a><br>
+                </h3>
+                
             {% endfor %}
-        </h2>
+        
         
         <section class="box section is-small columns is-desktop p-1">
             <div class="card m-3 p-3 medic_infos column">

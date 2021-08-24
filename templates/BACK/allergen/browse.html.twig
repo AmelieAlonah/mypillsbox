@@ -20,7 +20,7 @@
     </h2>
     <section class="section">
         {% for allergen in allergens %}
-        <h4 class="subtitle is-4 has-text-centered">Nom de l'allergène : <br> <strong>{{ allergen.name }}</strong></h4>
+        <h4 class="subtitle is-4 has-text-centered">Nom de l'allergène : <br> <strong>{{ allergen.name | raw }}</strong></h4>
         <div class="card m-3 p-3 medic_infos columns is-desktop">
             <div class="column">
                 <div class="is-flex-wrap-wrap">
@@ -63,6 +63,7 @@
                 <h2 class="subtitle">Nom des médicaments :</h2>
                     {% for medicines in allergen.medicines %}
                     {{ medicines.name | raw }}
+                    <a href="{{path('back_office_medic_read', {id: medicines.id})}}">Regarder</a> <br>
                 {% endfor %}
             </div>
         </div>

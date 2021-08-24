@@ -25,6 +25,7 @@ class Allergen
      */
     private $name;
 
+    
     /**
      * @ORM\ManyToMany(targetEntity=Medicine::class, inversedBy="allergens")
      * @ORM\JoinTable(name="allergen_medicine")

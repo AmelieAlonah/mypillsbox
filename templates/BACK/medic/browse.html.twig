@@ -68,19 +68,20 @@
                         </thead>
 
                         <tbody class="is-three-fifths">
-                            <tr><th>Code CIS</th>                                                       <td class="is-two-thirds"> {{ medic.codeCIS | raw }} </td></tr>
-                            <tr><th>Code CPD</th>                                                       <td class="is-two-thirds"> {{ medic.idCPD | raw }} </td></tr>
-                            <tr><th>Nom du médicament</th>                                              <td class="is-two-thirds"> {{ medic.name | raw }} </td></tr>
-                            <tr><th>Composition du médicament</th>                                      <td class="is-two-thirds"> {% for allergens in medic.allergens %} {{ allergens.name | raw}} {% endfor %} </td></tr>
-                            <tr><th>Type</th>                                                           <td class="is-two-thirds"> {{ medic.medicType | raw }} </td></tr>
-                            <tr><th>Indications thérapeutiques</th>                                     <td class="is-two-thirds"> {{ medic.medicCondition | raw }} </td></tr>
-                            <tr><tr><th>Posologie recommandée</th>                                      <td class="is-two-thirds"> {{ medic.medicDosage | raw }} </td></tr>
-                            <tr><tr><th>Autres situations cliniques</th>                                <td class="is-two-thirds"> {{ medic.medicExeption | raw }} </td></tr>
-                            <tr><th>Mode d'administration</th>                                          <td class="is-two-thirds"> {{ medic.medicMethodAdministration | raw }} </td></tr>
-                            <tr><th>Contres-indications</th>                                            <td class="is-two-thirds"> {{ medic.medicDanger | raw }} </td>    </tr>
-                            <tr><th>Dose maximale recommandée</th>                                      <td class="is-two-thirds"> {{ medic.medicDosageMax | raw }} </td></tr><tr><th>Interactions médicamenteuses</th>                                   <td> {{ medic.medicInteractionOtherMedic }} </td></tr>
-                            <tr><th>Impact sur la fertilité, grossesse et allaitement</th>              <td class="is-two-thirds"> {{ medic.fertilyPregnancyBreastfeeding | raw }} </td></tr>
-                            <tr><th>Effets indésirables</th>                                            <td class="is-two-thirds"> {{ medic.medicAdverseReaction | raw }} </td></tr>
+                            <tr><th>Code CIS</th>                                           <td class="has-text-black"> {{ medic.codeCIS | raw }} </td></tr>
+                            <tr><th>Code CPD</th>                                           <td class="has-text-black"> {{ medic.idCPD | raw }} </td></tr>
+                            <tr><th>Nom du médicament</th>                                  <td class="has-text-black"> {{ medic.name | raw }} </td></tr>
+                            <tr><th>Composition du médicament</th>                          <td class="has-text-black"> {% for allergens in medic.allergens %} {{ allergens.name | raw}} <a class="has-text-info" href="{{path('back_office_allergen_read', {id: allergens.id})}}">Regarder</a> <br> {% endfor %} </td></tr>
+                            <tr><th>Type</th>                                               <td class="has-text-black"> {{ medic.medicType | raw }} </td></tr>
+                            <tr><th>Indications thérapeutiques</th>                         <td class="has-text-black"> {{ medic.medicCondition | raw }} </td></tr>
+                            <tr><tr><th>Posologie recommandée</th>                          <td class="has-text-black"> {{ medic.medicDosage | raw }} </td></tr>
+                            <tr><tr><th>Autres situations cliniques</th>                    <td class="has-text-black"> {{ medic.medicExeption | raw }} </td></tr>
+                            <tr><th>Mode d'administration</th>                              <td class="has-text-black"> {{ medic.medicMethodAdministration | raw }} </td></tr>
+                            <tr><th>Contres-indications</th>                                <td class="has-text-black"> {{ medic.medicDanger | raw }} </td>    </tr>
+                            <tr><th>Dose maximale recommandée</th>                          <td class="has-text-black"> {{ medic.medicDosageMax | raw }} </td></tr>
+                            <tr><th>Interactions médicamenteuses</th>                       <td class="has-text-black"> {{ medic.medicInteractionOtherMedic | raw}} </td></tr>
+                            <tr><th>Impact sur la fertilité, grossesse et allaitement</th>  <td class="has-text-black"> {{ medic.fertilyPregnancyBreastfeeding | raw }} </td></tr>
+                            <tr><th>Effets indésirables</th>                                <td class="has-text-black"> {{ medic.medicAdverseReaction | raw }} </td></tr>
                         </tbody>
         </table>
         

@@ -24,15 +24,16 @@ class SearchController extends AbstractController
         {
             $name = $formSearch->getData()->getName();
             $medicines = $medicineRepository->findMedicinesByName($name);
-
+            
             return $this->render('FRONT\search\medic_result.html.twig', [
                 'medicines' => $medicines
             ]);
         }
 
-        return $this->render('layout/_searchBar.html.twig', [
+            return $this->render('layout/_searchBar.html.twig', [
             'formSearch' => $formSearch->createView()
-        ]);
+            ]);
+        
     }
 
     /**

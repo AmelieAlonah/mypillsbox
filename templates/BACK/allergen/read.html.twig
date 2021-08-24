@@ -5,7 +5,7 @@
 {% block content %}
 
 <section class="box section is-small">
-        <h1 class="title">{{allergen.name}}</h1>
+        <h1 class="title">{{allergen.name | raw }}</h1>
         <h2 class="subtitle has-text-right">
             <button class="button is-success is-medium ">
                 <span class="icon-text">
@@ -34,21 +34,13 @@
         </h2>
         
         <section class="box section is-medium columns is-desktop p-1">
+            
             <div class="card m-3 p-3 medic_infos column">
-                    <h2 class="subtitle">
-                        Nom :
-                    </h2>
+                    <h2 class="subtitle has-text-centered">Médicament(s) :</h2>
                     <div class="content column">
-                        {{ allergen.name }}
-                    </div>
-            </div>
-            <div class="card m-3 p-3 medic_infos column">
-                    <h2 class="subtitle">
-                        Médicament(s) :
-                    </h2>
-                    <div class="content column">
-                        {% for medicines in allergen.medicines %}
-                            {{ medicines.name | raw }}
+                    {% for medicines in allergen.medicines %}
+                        {{ medicines.name | raw }}
+                        <a href="{{path('back_office_medic_read', {id: medicines.id})}}">Regarder</a> <br>
                         {% endfor %}
                     </div>
             </div>

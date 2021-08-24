@@ -24,7 +24,7 @@ class MedicineRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('Medicine')
                     ->andWhere('Medicine.name LIKE :name')
                     ->setParameter('name', '%' . $name . '%')
-                    ->setMaxResults(20)
+                    ->setMaxResults(10)
                     ->getQuery()
                     ->execute();
     }

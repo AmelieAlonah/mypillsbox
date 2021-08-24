@@ -70,6 +70,8 @@ class MedicController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Le médicament a bien été enregistré dans la base de donnée.');
+
+            return $this->redirectToRoute('back_office_medic_browse');
         }
         
         elseif($formMedicine->isSubmitted() && !$formMedicine->isValid())

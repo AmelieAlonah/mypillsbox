@@ -63,6 +63,8 @@ class AllergenController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'L\'allergène a bien été enregistré dans la base de donnée.');
+            
+            return $this->redirectToRoute('back_office_allergen_browse');
         }
         
         elseif($formAllergen->isSubmitted() && !$formAllergen->isValid())
