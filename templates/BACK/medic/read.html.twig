@@ -5,7 +5,7 @@
 {% block content %}
 
 <section class="box section is-small">
-        <h1 class="title">{{medicine.name}}</h1>
+        <h1 class="title">{{medicine.name | raw }}</h1>
         <h2 class="subtitle has-text-right">
             <button class="button is-success is-medium ">
                 <span class="icon-text">
@@ -29,9 +29,9 @@
             </button>
         </h2>
         <h2 class="title">
-            Molécule(s): 
+            Molécule(s):
             {% for allergens in medicine.allergens %}
-                {{ allergens.name | raw}}
+                {{ allergens.name | raw }}
             {% endfor %}
         </h2>
         
@@ -41,7 +41,7 @@
                         Indications thérapeutiques :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicCondition }}
+                        {{ medicine.medicCondition | raw }}
                     </div>
             </div>
             <div class="card m-3 p-3 medic_infos column">
@@ -49,7 +49,7 @@
                         Posologie recommandée :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicDosage }}
+                        {{ medicine.medicDosage | raw }}
                 </div>
             </div>
             <div class="card m-3 p-3 medic_infos column">
@@ -57,7 +57,7 @@
                         Voies d'administration :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicMethodAdministration }}
+                        {{ medicine.medicMethodAdministration | raw }}
                     </div>
             </div>
         </section>
@@ -71,7 +71,7 @@
                         Aux autres situations cliniques :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicExeption }}
+                        {{ medicine.medicExeption | raw }}
                     </div>
             </div>
             <div class="card m-3 p-3 medic_warning column">
@@ -79,7 +79,7 @@
                         A la dose maximale recommandée :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicDosageMax }}
+                        {{ medicine.medicDosageMax | raw }}
                 </div>
             </div>
             <div class="card m-3 p-3 medic_warning column">
@@ -87,7 +87,7 @@
                         Aux intéractions médicamenteuses :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicInteractionOtherMedic }}
+                        {{ medicine.medicInteractionOtherMedic | raw }}
                     </div>
             </div>
         </section>
@@ -101,7 +101,7 @@
                         Sur l'impact sur la fertilité, la grossesse et l'allaitement :
                     </h2>
                     <div class="content column">
-                        {{ medicine.fertilyPregnancyBreastfeeding }}
+                        {{ medicine.fertilyPregnancyBreastfeeding | raw }}
                     </div>
             </div>
         </section>
@@ -111,7 +111,7 @@
                         Sur les effets secondaires :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicAdverseReaction }}
+                        {{ medicine.medicAdverseReaction | raw }}
                 </div>
             </div>
         </section>
@@ -121,7 +121,7 @@
                         Sur les contre-indications :
                     </h2>
                     <div class="content column">
-                        {{ medicine.medicDanger }}
+                        {{ medicine.medicDanger | raw }}
                     </div>
             </div>
         </section>

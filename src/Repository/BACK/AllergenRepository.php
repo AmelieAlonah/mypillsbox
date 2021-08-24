@@ -3,6 +3,7 @@
 namespace App\Repository\BACK;
 
 use App\Entity\BACK\Allergen;
+use App\Entity\BACK\Medicine;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -18,6 +19,14 @@ class AllergenRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Allergen::class);
     }
+    //SELECT * FROM `allergen`
+    //INNER JOIN `allergen_medicine` ON `allergen`.`id` = `allergen_id`
+
+
+    // SELECT * FROM `allergen_medicine`
+
+    // INNER JOIN `allergen` ON `allergen_id` = `allergen`.`id` 
+    // INNER JOIN `medicine` ON `medicine_id` = `medicine`.`id`
 
     // /**
     //  * @return Allergen[] Returns an array of Allergen objects

@@ -2,9 +2,12 @@
 
 namespace App\Controller\BACK;
 
+use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
+use App\Form\BACK\AllergenType;
 use App\Form\BACK\MedicineType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\BACK\AllergenRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +40,7 @@ class MedicController extends AbstractController
     /**
      * @Route("/back-office/medicament/voir/{id<\d+>}", name="back_office_medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function MedicRead(Medicine $medicine = null): Response
+    public function MedicRead(Medicine $medicine = null, AllergenRepository $allergenRepository): Response
     {
         if ( null === $medicine)
         {
@@ -45,7 +48,7 @@ class MedicController extends AbstractController
         }
 
         return $this->render('back/medic/read.html.twig', [
-            'medicine' => $medicine
+            'medicine'  => $medicine
         ]);
     }
 
@@ -55,13 +58,14 @@ class MedicController extends AbstractController
     public function MedicAdd(Request $request): Response
     {
         $medicine = new Medicine;
-
+        
         $formMedicine = $this->createForm(MedicineType::class, $medicine);
         $formMedicine->handleRequest($request);
 
         if($formMedicine->isSubmitted() && $formMedicine->isValid())
         {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($medicine);
             $em->flush();
 

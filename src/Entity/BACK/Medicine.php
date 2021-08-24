@@ -84,9 +84,11 @@ class Medicine
      * @ORM\Column(nullable=true)
      */
     private $id_CPD;
-
+    
+    //mapped de base ms marche pas
     /**
-     * @ORM\ManyToMany(targetEntity=Allergen::class, mappedBy="medicines")
+     * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines")
+     * @ORM\JoinTable(name="allergen_medicine")
      */
     private $allergens;
 
