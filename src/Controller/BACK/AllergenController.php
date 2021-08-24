@@ -109,4 +109,23 @@ class AllergenController extends AbstractController
             'formAllergen'  => $formAllergen->createView()
         ]);
     }
+
+    /**
+     * @Route("/back-office/allergene/suppression/{id<\d+>}", name="back_office_allergen_delete", methods={"GET"})
+     */
+    public function delete(Allergen $allergen = null): Response
+    {
+        if( null === $allergen )
+        {
+            throw $this->createNotFoundException("L'allergène n'existe pas.");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($allergen);
+        $em->flush();
+
+        $this->addFlash('success', "L'allergène abien été supprimé de la base de données.");
+
+        return $this->redirectToRoute('back_office_allergen_browse', [], 302);
+    }
 }
