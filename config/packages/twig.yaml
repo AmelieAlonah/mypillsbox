@@ -5,7 +5,8 @@ twig:
         '%kernel.project_dir%/templates/FRONT': FRONT
         '%kernel.project_dir%/templates/BACK': BACK
         '%kernel.project_dir%/templates/layout': LAYOUT
-
+    form_themes: ['bootstrap_5_horizontal_layout.html.twig']
+    
 when@test:
     twig:
         strict_variables: true

@@ -5,148 +5,121 @@
 {% block content %}
 
 <section class="box section is-small">
-        <h1 class="title">Le médicament !<button class="button is-success "><span class="icon-text"><span
-                        class="icon"><i class="fas fa-undo-alt"></i></span><span>RETOUR</span></span></button></h1>
-
-        <h2 class="title">
-            Les informations de base
+        <h1 class="title">{{medicine.name}}</h1>
+        <h2 class="subtitle has-text-right">
+            <button class="button is-success is-medium ">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </span>
+                    <a href="{{ path('back_office_medic_browse')}}">
+                    <span>RETOUR</span>
+                    </a>
+                </span>
+            </button>
+            <button class="button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-edit"></i>
+                    </span>
+                    <a href="{{ path('back_office_medic_update', { id: medicine.id })}}">
+                        <span>Editer</span>
+                    </a>
+                </span>
+            </button>
         </h2>
-        <section class="box section is-small columns is-desktop p-0">
-
-            <div class="card m-3 ">
-                <div class="card-content medic_infos">
+        <h2 class="title">
+            Molécule : {{ medicine.medicCompo }}
+        </h2>
+        
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_infos column">
                     <h2 class="subtitle">
-                        Infos 1
+                        Indications thérapeutiques :
                     </h2>
                     <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                        {{ medicine.medicCondition }}
                     </div>
+            </div>
+            <div class="card m-3 p-3 medic_infos column">
+                    <h2 class="subtitle">
+                        Posologie recommandée :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicDosage }}
                 </div>
             </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_infos">
+            <div class="card m-3 p-3 medic_infos column">
                     <h2 class="subtitle">
-                        Infos 2
+                        Voies d'administration :
                     </h2>
                     <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                        {{ medicine.medicMethodAdministration }}
                     </div>
-                </div>
-            </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_infos">
-                    <h2 class="subtitle">
-                        Infos 3
-                    </h2>
-                    <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
-                    </div>
-                </div>
-            </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_infos">
-                    <h2 class="subtitle">
-                        Infos 4
-                    </h2>
-                    <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
-                    </div>
-                </div>
-            </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_infos ">
-                    <h2 class="subtitle">
-                        Infos 5
-                    </h2>
-                    <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
-                    </div>
-                </div>
             </div>
         </section>
 
         <h2 class="title">
-            Vous devez faire attention à :
+            Vous devez faire attention :
         </h2>
-        <section class="box section is-small columns is-desktop p-0">
-
-            <div class="card m-3 ">
-                <div class="card-content medic_warning">
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_warning column">
                     <h2 class="subtitle">
-                        Warning 1
+                        Aux autres situations cliniques :
                     </h2>
                     <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                        {{ medicine.medicExeption }}
                     </div>
+            </div>
+            <div class="card m-3 p-3 medic_warning column">
+                    <h2 class="subtitle">
+                        A la dose maximale recommandée :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicDosageMax }}
                 </div>
             </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_warning">
+            <div class="card m-3 p-3 medic_warning column">
                     <h2 class="subtitle">
-                        Warning 2
+                        Aux intéractions médicamenteuses :
                     </h2>
                     <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                        {{ medicine.medicInteractionOtherMedic }}
                     </div>
+            </div>
+        </section>
+
+        <h2 class="title">
+            Vous devez être vigilent.e :
+        </h2>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_danger column">
+                    <h2 class="subtitle">
+                        Sur l'impact sur la fertilité, la grossesse et l'allaitement :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.fertilyPregnancyBreastfeeding }}
+                    </div>
+            </div>
+        </section>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_danger column">
+                    <h2 class="subtitle">
+                        Sur les effets secondaires :
+                    </h2>
+                    <div class="content column">
+                        {{ medicine.medicAdverseReaction }}
                 </div>
             </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_warning">
+        </section>
+        <section class="box section is-small columns is-desktop p-1">
+            <div class="card m-3 p-3 medic_danger column">
                     <h2 class="subtitle">
-                        Warning 3
+                        Sur les contre-indications :
                     </h2>
                     <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+                        {{ medicine.medicDanger }}
                     </div>
-                </div>
-            </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_warning">
-                    <h2 class="subtitle">
-                        Warning 4
-                    </h2>
-                    <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
-                    </div>
-                </div>
-            </div>
-
-            <div class="card m-3 ">
-                <div class="card-content medic_warning">
-                    <h2 class="subtitle">
-                        Warning 5
-                    </h2>
-                    <div class="content column">
-                        Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta
-                        gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
-                    </div>
-                </div>
             </div>
         </section>
     </section>
