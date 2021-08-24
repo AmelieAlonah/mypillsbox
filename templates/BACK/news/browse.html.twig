@@ -5,11 +5,11 @@
 {% block content %}
 
     <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
-        <h1 class="title has-text-centered">Page des news</h1>
+        <h1 class="title has-text-centered">La page des news  </h1>
     </section>
 
     <section class="box section is-medium">
-        <h1 class="title">Les news :</h1>
+        <h1 class="title">Les news : Total ({{ news.getTotalItemCount }})</h1>
         <h2 class="subtitle">
         <button class="button is-success ">
             <span class="icon-text">
@@ -81,6 +81,6 @@
     </section>
 
     {% endfor %}
-
+{{ knp_pagination_render(news)}}
 </section>
 {% endblock %}

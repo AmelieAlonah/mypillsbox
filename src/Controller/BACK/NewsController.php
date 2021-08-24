@@ -5,6 +5,7 @@ namespace App\Controller\BACK;
 use App\Entity\FRONT\News;
 use App\Form\FRONT\NewsType;
 use App\Repository\FRONT\NewsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,9 +16,15 @@ class NewsController extends AbstractController
     /**
      * @Route("/back-office/news/liste", name="back_office_news_browse")
      */
-    public function browse(NewsRepository $newsRepository): Response
+    public function browse(NewsRepository $newsRepository, Request $request, PaginatorInterface $paginatorInterface): Response
     {
         $news = $newsRepository->findAll();
+
+        $news = $paginatorInterface->paginate(
+            $news,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('back/news/browse.html.twig', [
             'news' => $news
