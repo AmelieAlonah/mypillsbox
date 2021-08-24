@@ -12,7 +12,7 @@
                     <span class="icon">
                         <i class="fas fa-undo-alt"></i>
                     </span>
-                    <a href="">
+                    <a href="{{ path('back_office_allergen_browse')}}">
                     <span>RETOUR</span>
                     </a>
                 </span>
@@ -22,7 +22,7 @@
                 <span class="icon">
                     <i class="fas fa-edit"></i>
                     </span>
-                    <a href="">
+                    <a href="{{ path('back_office_allergen_update', {id: allergen.id} )}}">
                         <span>Editer</span>
                     </a>
                 </span>
