@@ -8,31 +8,16 @@
     </section>
     
     <section class="box section is-medium">
-        <h1 class="title">La première news !</h1>
-        <h2 class="subtitle">
-            On commence enfin à coder ce site !
-        </h2>
-        <p class="has-text-centered">
-            En attendant de rendre le formulaire de contact effectif, donnez moi vos avis !
-        </p>
+        <h1 class="title">La dernière des news !</h1>
+        
+        <section class="section is-small">
+            {% for new in news %}
+                <h2 class="subtitle">{{ new.title | raw }}</h2>
+                     
+                <p class="has-text-justified">{{ new.content | raw }}</p>
+                    
+            {% endfor %}
+        </section>
     </section>
 
-    <section class="box section is-large">
-        <h1 class="title">La première question !</h1>
-        <h2 class="subtitle">
-            Pourquoi avoir créé ce site ?
-        </h2>
-        <p class="has-text-centered">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aliquam ratione adipisci at eius aspernatur
-            molestiae non officiis! Magnam, iste? Possimus in eaque mollitia laborum voluptas dolorum similique ad qui!
-            Repellat accusamus aspernatur eius aliquam saepe repellendus labore eum reprehenderit, illum velit
-            excepturi. Eius ad illo quaerat libero, atque voluptas officia, rerum debitis id quos necessitatibus omnis
-            ducimus aut harum!
-            Ipsum dolores fugiat aliquid iusto fuga est ipsam quas saepe nihil, reiciendis, optio quibusdam a laudantium
-            dolor ratione ab autem ad perferendis vero ullam! Reprehenderit ipsum quidem ullam cum iste.
-            Optio mollitia perspiciatis ea vitae architecto quae dolore exercitationem sequi doloribus nesciunt omnis
-            velit nihil fugiat sit quod itaque officia culpa incidunt voluptatem ullam atque nulla, corporis ad?
-            Tempora, veniam.
-        </p>
-    </section>
 {% endblock %}
