@@ -1,8 +1,12 @@
 {% extends "@FRONT/base.html.twig" %}
 
-{% block title %}Le médicament !{% endblock %}
+{% block title %}MyPillsBox : Back : Le médicament{% endblock %}
 
 {% block content %}
+
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page du médicament </h1>
+    </section>
 
 <section class="box section is-small">
         <h1 class="title">{{medicine.name | raw }}</h1>
