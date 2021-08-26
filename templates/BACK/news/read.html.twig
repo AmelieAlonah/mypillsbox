@@ -1,0 +1,34 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Back : La News{% endblock %}
+
+{% block content %}  
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page de la news </h1>
+    </section>
+
+    <section class="box section is-medium">
+
+        <h1 class="title">Les news :</h1>
+        <h2 class="subtitle">
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-plus-square"></i>
+                </span>
+                <a href="{{ path('back_office_news_add')}}">
+                    <span>AJOUTER une new</span>
+                </a>
+            </span>
+        </button>
+        </h2>
+
+        <section class="box section is-small">
+            <h2 class="subtitle"> {{ news.title | raw }} </h2>
+            <p class="has-text-justified mt-2">
+                {{ news.content | raw }}
+            </p>
+        </section>
+        
+    </section>
+{% endblock %}

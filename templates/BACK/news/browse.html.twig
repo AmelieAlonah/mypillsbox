@@ -1,0 +1,86 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Back : Les News{% endblock %}
+
+{% block content %}
+
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page des news  </h1>
+    </section>
+
+    <section class="box section is-medium">
+        <h1 class="title">Les news : Total ({{ news.getTotalItemCount }})</h1>
+        <h2 class="subtitle">
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-plus-square"></i>
+                </span>
+                <a href="{{ path('back_office_news_add')}}">
+                    <span>AJOUTER une new</span>
+                </a>
+            </span>
+        </button>
+        </h2>
+
+    {% for new in news %}
+
+    <section class="box section is-small">
+        <section class="box section is-small">
+            <h2 class="subtitle"> {{ new.title | raw }} </h2>
+            <p class="has-text-justified mt-2">
+                {{ new.content | raw }}
+            </p>
+        </section>
+    
+    <div class="columns is-desktop ">
+        <div class="column m-3">
+            <button class="button  is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="far fa-eye"></i>
+                    </span>
+                    <a href="{{ path('back_office_news_read', { id: new.id }) }}">
+                        <span>Regarder</span>
+                    </a>
+                </span>
+            </button>
+        </div>
+
+        <div class="column m-3">
+            <button
+                class="button is-medium is-warning is-light is-italic has-text-weight-bold has-text-black has-text-centered">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <a href="{{ path('back_office_news_update', { id: new.id })}}">
+                        <span>Editer</span>
+                    </a>
+                </span>
+            </button>
+        </div>
+
+        <div class="column m-3">
+            <button type="submit"
+                class="button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </span>
+                    <a href="{{ path('back_office_news_delete', { id: new.id })}}">
+                        <span>Supprimer</span>
+                    </a>
+                </span>
+            </button>
+        </div>
+
+    </div>
+        
+
+    </section>
+
+    {% endfor %}
+{{ knp_pagination_render(news)}}
+</section>
+{% endblock %}

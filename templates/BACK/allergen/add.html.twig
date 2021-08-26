@@ -4,6 +4,10 @@
 
 {% block content %}
 
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page d'ajout d'allergènes </h1>
+    </section>
+
 <section class="box section is-small">
         <h1 class="title">Ajouter un allergène !</h1>
             <h2 class="subtitle">
@@ -12,7 +16,7 @@
                         <span class="icon">
                             <i class="fas fa-undo-alt"></i>
                         </span>
-                        <a href="">
+                        <a href="{{path('back_office_allergen_browse')}}">
                             <span>RETOUR</span>
                         </a>
                     </span>

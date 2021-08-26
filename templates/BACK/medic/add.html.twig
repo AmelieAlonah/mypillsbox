@@ -1,9 +1,12 @@
 {% extends "@FRONT/base.html.twig" %}
 
-{% block title %}Ajouter un médicaments{% endblock %}
+{% block title %}MyPillsBox : Back : Ajouter un médicaments{% endblock %}
 
 {% block content %}
 
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page d'ajout de médicaments  </h1>
+    </section>
 
 <section class="box section is-small">
         <h1 class="title">Ajouter un médicament !</h1>
@@ -21,8 +24,6 @@
                 </button>
             </h2> 
         
-
-
         {{ form_start(formMedicine) }}
         {{ form_errors(formMedicine) }}
             <div class="field">

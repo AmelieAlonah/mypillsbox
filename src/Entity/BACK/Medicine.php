@@ -3,6 +3,7 @@
 namespace App\Entity\BACK;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use App\Repository\BACK\MedicineRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -84,10 +85,11 @@ class Medicine
      * @ORM\Column(nullable=true)
      */
     private $id_CPD;
-    
+
     //mapped de base ms marche pas
     /**
      * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines")
+     * @JoinColumn(nullable=true)
      * @ORM\JoinTable(name="allergen_medicine")
      */
     private $allergens;

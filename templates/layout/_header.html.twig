@@ -1,6 +1,6 @@
    <header class="header">
         <nav class="box navbar" role="navigation" aria-label="main navigation is-flex">
-            <div class="navbar-brand is-align-items-center content has-text-centered is-flex is-desktop is-justify-content-space-around"">
+            <div class="navbar-brand is-align-items-center content has-text-centered is-flex is-desktop is-justify-content-space-around">
                 <img class="mobile navbar-item is-medium" src="{{ asset('assets/pictures/visual_identity/MyPillsBox_nav.png')}}">
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
@@ -33,10 +33,10 @@
                         </a>
 
                         <div class="navbar-dropdown dropdown-content">
-                            <a class="navbar-item dropdown-item" id="link_faq">
+                            <a href="{{path('faq_browse')}}" class="navbar-item dropdown-item" id="link_faq">
                                 La Foire Aux Questions
                             </a>
-                            <a class="navbar-item dropdown-item">
+                            <a href="{{path('news_browse')}}" class="navbar-item dropdown-item">
                                 Les news !
                             </a>
                             <a href="{{ path('contact')}}" class="navbar-item dropdown-item">

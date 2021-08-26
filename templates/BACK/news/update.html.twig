@@ -1,0 +1,62 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Back : Ajouter une News{% endblock %}
+
+{% block content %}  
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page d'édition de news</h1>
+</section>
+
+    <section class="box section is-medium">
+        <h1 class="title">Les news :</h1>
+        <h2 class="subtitle">
+        <button class="button is-success ">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-undo-alt"></i>
+                </span>
+                <a href="{{ path('back_office_news_browse')}}">
+                    <span>Retour</span>
+                </a>
+            </span>
+        </button>
+        </h2>
+        <section class="box section is-small">
+            {{form_start(formNews | raw)}}
+            {{form_errors(formNews)}} 
+
+            <div class="field">
+                <label class="label">Titre</label>
+                <div class="control">
+                {{ form_widget(formNews.title, {attr: {class: 'input', type: "text", placeholder: 'Ecrivez le titre ici.'}}) }}
+                </div>
+                <p class="help is-infos">Titre accrocheur de la nouvelle.</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Contenu</label>
+                <div class="control">
+                {{ form_widget(formNews.content, {attr: {class: 'textarea', type: "text", placeholder: 'Ecrivez la nouvelle ici.'}}) }}
+                </div>
+                <p class="help is-infos">Le blabla je raconte ma vie.</p>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-success" type="submit">Ajouter</button>
+                </div>
+            </div>
+
+        </section> 
+    {{form_end(formNews)}}
+
+        <div class="control">
+            <button class="button is-warning is-light">
+                <a href="{{ path('back_office_news_browse')}}">
+                    <span>Cancel</span>
+                </a>
+                </button>
+            </div>
+        
+    </section>
+{% endblock %}
