@@ -4,6 +4,7 @@ namespace App\Controller\FRONT;
 
 use App\Entity\BACK\Medicine;
 use App\Form\FRONT\SearchType;
+use App\Repository\BACK\AllergenRepository;
 use App\Repository\BACK\MedicineRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/recherche", name="medic_research", methods={"GET", "POST"})
      */
-    public function searchBar(Request $request, MedicineRepository $medicineRepository): Response
+    public function searchBar(Request $request, MedicineRepository $medicineRepository, AllergenRepository $allergenRepository): Response
     {
         $formSearch = $this->createForm(SearchType::class);
         $formSearch->handleRequest($request);
@@ -24,9 +25,11 @@ class SearchController extends AbstractController
         {
             $name = $formSearch->getData()->getName();
             $medicines = $medicineRepository->findMedicinesByName($name);
+            $allergens = $allergenRepository->findAllergensByName($name);
             
             return $this->render('FRONT\search\medic_result.html.twig', [
-                'medicines' => $medicines
+                'medicines' => $medicines,
+                'allergens' => $allergens
             ]);
         }
 
