@@ -33,6 +33,7 @@ class Allergen
      */
     private $medicines;
 
+
     public function __construct()
     {
         $this->medicines = new ArrayCollection();
@@ -79,6 +80,18 @@ class Allergen
     public function removeMedicine(Medicine $medicine): self
     {
         $this->medicines->removeElement($medicine);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

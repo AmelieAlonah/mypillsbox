@@ -8,11 +8,16 @@
         <h1 class="title has-text-centered">Page de vos résultats de recherche : </h1>
     </section>
         
-<section class="box section is-small">
+    <section class="box section is-small">
 
     {% if app.request.method == 'POST' %}
 
-        {% if medicines | length == 0 %}
+    <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Résultats en médicament : </h1>
+    </section>
+
+    {% if medicines | length == 0 %}
+
         <h2 class="subtitle has-text-right">
             <button class="button is-success is-medium ">
                 <span class="icon-text">
@@ -25,23 +30,70 @@
                 </span>
             </button>
         </h2>
+
         <div class="card m-3 p-3 medic_infos columns is-desktop is-justify-content-center">
-            <h4 class="subtitle is-4 has-text-centered column is-9">Votre médicament n'est pas encore enregistré.</h4>
+            <h4 class="subtitle is-4 has-text-centered column is-9">Pas de médicaments à ce nom de référencé.</h4>
         </div>
 
-        {% endif %}
+    {% endif %}
         
-        {% for medicine in medicines %}
+    {% for medicine in medicines %}
+
+        <div class="card m-3 p-3 medic_infos columns is-desktop is-justify-content-center is-flex-wrap-wrap">
+            <div class="column">
+                <h4 class="subtitle has-text-centered ">Nom du médicament : </h4>
+                <p class="is-infos has-text-centered">{{ medicine.name | raw }}</p>
+            </div>
+
+            <div class="column">
+                {% for allergens in medicine.allergens %}
+                    {% if allergens.name is not null %}
+                    <p class="is-infos has-text-centered">{{ allergens.name | raw }}</p>
+                    {% else %}
+                    <p class="is-infos has-text-centered">Pas encore référencé</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div>
+                <button class="button is-medium is-infos is-italic has-text-weight-bold has-text-black has-text-centered">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="far fa-eye"></i>
+                        </span>
+                        <a href="{{ path('medic_read', { id: medicine.id })}}">
+                        <span>Regarder</span>
+                        </a>
+                    </span>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+
+        <section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Résultats en allergène : </h1>
+        </section>
+
+    {% if allergens | length == 0 %}
+        
+        <div class="card m-3 p-3 medic_infos columns is-desktop is-justify-content-center">
+            <h4 class="subtitle is-4 has-text-centered column is-9">Pas d'allergènes à ce nom de référencé.</h4>
+        </div>
+
+    {% endif %}
+        
+        {% for allergen in allergens %}
+
             <div class="card m-3 p-3 medic_infos columns is-desktop is-justify-content-center is-flex-wrap-wrap">
                 <div class="column">
-                    <h4 class="subtitle has-text-centered ">Nom du médicament : </h4>
-                    <p class="is-infos has-text-centered">{{ medicine.name | raw }}</p>
+                    <h4 class="subtitle has-text-centered ">Nom de l'allergène : </h4>
+                    <p class="is-infos has-text-centered">{{ allergen.name | raw }}</p>
                 </div>
 
                 <div class="column">
-                    {% for allergens in medicine.allergens %}
-                        {% if allergens.name is not null %}
-                        <p class="is-infos has-text-centered">{{ allergens.name | raw }}</p>
+                    {% for medicine in allergen.medicines %}
+                        {% if medicine.name is not null %}
+                        <p class="is-infos has-text-centered">{{ medicine.name | raw }}</p>
                         {% else %}
                         <p class="is-infos has-text-centered">Pas encore référencé</p>
                         {% endif %}
@@ -54,7 +106,7 @@
                             <span class="icon">
                                 <i class="far fa-eye"></i>
                             </span>
-                            <a href="{{ path('medic_read', { id: medicine.id })}}">
+                            <a href="{{ path('allergen_read', { id: allergen.id })}}">
                             <span>Regarder</span>
                             </a>
                         </span>

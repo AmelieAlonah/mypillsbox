@@ -2,8 +2,10 @@
 
 namespace App\Controller\FRONT;
 
+use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
 use App\Form\FRONT\SearchType;
+use App\Repository\BACK\AllergenRepository;
 use App\Repository\BACK\MedicineRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +17,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/recherche", name="medic_research", methods={"GET", "POST"})
      */
-    public function searchBar(Request $request, MedicineRepository $medicineRepository): Response
+    public function searchBar(Request $request, MedicineRepository $medicineRepository, AllergenRepository $allergenRepository): Response
     {
         $formSearch = $this->createForm(SearchType::class);
         $formSearch->handleRequest($request);
@@ -23,11 +25,23 @@ class SearchController extends AbstractController
         if($formSearch->isSubmitted() && $formSearch->isValid())
         {
             $name = $formSearch->getData()->getName();
+
             $medicines = $medicineRepository->findMedicinesByName($name);
+            $allergens = $allergenRepository->findAllergensByName($name);
             
+            $this->addFlash('success', "Votre recherche s'est bien passée");
+
             return $this->render('FRONT\search\medic_result.html.twig', [
-                'medicines' => $medicines
+                'medicines' => $medicines,
+                'allergens' => $allergens
             ]);
+
+            
+        }
+
+        if($formSearch->isSubmitted() && !$formSearch->isValid())
+        {
+            return $this->addFlash('danger', "Votre recherche n'est pas valide.");
         }
 
             return $this->render('layout/_searchBar.html.twig', [
@@ -37,9 +51,9 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche/voir/{id<\d+>}", name="medic_read", methods={"GET"}, requirements={"id":"\d+"})
+     * @Route("/recherche/medicament/voir/{id<\d+>}", name="medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function searchRead(Medicine $medicine = null): Response
+    public function searchMedicineRead(Medicine $medicine = null): Response
     {
         if ( null === $medicine)
         {
@@ -48,6 +62,21 @@ class SearchController extends AbstractController
 
         return $this->render('FRONT\medicine\medic_read.html.twig', [
             'medicine' => $medicine
+        ]);
+    }
+
+    /**
+     * @Route("/recherche/allergene/voir/{id<\d+>}", name="allergen_read", methods={"GET"}, requirements={"id":"\d+"})
+     */
+    public function searchAllergenRead(Allergen $allergen = null): Response
+    {
+        if ( null === $allergen)
+        {
+            throw $this->createNotFoundException("L'allergène n'existe pas");
+        }
+
+        return $this->render('FRONT\allergen\allergen_read.html.twig', [
+            'allergen' => $allergen
         ]);
     }
 }
