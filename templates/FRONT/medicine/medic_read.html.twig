@@ -24,7 +24,9 @@
         </h2>
         <h2 class="title"> Molécule(s) : </h2>
         {% for allergens in medicine.allergens %}
-        <h3 class="subtitle">{{ allergens.name | raw }}</h3>
+        <h3 class="subtitle">{{ allergens.name | raw }}  <a href="{{ path('allergen_read', {id: allergens.id})}}">Regarder</a> </h3>
+       
+        
         {% endfor %}
         
         <section class="box section is-small columns is-desktop p-1">

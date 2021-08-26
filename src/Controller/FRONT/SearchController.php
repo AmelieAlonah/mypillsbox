@@ -2,6 +2,7 @@
 
 namespace App\Controller\FRONT;
 
+use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
 use App\Form\FRONT\SearchType;
 use App\Repository\BACK\AllergenRepository;
@@ -40,7 +41,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche/voir/{id<\d+>}", name="medic_read", methods={"GET"}, requirements={"id":"\d+"})
+     * @Route("/recherche/medicament/voir/{id<\d+>}", name="medic_read", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function searchRead(Medicine $medicine = null): Response
     {
@@ -51,6 +52,21 @@ class SearchController extends AbstractController
 
         return $this->render('FRONT\medicine\medic_read.html.twig', [
             'medicine' => $medicine
+        ]);
+    }
+
+    /**
+     * @Route("/recherche/allergene/voir/{id<\d+>}", name="allergen_read", methods={"GET"}, requirements={"id":"\d+"})
+     */
+    public function searchAllergenRead(Allergen $allergen = null): Response
+    {
+        if ( null === $allergen)
+        {
+            throw $this->createNotFoundException("L'allergène n'existe pas");
+        }
+
+        return $this->render('FRONT\allergen\allergen_read.html.twig', [
+            'allergen' => $allergen
         ]);
     }
 }
