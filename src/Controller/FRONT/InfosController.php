@@ -2,6 +2,9 @@
 
 namespace App\Controller\FRONT;
 
+use App\Entity\FRONT\Message;
+use App\Form\FRONT\MessageType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,11 +12,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class InfosController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact", methods="GET")
+     * @Route("/contact", name="contact", methods={"GET", "POST"})
      */
-    public function infosContact(): Response
+    public function infosContact(Request $request): Response
     {
-        return $this->render('FRONT/infos/contact.html.twig');
+        $message = new Message;
+
+        $formMessage = $this->createForm(MessageType::class, $message);
+        $formMessage->handleRequest($request);
+
+        if($formMessage->isSubmitted() && $formMessage->isValid())
+        {
+            $em =$this->getDoctrine()->getManager();
+
+            $em->persist($message);
+            $em->flush();
+
+            $this->addFlash('success', "Votre message est bien envoyé.");
+
+            return $this->redirectToRoute('home');
+        }
+
+        if($formMessage->isSubmitted() && !$formMessage->isValid())
+        {
+            $this->addFlash('danger', "Votre message n'a pas été envoyé.");
+        }
+
+        return $this->render('FRONT/infos/contact.html.twig', [
+            'formMessage' => $formMessage->createView()
+        ]);
     }
 
     /**

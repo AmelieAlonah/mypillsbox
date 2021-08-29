@@ -28,7 +28,38 @@
             Ici
         </h2>
 
-        <form action="" method="post">
+        {{form_start(formMessage)}}
+        {{form_errors(formMessage)}}
+            <div class="field">
+                <label class="label">Votre nom ou pseudo</label>
+                <div class="control">
+                {{ form_widget(formMessage.name, {attr: {class: 'input', placeholder: 'Ecrivez votre nom ici'}}) }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Votre email valide</label>
+                <div class="control">
+                {{ form_widget(formMessage.email, {attr: {class: 'input', placeholder: 'Ecrivez votre email ici'}}) }}
+                <p class="help is-infos">{{form_errors(formMessage.email)}}</p>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Le sujet de votre message</label>
+                        {{ form_widget(formMessage.subject, {attr: {class: 'option'}}) }}
+            </div>
+            <div class="field">
+                <label class="label">Votre message</label>
+                        {{ form_widget(formMessage.content, {attr: {class: 'textarea'}}) }}
+             </div>
+
+             <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-success" type="submit">Envoyer</button>
+                </div>
+            </div>
+                
+        {{form_end(formMessage)}}
+        {# <form action="" method="post">
             <!-- Dans le formulaire les input doivent avoir pour classe :
             - is-danger quand le champ est invalide
             - is-success quand le champ est bien rempli -->
@@ -102,7 +133,7 @@
                 </div>
             </div>
 
-        </form>
+        </form> #}
 
 
     </section>
