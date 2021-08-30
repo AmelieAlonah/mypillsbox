@@ -3,6 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\BACK\Allergen;
+use App\Entity\BACK\Medicine;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class AllergenCrudController extends AbstractCrudController
@@ -12,14 +15,13 @@ class AllergenCrudController extends AbstractCrudController
         return Allergen::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('name'),
+            AssociationField::new('medicines')->autocomplete(),
         ];
     }
-    */
+    
 }

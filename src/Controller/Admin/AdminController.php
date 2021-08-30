@@ -38,19 +38,13 @@ class AdminController extends AbstractDashboardController
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Users', "fas fa-users", User::class);
 
-        yield MenuItem::linkToCrud('Allergen', 'fas fa-list', Allergen::class);
-        yield MenuItem::linkToCrud('Medicine', 'fas fa-list', Medicine::class);
+        yield MenuItem::linkToCrud('Allergen', 'fas fa-allergies', Allergen::class);
+        yield MenuItem::linkToCrud('Medicine', "fas fa-tablets", Medicine::class);
 
-        yield MenuItem::linkToCrud('Message', 'fas fa-list', Message::class);
-        yield MenuItem::linkToCrud('News', 'fas fa-list', News::class);
-        // return [
-            
-        //     MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
-
-        //     MenuItem::linkToCrud('The Label', 'fas fa-list', Medicine::class),
-
-        // ];
+        yield MenuItem::linkToCrud('Message', "fas fa-voicemail", Message::class);
+        yield MenuItem::linkToCrud('News', "far fa-newspaper", News::class);
+        
     }
 }

@@ -94,7 +94,11 @@ class Medicine
      */
     private $allergens;
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     public function __construct()
     {
         $this->allergens = new ArrayCollection();

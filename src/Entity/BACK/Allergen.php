@@ -33,6 +33,11 @@ class Allergen
      */
     private $medicines;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     public function __construct()
     {
         $this->medicines = new ArrayCollection();
