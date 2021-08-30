@@ -2,11 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\BACK\User;
+use App\Entity\FRONT\News;
 use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
-use App\Entity\BACK\User;
 use App\Entity\FRONT\Message;
-use App\Entity\FRONT\News;
+use App\Service\UserSecurityService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -22,7 +23,6 @@ class AdminController extends AbstractDashboardController
     public function index(): Response
     {
         $routeBuilder = $this->get(AdminUrlGenerator::class);
-
         return $this->redirect($routeBuilder->setController(AllergenCrudController::class)->generateUrl());
         return parent::index();
 
@@ -38,7 +38,7 @@ class AdminController extends AbstractDashboardController
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::linkToCrud('Users', "fas fa-users", User::class);
+        // yield MenuItem::linkToCrud('Users', "fas fa-users", User::class);
 
         yield MenuItem::linkToCrud('Allergen', 'fas fa-allergies', Allergen::class);
         yield MenuItem::linkToCrud('Medicine', "fas fa-tablets", Medicine::class);
