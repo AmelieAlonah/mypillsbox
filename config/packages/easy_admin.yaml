@@ -1,0 +1,7 @@
+# easy_admin:
+#   entities:
+#     -App\Entity\BACK\Allergen
+#     -App\Entity\BACK\Medicine
+#     -App\Entity\BACK\User
+#     -App\Entity\FRONT\Message
+#     -App\Entity\FRONT\News

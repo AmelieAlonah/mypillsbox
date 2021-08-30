@@ -82,7 +82,7 @@ class Medicine
     private $medic_adverse_reaction;
 
     /**
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $id_CPD;
 
