@@ -33,7 +33,6 @@ class Allergen
      */
     private $medicines;
 
-
     public function __construct()
     {
         $this->medicines = new ArrayCollection();
