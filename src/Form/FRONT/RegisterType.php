@@ -3,8 +3,11 @@
 namespace App\Form\FRONT;
 
 use App\Entity\BACK\User;
+use App\Entity\BACK\Allergen;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\BACK\AllergenRepository;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
