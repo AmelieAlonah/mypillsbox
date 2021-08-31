@@ -15,7 +15,7 @@ class RegisterControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Page d\'inscription');
     }
 
-    public function testRegisterAddGPOST(): void
+    public function testRegisterAddPOST(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/mon-compte/creation');
@@ -40,4 +40,5 @@ class RegisterControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
     }
+    
 }
