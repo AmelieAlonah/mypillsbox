@@ -6,6 +6,9 @@ use App\Entity\BACK\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
+/**
+ * @codeCoverageIgnore
+ */
 class UserFixture extends Fixture
 {
     public function load(ObjectManager $manager)
