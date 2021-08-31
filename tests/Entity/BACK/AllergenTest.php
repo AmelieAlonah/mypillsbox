@@ -22,6 +22,26 @@ class AllergenTest extends TestCase
         $this->assertTrue($allergen->getId() === $allergen->getId());
     }
 
+    public function testAllergenIsFalse(): void
+    {
+        $allergen = new Allergen();
+        $user = new User();
+
+        $allergen->setName('Allergen');
+        $allergen->setUser($user);
+        
+        $this->assertFalse($allergen->getName() === 'False');
+        $this->assertFalse($allergen->getUser() === 'User');
+        $this->assertFalse($allergen->getId() === !$allergen->getId());
+    }
+
+    public function testAllergenIsEmpty(): void
+    {
+        $allergen = new Allergen();
+
+        $this->assertEmpty($allergen->getName());
+    }
+
     public function testAllergenAddGetRemoveMedicine(): void
     {
         $allergen = new Allergen();
