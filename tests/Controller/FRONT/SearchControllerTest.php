@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SearchControllerTest extends WebTestCase
 {
-    public function testSearchBar(): void
+    public function testSearchBarGET(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/recherche');
@@ -19,9 +19,66 @@ class SearchControllerTest extends WebTestCase
     public function testSearchBarPOST(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('POST', '/recherche');
+        $crawler = $client->request('GET', '/recherche');
+
+        $client->submitForm('Rechercher', [
+            'search[name]' => "Doliprane"
+        ],
+        'POST');
 
         $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Page de vos résultats de recherche :');
+    }
+
+    public function testSearchBarMedicine():void
+    {
+        $client = static::createClient();
+
+        $client->catchExceptions(false);
+        $this->expectException(NotFoundHttpException::class);
+
+        $client->request('GET', '/recherche/medicament/voir/33');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'La page de votre médicament.');
+    }
+
+    public function testSearchBarMedicineKO():void
+    {
+        $client = static::createClient();
+
+        $client->catchExceptions(true);
+
+        $client->request('GET', '/recherche/medicament/voir/33');
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertSelectorTextNotContains('h1', 'La page de votre médicament.');
+        
+    }
+
+    public function testSearchBarAllergen():void
+    {
+        $client = static::createClient();
+
+        $client->catchExceptions(false);
+        $this->expectException(NotFoundHttpException::class);
+
+        $client->request('GET', '/recherche/allergene/voir/33');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Page de l\'allergène');
+    }
+
+    public function testSearchBarAllergenKO():void
+    {
+        $client = static::createClient();
+
+        $client->catchExceptions(true);
+
+        $client->request('GET', '/recherche/allergene/voir/33');
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertSelectorTextNotContains('h1', 'Page de l\'allergène');
     }
 
     public function testSearchMedicineRead(): void
@@ -38,6 +95,18 @@ class SearchControllerTest extends WebTestCase
         
     }
 
+    public function testSearchMedicineReadKO(): void
+    {
+        $client = static::createClient();
+
+        $client->catchExceptions(true);
+
+        $client->request('GET', '/medicament/voir/33');
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertSelectorTextNotContains('h1', 'La page de votre médicament.');
+    }
+
     public function testSearchAllergenRead(): void
     {
         $client = static::createClient();
@@ -49,6 +118,17 @@ class SearchControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Page de l\'allergène');
+    }
+
+    public function testSearchAllergenReadKO(): void
+    {
+        $client = static::createClient();
         
+        $client->catchExceptions(true);
+
+        $client->request('GET', '/allergene/voir/33');
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertSelectorTextNotContains('h1', 'Page de l\'allergène');
     }
 }
