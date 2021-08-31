@@ -50,5 +50,6 @@ class UserTest extends TestCase
         $this->assertEmpty($user->getUserIdentifier());
         $this->assertEmpty($user->getUsername());
         $this->assertEmpty($user->getSalt());
+        $this->assertEmpty($user->eraseCredentials());
     }
 }
