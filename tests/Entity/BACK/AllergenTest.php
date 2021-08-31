@@ -40,6 +40,7 @@ class AllergenTest extends TestCase
         $allergen = new Allergen();
 
         $this->assertEmpty($allergen->getName());
+        $this->assertEmpty($allergen->__toString());
     }
 
     public function testAllergenAddGetRemoveMedicine(): void
