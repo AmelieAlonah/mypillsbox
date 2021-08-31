@@ -88,7 +88,7 @@ class Medicine
 
     //mapped de base ms marche pas
     /**
-     * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines")
+     * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines", cascade={"persist"})
      * @JoinColumn(nullable=true)
      * @ORM\JoinTable(name="allergen_medicine")
      */

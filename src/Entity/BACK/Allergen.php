@@ -27,7 +27,7 @@ class Allergen
 
     
     /**
-     * @ORM\ManyToMany(targetEntity=Medicine::class, inversedBy="allergens", cascade={"persist})
+     * @ORM\ManyToMany(targetEntity=Medicine::class, inversedBy="allergens")
      * @JoinColumn(nullable=true)
      * @ORM\JoinTable(name="allergen_medicine")
      */
