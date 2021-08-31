@@ -57,7 +57,8 @@ class MedicControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
         $this->assertSelectorTextNotContains('h1', 'Back-Office : Page du médicament');
     }
-    public function testBOMedicAdd(): void
+
+    public function testBOMedicAddGET(): void
     {
         $client = static::createClient();
 
@@ -72,7 +73,41 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Back-Office : Page d\'ajout de médicaments');
     }
 
-    public function testBOMedicUpdate(): void
+    public function testBOMedicAddPOST(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('test@admin.fr');
+
+        $client->loginUser($testUser);
+
+        $crawler = $client->request('GET', '/back-office/medicament/ajout');
+
+        $buttonCrawler = $crawler->selectButton('Ajouter');
+        $form = $buttonCrawler->form();
+
+        $form['medicine[name]'] = "Name";
+        $form['medicine[code_CIS]'] = "code_CIS";
+        $form['medicine[medic_type]'] = "medic_type";
+        $form['medicine[medic_condition]'] = "medic_condition";
+        $form['medicine[medic_dosage]'] = "medic_dosage";
+        $form['medicine[medic_exeption]'] = "medic_exeption";
+        $form['medicine[medic_method_administration]'] = "medic_method_administration";
+        $form['medicine[medic_danger]'] = "medic_danger";
+        $form['medicine[medic_dosage_max]'] = "medic_dosage_max";
+        $form['medicine[medic_interaction_other_medic]'] = "medic_interaction_other_medic";
+        $form['medicine[fertily_pregnancy_breastfeeding]'] = "fertily_pregnancy_breastfeeding";
+        $form['medicine[medic_adverse_reaction]'] = "medic_adverse_reaction";
+        $form['medicine[id_CPD]'] = 1;
+
+        $client->submit($form);
+
+        $crawler = $client->request('POST', '/back-office/medicament/ajout');
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testBOMedicUpdateGET(): void
     {
         $client = static::createClient();
 

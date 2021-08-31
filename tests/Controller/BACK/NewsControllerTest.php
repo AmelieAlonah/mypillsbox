@@ -41,7 +41,7 @@ class NewsControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Back-Office : Page de la news');
     }
 
-    public function testBONewsAdd(): void
+    public function testBONewsAddGET(): void
     {
         $client = static::createClient();
 
@@ -54,6 +54,29 @@ class NewsControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Back-Office : Page d\'ajout de news');
+    }
+
+    public function testBONewsAddPOST(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('test@admin.fr');
+
+        $client->loginUser($testUser);
+
+        $crawler = $client->request('GET', '/back-office/news/ajout');
+
+        $buttonCrawler = $crawler->selectButton('Ajouter');
+        $form = $buttonCrawler->form();
+
+        $form['news[title]'] = "Titre";
+        $form['news[content]'] = "Contenu";
+
+        $client->submit($form);
+
+        $crawler = $client->request('POST', '/back-office/news/ajout');
+        $this->assertResponseIsSuccessful();
     }
 
     public function testBONewsUpdate(): void
@@ -72,6 +95,29 @@ class NewsControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Back-Office : Page d\'édition de news');
+    }
+
+    public function testBONewsUpdatePOST(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('test@admin.fr');
+
+        $client->loginUser($testUser);
+
+        $crawler = $client->request('GET', '/back-office/news/edition/1');
+
+        $buttonCrawler = $crawler->selectButton('Ajouter');
+        $form = $buttonCrawler->form();
+
+        $form['news[title]'] = "Titre";
+        $form['news[content]'] = "Contenu";
+
+        $client->submit($form);
+
+        $crawler = $client->request('POST', '/back-office/news/edition/1');
+        $this->assertResponseIsSuccessful();
     }
 
     public function testBONewsDelete(): void
