@@ -41,6 +41,22 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Back-Office : Page du médicament');
     }
 
+    public function testBOMedicReadKO(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('test@admin.fr');
+
+        $client->catchExceptions(true);
+
+        $client->loginUser($testUser);
+
+        $crawler = $client->request('GET', '/back-office/medicament/voir/1');
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertSelectorTextNotContains('h1', 'Back-Office : Page du médicament');
+    }
     public function testBOMedicAdd(): void
     {
         $client = static::createClient();
@@ -74,6 +90,23 @@ class MedicControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Back-Office : Page d\édition du médicament');
     }
 
+    public function testBOMedicUpdateKO(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('test@admin.fr');
+
+        $client->catchExceptions(true);
+
+        $client->loginUser($testUser);
+
+        $crawler = $client->request('GET', '/back-office/medicament/edition/1');
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertSelectorTextNotContains('h1', 'Back-Office : Page d\édition du médicament');
+    }
+
     public function testBOMedicDelete(): void
     {
         $client = static::createClient();
@@ -89,5 +122,22 @@ class MedicControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/back-office/medicament/suppression/1');
 
         $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(302);
+    }
+
+    public function testBOMedicDeleteKO(): void
+    {
+        $client = static::createClient();
+
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $testUser = $userRepository->findOneByEmail('test@admin.fr');
+
+        $client->catchExceptions(true);
+
+        $client->loginUser($testUser);
+
+        $crawler = $client->request('GET', '/back-office/medicament/suppression/1');
+
+        $this->assertResponseStatusCodeSame(404);
     }
 }
