@@ -43,7 +43,7 @@ class AllergenControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Back-Office : Page de l\'allergène');
     }
 
-    public function testBOAllergenAdd(): void
+    public function testBOAllergenAddGET(): void
     {
         $client = static::createClient();
 
