@@ -140,41 +140,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function setUserName(string $userName): self
-    {
-        $this->userName = $userName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Allergen[]
-     */
-    public function getAllergens(): Collection
-    {
-        return $this->allergens;
-    }
-
-    public function addAllergen(Allergen $allergen): self
-    {
-        if (!$this->allergens->contains($allergen)) {
-            $this->allergens[] = $allergen;
-            $allergen->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAllergen(Allergen $allergen): self
-    {
-        if ($this->allergens->removeElement($allergen)) {
-            // set the owning side to null (unless already changed)
-            if ($allergen->getUser() === $this) {
-                $allergen->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
 }
