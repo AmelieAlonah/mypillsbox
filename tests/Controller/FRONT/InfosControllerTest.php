@@ -18,9 +18,19 @@ class InfosControllerTest extends WebTestCase
     public function testInfosContactPOST(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('POST', '/contact');
+        $crawler = $client->request('GET', '/contact');
 
-        $this->assertResponseStatusCodeSame(200);
+        $buttonCrawler = $crawler->selectButton('Envoyer');
+        $form = $buttonCrawler->form();
+        
+        $form['message[name]'] = "Amelie";
+        $form['message[email]'] = "email@email.fr";
+        $form['message[content]'] = "Contenu";
+
+        $client->submit($form);
+
+        $crawler = $client->request('POST', '/contact');
+        $this->assertResponseIsSuccessful();
     }
 
     public function testInfosCGU(): void
