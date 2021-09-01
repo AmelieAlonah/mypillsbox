@@ -15,7 +15,7 @@ class RegisterController extends AbstractController
     
 
     /**
-     * @Route("/back-office/utilisateurs/ajout", name="/back_office_user_add", methods={"GET", "POST"})
+     * @Route("/back-office/utilisateurs/ajout", name="back_office_user_add", methods={"GET", "POST"})
      */
     public function registerAdd(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {

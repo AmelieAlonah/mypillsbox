@@ -19,8 +19,8 @@ class AllergenCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            AssociationField::new('medicines')->autocomplete(),
+            TextField::new('name', "Nom de l'allergène"),
+            AssociationField::new('medicines', "Médicaments")->autocomplete(),
         ];
     }
     

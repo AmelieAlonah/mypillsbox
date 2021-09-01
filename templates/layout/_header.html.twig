@@ -60,7 +60,11 @@
                         <div class="buttons is-flex is-justify-content-center">
                             
                             {% if is_granted('ROLE_USER') %}
-                            
+
+                                <div class="button is-primary">
+                                    <a href=""><strong>Mon compte</strong></a>
+                                </div>
+
                                 <div class="button is-primary">
                                     <a href="{{ path('app_logout')}}"><strong>Me déconnecter</strong></a>
                                 </div>

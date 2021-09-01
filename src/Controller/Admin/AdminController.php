@@ -2,17 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\BACK\User;
 use App\Entity\FRONT\News;
 use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
-use App\Entity\FRONT\Message;
-use App\Service\UserSecurityService;
+use App\Entity\BACK\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class AdminController extends AbstractDashboardController
@@ -22,9 +19,24 @@ class AdminController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        $routeBuilder = $this->get(AdminUrlGenerator::class);
-        return $this->redirect($routeBuilder->setController(AllergenCrudController::class)->generateUrl());
-        return parent::index();
+        $repositoryAllergen = $this->getDoctrine()->getRepository(Allergen::class);
+        $allergens  = $repositoryAllergen->findAll();
+
+        $repositoryMedicine = $this->getDoctrine()->getRepository(Medicine::class);
+        $medicines  = $repositoryMedicine->findAll();
+
+        $repositoryUser = $this->getDoctrine()->getRepository(User::class);
+        $users  = $repositoryUser->findAll();
+
+        $allergensNB = count($allergens);
+        $medicinesNB = count($medicines);
+        $userNB = count($users);
+
+        return $this->render('bundles/EasyAdmin/dashbord.html.twig', [
+            'NbAllergens' => $allergensNB,
+            'NbMedicines' => $medicinesNB,
+            'NbUsers' => $userNB
+        ]);
 
     }
 
@@ -36,15 +48,35 @@ class AdminController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::section('MyPillsBox');
+        yield MenuItem::linkToRoute('Accueil', 'fa fa-home', 'home');
+        yield MenuItem::linkToRoute('Accueil Back-Office', 'fa fa-home', 'back_office_home');
+        yield MenuItem::linkToLogout('Se déconnecter', 'fa fa-sign-out-alt', 'app_logout');
+
+        yield MenuItem::section('Administration');
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
 
-        // yield MenuItem::linkToCrud('Users', "fas fa-users", User::class);
-
-        yield MenuItem::linkToCrud('Allergen', 'fas fa-allergies', Allergen::class);
-        yield MenuItem::linkToCrud('Medicine', "fas fa-tablets", Medicine::class);
-
-        yield MenuItem::linkToCrud('Message', "fas fa-voicemail", Message::class);
-        yield MenuItem::linkToCrud('News', "far fa-newspaper", News::class);
+        yield MenuItem::section('Médicaments et allergènes');
+        yield MenuItem::subMenu('Médicaments', 'fas fa-tablets')->setSubItems([
+            MenuItem::linkToCrud('Liste', "fas fa-list", Medicine::class)
+                ->setDefaultSort(['name' => 'ASC']),
+            MenuItem::linkToCrud('Ajouter',  "far fa-plus-square", Medicine::class)
+                ->setAction('new'),
+        ]);
+        yield MenuItem::subMenu('Allergènes', 'fas fa-allergies')->setSubItems([
+            MenuItem::linkToCrud('Liste', 'fas fa-list', Allergen::class)
+                ->setDefaultSort(['name' => 'ASC']),
+            MenuItem::linkToCrud('Ajouter', "far fa-plus-square", Allergen::class)
+                ->setAction('new'),
+        ]);
+        
+        yield MenuItem::section('Autres');
+        yield MenuItem::subMenu('News', "far fa-newspaper")->setSubItems([
+            MenuItem::linkToCrud('News', "fas fa-list", News::class)
+                ->setDefaultSort(['id' => 'DESC']),
+            MenuItem::linkToCrud('Ajouter', "far fa-plus-square", News::class)
+                ->setAction('new'),
+        ]);
         
     }
 }
