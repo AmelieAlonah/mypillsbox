@@ -19,6 +19,6 @@ class MedicineCrudControllerTest extends WebTestCase
 
         $linkCrawler = $crawler->selectLink('Medicine');
 
-        $this->assertResponseStatusCodeSame(302);
+        $this->assertResponseStatusCodeSame(200);
     }
 }

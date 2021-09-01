@@ -19,7 +19,7 @@ class AdminControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/admin');
 
-        $this->assertResponseStatusCodeSame(302);
+        $this->assertResponseStatusCodeSame(200);
     }
 
     public function testLink(): void

@@ -19,6 +19,6 @@ class NewsCrudControllerTest extends WebTestCase
 
         $linkCrawler = $crawler->selectLink('News');
 
-        $this->assertResponseStatusCodeSame(302);
+        $this->assertResponseStatusCodeSame(200);
     }
 }
