@@ -6,6 +6,9 @@ use App\Entity\BACK\Medicine;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
+/**
+ * @codeCoverageIgnore
+ */
 class MedicineFixtures extends Fixture
 {
     public function load(ObjectManager $manager)

@@ -122,18 +122,6 @@ class Medicine
         return $this;
     }
 
-    public function getMedicCompo(): ?string
-    {
-        return $this->medic_compo;
-    }
-
-    public function setMedicCompo(string $medic_compo): self
-    {
-        $this->medic_compo = $medic_compo;
-
-        return $this;
-    }
-
     public function getMedicType(): ?string
     {
         return $this->medic_type;
@@ -226,18 +214,6 @@ class Medicine
     public function setMedicInteractionOtherMedic(?string $medic_interaction_other_medic): self
     {
         $this->medic_interaction_other_medic = $medic_interaction_other_medic;
-
-        return $this;
-    }
-
-    public function getMedicInteractionOtherMedicId(): ?int
-    {
-        return $this->medic_interaction_other_medic_id;
-    }
-
-    public function setMedicInteractionOtherMedicId(?int $medic_interaction_other_medic_id): self
-    {
-        $this->medic_interaction_other_medic_id = $medic_interaction_other_medic_id;
 
         return $this;
     }

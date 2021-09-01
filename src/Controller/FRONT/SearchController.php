@@ -35,8 +35,6 @@ class SearchController extends AbstractController
                 'medicines' => $medicines,
                 'allergens' => $allergens
             ]);
-
-            
         }
 
         if($formSearch->isSubmitted() && !$formSearch->isValid())

@@ -71,11 +71,10 @@ class Allergen
     public function addMedicine(Medicine $medicine): self
     {
         if (!$this->medicines->contains($medicine)) {
-            //MAJ Relation
-            $medicine->addAllergen($this);
 
             $this->medicines[] = $medicine;
-            
+            //MAJ Relation
+            $medicine->addAllergen($this);
         }
 
         return $this;
