@@ -1,0 +1,19 @@
+{% block body %}
+
+{% apply inky_to_html %}
+<container>
+    <row class="header">
+        <columns>
+            <spacer size="16"></spacer>
+            <h1 class="text-center">Bienvenue sur MyPillsBox!</h1>
+        </columns>
+
+        {% block content %}
+
+        {% endblock %}
+    </row>
+</container>
+{% endapply %}
+
+
+{% endblock %}
