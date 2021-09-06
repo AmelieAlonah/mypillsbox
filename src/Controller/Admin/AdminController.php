@@ -6,6 +6,7 @@ use App\Entity\FRONT\News;
 use App\Entity\BACK\Allergen;
 use App\Entity\BACK\Medicine;
 use App\Entity\BACK\User;
+use App\Entity\FRONT\Message;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -78,6 +79,6 @@ class AdminController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter', "far fa-plus-square", News::class)
                 ->setAction('new'),
         ]);
-        
+        yield MenuItem::linkToCrud('Messages', "far fa-plus-square", Message::class);
     }
 }
