@@ -23,7 +23,11 @@
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
-            <script src="{{ asset('assets/js/bulma/index.js')}}"></script>
+            <script defer src="{{ asset('assets/js/bulma/index.js')}}"></script>
+            
+            <script defer src="{{ asset('assets/js/components/flashMessages.js')}}"></script>
+            
+            <script defer src="{{ asset('assets/js/index.js')}}"></script>
         {% endblock %}
     </head>
     <body>
