@@ -17,9 +17,21 @@ class AllergenCrudControllerTest extends WebTestCase
         $client->loginUser($testUser);
         $crawler = $client->request('GET', '/admin');
 
-        $linkCrawler = $crawler->selectLink('Allergen');
+        // $linkCrawler = $crawler->selectLink('#main-menu');
+        // $linkCrawler = $crawler->filter('.menu');
+        // $linkCrawler = $crawler->filter('.menu-item has-submenu');
+        // $linkCrawler = $crawler->filter('.submenu');
+        // $linkCrawler = $crawler->filter('.menu-item');
+        // $linkCrawler = $crawler->filter('.menu-icon .fa-fw .fas .fa-allergies');
+        // // $linkCrawler = $crawler->filter('.submenu');
+        
+        // // $linkCrawler = $crawler->filter('Liste');
 
-        $this->assertResponseStatusCodeSame(302);
+        // $link = $linkCrawler->link();
+
+        // $client->click($link);
+
+        $this->assertResponseStatusCodeSame(200);
     }
 
 }

@@ -19,6 +19,6 @@ class MessageCrudControllerTest extends WebTestCase
 
         $linkCrawler = $crawler->selectLink('Message');
 
-        $this->assertResponseStatusCodeSame(302);
+        $this->assertResponseStatusCodeSame(200);
     }
 }

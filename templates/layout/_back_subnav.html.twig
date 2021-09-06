@@ -7,22 +7,33 @@
     </a>
 
     <div class="navbar-dropdown dropdown-content">
-        <a class="navbar-item dropdown-item" id="link_faq">
+        <a href="{{ path('faq_browse')}}" class="navbar-item dropdown-item" id="link_faq">
             La Foire Aux Questions
         </a>
-        <a href="{{ path('back_office_news_browse')}}" class="navbar-item dropdown-item">
-            Les news !
+        
+        <a href="{{ path('admin')}}" class="navbar-item dropdown-item">
+            L'interface admin
         </a>
-        <a href="{{path('back_office_message_browse')}}" class="navbar-item dropdown-item">
-            Mes messages
-        </a>
-        <a href="{{ path('back_office_medic_browse')}}" class="navbar-item dropdown-item">
+        
+        {# <a href="{{ path('back_office_medic_browse')}}" class="navbar-item dropdown-item">
             Les médicaments
         </a>
         <a href="{{ path('back_office_allergen_browse')}}" class="navbar-item dropdown-item">
             Les allergènes
         </a>
-        <a class="navbar-item dropdown-item">
+        <a href="{{ path('back_office_news_browse')}}" class="navbar-item dropdown-item">
+            Les news !
+        </a> #}
+
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+            <a href="{{path('back_office_message_browse')}}" class="navbar-item dropdown-item">
+            Mes messages
+            </a>
+
+            <a href="{{ path('back_office_user_add')}}" class="navbar-item dropdown-item">
             Les inscrit.e.s
         </a>
+        {% endif %}
+        
     </div>

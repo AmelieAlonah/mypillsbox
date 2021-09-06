@@ -43,4 +43,5 @@ security:
         - { path: ^/back-office/utilisateurs/(liste|voir|ajout|edition|supression)/\d+, roles: ROLE_ADMIN }
     
     role_hierarchy:
+        ROLE_SUPER_ADMIN : ROLE_ADMIN
         ROLE_ADMIN: ROLE_USER
