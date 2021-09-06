@@ -1,17 +1,70 @@
-{% block body %}
-
-
-<container>
-    <row class="header">
-        <columns>
-            <spacer size="16"></spacer>
-            <h1 class="text-center">Bienvenue sur MyPillsBox!</h1>
-        </columns>
+{% apply inline_css %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MyPillsBox</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #E1F0F4;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #131814;
+        }
+        h1 {
+            background-color: #283129;
+            color: #CDD7FF;
+            padding: 30px 0 50px 0;
+            font-weight: normal;
+        }
+        h2 {
+            background-color: #131814;
+            color: #EFEDFF;
+            padding: 30px 0 50px 0;
+            font-weight: normal;
+        }
+        .container {
+            background-color: #f5eaf8;
+            width: 580px;
+            margin: 0 auto;
+            color: #3C4A3E;
+        }
+        .bottom {
+            background-color: #efefee;
+        }
+        .block {
+            margin: 0;
+            padding: 10px 20px 20px 20px;
+        }
+        .logo {
+            width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="text-center">
+            <img src="{{ email.image('pictures/MyPillsBox_nav.png')}}" class="logo text-center" alt="MyPillsBox Logo">
+            <h1 class="text-center">MyPillsBox</h1>
+        </p>
 
         {% block content %}
 
         {% endblock %}
-    </row>
-</container>
 
-{% endblock %}
+        <p class="text-center">
+            A très vite sur MyPillsBox, ou par mail 😊 pour les nouveautés.
+        </p>
+        <p class="text-center">
+            <img src="{{ email.image('pictures/MyPillsBox_text.png')}}" alt="MyPillsBox Logo">
+        </p>
+
+    </div>
+
+</body>
+{% endapply %}

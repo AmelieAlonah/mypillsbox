@@ -1,9 +1,15 @@
 {% extends "@LAYOUT/_mailerBase.html.twig" %}
 
 {% block content %}
+    {% apply inline_css %}
 
+        <h2 class="text-center">Inscription validée !</h2>
+        <p class="text-center">
+            C'est avec grand plaisir, que je vous confirme votre inscription sur le site de MyPillsBox.
+        </p>
+        <p class="text-center">
+            Nous ne manquerons pas de vous informer des nouveautés à venir !
+        </p>
 
-BIENVENUE SUR MYPILLS BOX POPOPOPOtest 452155
-
-
+    {% endapply %}
 {% endblock %}

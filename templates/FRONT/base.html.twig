@@ -18,12 +18,16 @@
             <link rel="stylesheet" href="{{ asset('assets/css/bulma.css')}}">
             <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 
-            <link rel="shortcut icon" href=" {{ asset('assets/pictures/visual_identity/MyPillsBox_favicon.png')}}" type="image/x-icon">
+            <link rel="shortcut icon" href="{{ asset('assets/pictures/visual_identity/MyPillsBox_favicon.png')}}" type="image/x-icon">
         {% endblock %}
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
-            <script src="{{ asset('assets/js/bulma/index.js')}}"></script>
+            <script defer src="{{ asset('assets/js/bulma/index.js')}}"></script>
+            
+            <script defer src="{{ asset('assets/js/components/flashMessages.js')}}"></script>
+            
+            <script defer src="{{ asset('assets/js/index.js')}}"></script>
         {% endblock %}
     </head>
     <body>
