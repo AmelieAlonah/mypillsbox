@@ -1,18 +1,36 @@
 <?php
 
-namespace App\Tests\FRONT;
+namespace App\Tests\Controller\FRONT;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class InfosControllerTest extends WebTestCase
 {
-    public function testInfosContact(): void
+    public function testInfosContactGET(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/contact');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Page de contact');
+    }
+
+    public function testInfosContactPOST(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/contact');
+
+        $buttonCrawler = $crawler->selectButton('Envoyer');
+        $form = $buttonCrawler->form();
+        
+        $form['message[name]'] = "Amelie";
+        $form['message[email]'] = "email@email.fr";
+        $form['message[content]'] = "Contenu";
+
+        $client->submit($form);
+
+        $crawler = $client->request('POST', '/contact');
+        $this->assertResponseIsSuccessful();
     }
 
     public function testInfosCGU(): void
@@ -39,7 +57,6 @@ class InfosControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/qui-suis-je');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Derrière MyPillsBox se cache :');
+        $this->assertSelectorTextContains('h1', 'Page des infos secrètes de MyPillsBox');
     }
-
 }

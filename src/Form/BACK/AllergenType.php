@@ -20,6 +20,7 @@ class AllergenType extends AbstractType
             ->add('medicines',      EntityType::class,  ['class'        => Medicine::class,
                                                         'choice_label'  => 'name',
                                                         'multiple'      => true,
+                                                        'expanded'      => true,
                                                         'query_builder' => function (MedicineRepository $medicineRepository)
                                                                             {
                                                                                 return $medicineRepository->createQueryBuilder('m')

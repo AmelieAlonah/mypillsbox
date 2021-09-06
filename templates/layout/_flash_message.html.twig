@@ -1,10 +1,11 @@
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-    <article class="message is-{{label}}">
-        <div class="message-header">
+    <article class="message m-6 is-{{label}}">
+        <div class="message-header p-3">
             <p>Information</p>
+            <button class="delete" aria-label="delete"></button>
         </div>
-        <div class="message-body">
+        <div class="message-body p-3">
             {{message}}
         </div>
     </article>

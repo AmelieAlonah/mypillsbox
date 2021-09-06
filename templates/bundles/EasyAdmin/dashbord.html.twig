@@ -1,0 +1,25 @@
+{% extends "@EasyAdmin/page/content.html.twig" %}
+
+{% block content_title %}MyPillsBox : Dashboard{% endblock %}
+
+{% block main %}
+
+    <table class="datagrid">
+        <thead>
+            <tr>
+               <td>Personnes inscrites</td>
+                <td>Médicaments enregistrés</td>
+                <td>Allergènes enregistrés</td> 
+            </tr>
+            
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ NbUsers }}</td>
+                <td>{{ NbMedicines }}</td>
+                <td>{{ NbAllergens }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

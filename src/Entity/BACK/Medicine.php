@@ -82,19 +82,23 @@ class Medicine
     private $medic_adverse_reaction;
 
     /**
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $id_CPD;
 
     //mapped de base ms marche pas
     /**
-     * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines")
+     * @ORM\ManyToMany(targetEntity=Allergen::class, inversedBy="medicines", cascade={"persist"})
      * @JoinColumn(nullable=true)
      * @ORM\JoinTable(name="allergen_medicine")
      */
     private $allergens;
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     public function __construct()
     {
         $this->allergens = new ArrayCollection();
@@ -114,18 +118,6 @@ class Medicine
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMedicCompo(): ?string
-    {
-        return $this->medic_compo;
-    }
-
-    public function setMedicCompo(string $medic_compo): self
-    {
-        $this->medic_compo = $medic_compo;
 
         return $this;
     }
@@ -222,18 +214,6 @@ class Medicine
     public function setMedicInteractionOtherMedic(?string $medic_interaction_other_medic): self
     {
         $this->medic_interaction_other_medic = $medic_interaction_other_medic;
-
-        return $this;
-    }
-
-    public function getMedicInteractionOtherMedicId(): ?int
-    {
-        return $this->medic_interaction_other_medic_id;
-    }
-
-    public function setMedicInteractionOtherMedicId(?int $medic_interaction_other_medic_id): self
-    {
-        $this->medic_interaction_other_medic_id = $medic_interaction_other_medic_id;
 
         return $this;
     }

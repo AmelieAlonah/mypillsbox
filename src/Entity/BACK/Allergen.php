@@ -27,12 +27,17 @@ class Allergen
 
     
     /**
-     * @ORM\ManyToMany(targetEntity=Medicine::class, inversedBy="allergens", cascade={"persist})
+     * @ORM\ManyToMany(targetEntity=Medicine::class, inversedBy="allergens")
      * @JoinColumn(nullable=true)
      * @ORM\JoinTable(name="allergen_medicine")
      */
     private $medicines;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     public function __construct()
     {
         $this->medicines = new ArrayCollection();
@@ -66,11 +71,10 @@ class Allergen
     public function addMedicine(Medicine $medicine): self
     {
         if (!$this->medicines->contains($medicine)) {
-            //MAJ Relation
-            $medicine->addAllergen($this);
 
             $this->medicines[] = $medicine;
-            
+            //MAJ Relation
+            $medicine->addAllergen($this);
         }
 
         return $this;
@@ -79,6 +83,18 @@ class Allergen
     public function removeMedicine(Medicine $medicine): self
     {
         $this->medicines->removeElement($medicine);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

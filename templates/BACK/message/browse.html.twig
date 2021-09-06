@@ -1,0 +1,41 @@
+{% extends "@FRONT/base.html.twig" %}
+
+{% block title %}MyPillsBox : Back : Les Messages{% endblock %}
+
+{% block content %}
+
+<section class="section box is-small is-flex is-justify-content-center is-align-items-center">
+        <h1 class="title has-text-centered">Back-Office : Page des messages </h1>
+    </section>
+
+<section class="box section is-medium">
+    <h1 class="title">La liste des messagees : Total</h1>
+    
+    <section class="section">
+        {% for message in messages %}
+        <div class="card m-3 p-3 columns is-desktop">
+            <div class="column">
+            <h4 class="subtitle is-4 has-text-centered">Nom : <br> <strong>{{ message.name | raw }}</strong></h4>
+            <div class="card-content">
+                {{message.content}}
+            </div>
+            
+                <div class="is-flex-wrap-wrap">
+                    <button type="submit"
+                        class=" button is-medium is-light is-danger is-italic has-text-weight-bold has-text-black has-text-centered">
+                        <span class="icon-text">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            {# <a href="{{ path('back_office_message_delete', { id: message.id })}}">
+                                <span>Supprimer</span>
+                            </a> #}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</section>
+{% endblock %}

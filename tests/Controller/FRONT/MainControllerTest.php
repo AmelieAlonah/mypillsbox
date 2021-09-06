@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\FRONT;
+namespace App\Tests\Controller\FRONT;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class FrontMainControllerTest extends WebTestCase
+class MainControllerTest extends WebTestCase
 {
     public function testHome(): void
     {

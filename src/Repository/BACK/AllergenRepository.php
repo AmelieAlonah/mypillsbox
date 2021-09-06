@@ -19,6 +19,17 @@ class AllergenRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Allergen::class);
     }
+
+    public function findAllergensByName(String $name): Array
+    {
+        return $this->createQueryBuilder('Allergen')
+                    ->andWhere('Allergen.name LIKE :name')
+                    ->setParameter('name', '%' . $name . '%')
+                    ->setMaxResults(10)
+                    ->getQuery()
+                    ->execute();
+    }
+
     //SELECT * FROM `allergen`
     //INNER JOIN `allergen_medicine` ON `allergen`.`id` = `allergen_id`
 

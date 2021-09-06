@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-
+/**
+ * @codeCoverageIgnore
+ */
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;

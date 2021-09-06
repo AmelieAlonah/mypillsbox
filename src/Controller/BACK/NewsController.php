@@ -38,7 +38,7 @@ class NewsController extends AbstractController
     {
         if( null === $news )
         {
-            throw $this->createNotFoundException("La news n\'existe pas.");
+            throw $this->createNotFoundException("La news n'existe pas.");
         }
 
         return $this->render('back/news/read.html.twig', [
