@@ -55,6 +55,7 @@ class AdminController extends AbstractDashboardController
 
         yield MenuItem::section('Administration');
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class);
 
         yield MenuItem::section('Médicaments et allergènes');
         yield MenuItem::subMenu('Médicaments', 'fas fa-tablets')->setSubItems([
