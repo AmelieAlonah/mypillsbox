@@ -64,7 +64,7 @@ class RegisterController extends AbstractController
             $this->addFlash('danger', 'L\'utilisateur n\'a pas été enregistré.');
         }
 
-        return $this->render('back/register/add.html.twig', [
+        return $this->render('BACK/register/add.html.twig', [
             'user'      => $user,
             'formUser'  => $formUser->createView()
         ]);
