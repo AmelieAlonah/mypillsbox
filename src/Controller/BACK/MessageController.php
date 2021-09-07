@@ -17,7 +17,7 @@ class MessageController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Message::class);
         $messages  = $repository->findAll();
 
-        return $this->render('back/message/browse.html.twig', [
+        return $this->render('BACK/message/browse.html.twig', [
             "messages" => $messages
         ]);
     }
