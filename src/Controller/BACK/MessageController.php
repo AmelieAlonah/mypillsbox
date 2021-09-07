@@ -21,4 +21,23 @@ class MessageController extends AbstractController
             "messages" => $messages
         ]);
     }
+
+    /**
+     * @Route("/back-office/message/{id<\d+>}", name="back_office_message_delete", methods={"GET"})
+     */
+    public function delete(Message $message): Response
+    {
+        if(null === $message)
+        {
+            throw $this->createNotFoundException("Le emssage n'existe pas.");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush();
+
+        $this->addFlash('success', "Le message a bien été supprimé.");
+
+        return $this->redirectToRoute('back_office_message_browse', [], 302);
+    }
 }
